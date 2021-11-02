@@ -29,27 +29,43 @@
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="BancaOnline" role="tabpanel" aria-labelledby="BancaOnline-tab">
-          
-          <div id="Cuentas">
-            <p>Mis Cuentas</p>
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>  
+          <div id="FlexBancaOnline">
+            <div id="Cuentas">
+              <p>Mis Cuentas</p>
+            <select class="form-select" id="SelectCuentas" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>  
 
-        <div id="Fondos">
-          <p>Añadir fondos</p>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          <div id="Fondos">
+            <p>Añadir fondos</p>
+            <input type="text" id="AñadirFondos" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <button type="button" class="btn btn-info">Light</button>
+          </div>
         </div>
-          
-
+        <table  id="Extracto">
+          <tr style="border-bottom: 1px solid;font-weight: bold;">
+              <td>Fecha</td>
+              <td>Concepto</td>
+              <td>Importe</td>
+              <td>Saldo</td>
+          </tr>
+          <tr>
+              <td>Fecha</td>
+              <td>Concepto</td>
+              <td>Importe</td>
+              <td>Saldo</td>
+          </tr>
+      </table>
 
 
         </div>
-        <div class="tab-pane fade" id="Clientes" role="tabpanel" aria-labelledby="Clientes-tab">2</div>
+        <div class="tab-pane fade" id="Clientes" role="tabpanel" aria-labelledby="Clientes-tab">
+          
+        </div>
         <div class="tab-pane fade" id="Proveedores" role="tabpanel" aria-labelledby="Proveedores-tab">3</div>
         <div class="tab-pane fade" id="MiStock" role="tabpanel" aria-labelledby="MiStock-tab">4</div>
       </div>
