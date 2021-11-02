@@ -6,8 +6,9 @@ if($_SERVER['SERVER_NAME']=="lau.zerbitzaria.net"){
     include_once ("connect_data_LOCAL.php");
 }
 
-class MiStockModel extends MiStockClass{
-    
+
+class ProveedorModel extends ProveedorClass{
+
     public function OpenConnect(){
 
     }
