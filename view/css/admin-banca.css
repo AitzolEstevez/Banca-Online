@@ -1,14 +1,25 @@
-#BancaOnline{
-display: flex;
-flex-direction: row;
+#FlexBancaOnline{
+    display: flex;
+    flex-direction: row;
 }
 
 #Cuentas{
     width: 49%;
     margin: 1% 1%;
 }
-
+#SelectCuentas{
+    width: 50%;
+}
 #Fondos{
     width: 49%;
     margin: 1% 1%;
 }
+#AñadirFondos{
+    width: 50%;
+    display: inline-block;
+}
+table#Extracto{border:1px solid black;width:60%;background: darkgray ;margin:auto;}
+table#Extracto	tr{text-align: center;}
+table#Extracto  tr#titulo{background: darkgray ;text-align: center;}
+table#Extracto   tr:nth-child(odd){background:  lightcyan;}
+table#Extracto tr:nth-child(even){background: ivory; }
