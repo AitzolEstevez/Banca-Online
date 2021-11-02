@@ -1,0 +1,14 @@
+#BancaOnline{
+display: flex;
+flex-direction: row;
+}
+
+#Cuentas{
+    width: 49%;
+    margin: 1% 1%;
+}
+
+#Fondos{
+    width: 49%;
+    margin: 1% 1%;
+}
