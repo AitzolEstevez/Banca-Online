@@ -14,19 +14,20 @@
   </head>
   <body>
     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="BancaOnline-tab" data-bs-toggle="tab" data-bs-target="#BancaOnline" type="button" role="tab" aria-controls="BancaOnline" aria-selected="true">Banca Online</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="Clientes-tab" data-bs-toggle="tab" data-bs-target="#Clientes" type="button" role="tab" aria-controls="Clientes" aria-selected="false">Clientes</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="Proveedores-tab" data-bs-toggle="tab" data-bs-target="#Proveedores" type="button" role="tab" aria-controls="Proveedores" aria-selected="false">Proveedores</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="MiStock-tab" data-bs-toggle="tab" data-bs-target="#MiStock" type="button" role="tab" aria-controls="#MiStock" aria-selected="false">MiStock</button>
-        </li>
-      </ul>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="BancaOnline" data-bs-toggle="tab" data-bs-target="#BancaOnline" type="button" role="tab" aria-controls="BancaOnline" aria-selected="true">Banca Online</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="Clientes" data-bs-toggle="tab" data-bs-target="#Clientes" type="button" role="tab" aria-controls="Clientes" aria-selected="false">Clientes</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="Proveedores" data-bs-toggle="tab" data-bs-target="#Proveedores" type="button" role="tab" aria-controls="Proveedores" aria-selected="false">Proveedores</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="MiStock" data-bs-toggle="tab" data-bs-target="#MiStock" type="button" role="tab" aria-controls="#MiStock" aria-selected="false">MiStock</button>
+      </li>
+    </ul>
+    
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="BancaOnline" role="tabpanel" aria-labelledby="BancaOnline-tab">
           <div id="FlexBancaOnline">
@@ -98,6 +99,7 @@
             <tr style="border-bottom: 1px solid;font-weight: bold;">
                 <td>Fecha</td>
                 <td>Proveedor</td>
+                <td>NumFactura</td>
                 <td>Producto</td>
                 <td>Cantidad</td>
                 <td>Importe</td>
@@ -105,6 +107,7 @@
             <tr>
                 <td>Fecha</td>
                 <td>Proveedor</td>
+                <td>NumFactura</td>
                 <td>Producto</td>
                 <td>Cantidad</td>
                 <td>Importe</td>
@@ -128,7 +131,7 @@
         </table>
         </div>
       </div>
-
+    <script src="view/js/admin-banca.js"></script>   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>
