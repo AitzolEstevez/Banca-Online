@@ -5,3 +5,5 @@ if($_SERVER['SERVER_NAME']=="lau.zerbitzaria.net"){
 }else{
     include_once ("connect_data_LOCAL.php");
 }
+
+include_once("CuentasClass.php");
