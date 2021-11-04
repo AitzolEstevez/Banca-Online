@@ -1,0 +1,26 @@
+.lineas{
+    justify-content: center;
+}
+
+.producto{
+    margin-left: 45px;
+    margin-right: 45px;
+    height: 275px;
+}
+
+body{
+    height: 1000px;
+}
+
+.catalogo{
+    text-align: center;
+}
+
+.hola{
+    width: 100%;
+    height: 40%;
+}
+
+#imagengrande{
+    height: 400px;
+}
