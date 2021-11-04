@@ -8,6 +8,7 @@ if($_SERVER['SERVER_NAME']=="lau.zerbitzaria.net"){
 
 include_once("FacturaClass.php");
 
+<<<<<<< HEAD
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 class FacturaModel extends FacturaClass {
@@ -23,11 +24,23 @@ class FacturaModel extends FacturaClass {
             $this->link=new mysqli($konDat->host,$konDat->userbbdd,$konDat->passbbdd,$konDat->ddbbname);
             // mysqli klaseko link objetua sortzen da dagokion konexio datuekin
             // se crea un nuevo objeto llamado link de la clase mysqli con los datos de conexiÃ³n.
+=======
+class FacturaModel extends FacturaClass{
+    
+    public $link;
+
+    public function OpenConnect(){
+        
+        $konDat=new connect_data();
+        try{
+            $this->link=new mysqli($konDat->host,$konDat->userbbdd,$konDat->passbbdd,$konDat->ddbbname);
+>>>>>>> e03697d173c1b1f551070d6a15e57ce4e5699ccf
         }
         catch(Exception $e)
         {
             echo $e->getMessage();
         }
+<<<<<<< HEAD
         $this->link->set_charset("utf8"); // honek behartu egiten du aplikazio eta
         //                  //databasearen artean UTF -8 erabiltzera datuak trukatzeko
     }
@@ -218,3 +231,38 @@ class FacturaModel extends FacturaClass {
     
 }
 ?>
+=======
+
+        $this->link->set_charset("utf8");
+    }
+
+    public function CloseConnect(){
+        mysqli_close ($this->link);
+    }
+
+    public function insert(){}
+
+    public function update(){}
+
+    public function delete(){}
+
+    public function setList(){
+        
+        $this->OpenConnect();
+
+        $sql = "";
+
+        $result = $this->link->query($sql);
+
+        $list = array();
+
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+              
+            
+            array_push($list, $new);
+        }
+        
+    }
+
+}
+>>>>>>> e03697d173c1b1f551070d6a15e57ce4e5699ccf
