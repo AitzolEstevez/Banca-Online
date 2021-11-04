@@ -29,4 +29,33 @@ class ProductosModel extends ProductosClass{
     public function CloseConnect(){
         mysqli_close ($this->link);
     }
+
+    public function insert(){}
+
+
+    public function update(){}
+
+
+    public function delete(){}
+
+
+    public function setList(){
+        
+        $this->OpenConnect();
+
+        $sql = "";
+
+        $result = $this->link->query($sql);
+
+        $list = array();
+
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+            
+            array_push($list, $new);
+        }
+        
+    }
+
+
 }
