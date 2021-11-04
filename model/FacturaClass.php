@@ -8,7 +8,7 @@ class FacturaClass{
     public $idproducto;	
     public $precio;	
     public $fecha;	
-    public $cantidad	
+    public $cantidad;
     public $importe;
  
     public function getId(){

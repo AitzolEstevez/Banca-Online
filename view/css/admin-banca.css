@@ -32,3 +32,17 @@ table#Extracto{margin-top: 10px;}
     margin: auto;
     text-align: center;
 }   
+
+#tabla{
+	width:100%;
+}
+
+#tabla table{
+	border: solid black 1px;
+	width:80%;
+	margin:auto;
+}
+
+#tabla table tr{
+	border: solid black 1px;
+}
