@@ -34,58 +34,193 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 function loadExtracto(){
 
-    var url = "controller/controller_Extracto.php";
+    var url = "controller/controller_Extractos.php";
 
 	fetch(url, {
 	  method: 'GET', // or 'POST'
 	})
 	.then(res => res.json()).then(result => {
-        
 
-			console.log('Success:', result.listClientes);
+		var clientes = result.listClientes;
+		var proveedores = result.listProveedores;
+		var stock = result.listStock;
+		var cuentas = result.listCuentas;
+		
+		
+		var newRow ="";
+		newRow += "<option>Selecciona una cuenta</option>";
+		
+		for (let i = 0; i < cuentas.length; i++) {
+				
+			newRow += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+"</option>";
+		}
+		
+		newRow +="</table>";   
+		document.getElementById("SelectCuentas").innerHTML = newRow;
+		
+		document.getElementById("SelectCuentas").addEventListener("change", BancaOnlineload());
 			
-			var clientes = result.listClientes;
-            var proveedores = result.listProveedores;
+			
+		
+		console.log('Success:', clientes);
 
-            tabs=document.querySelectorAll("#myTab li button");
+		//////////////////////////////////////////////////////////////////////////////////
 
-            for (let i = 0; i < tabs.length; i++) {
-                tabs[i].addEventListener("click", function(){
+		tabs=document.querySelectorAll("#myTab li button");
 
-                    valor=tabs[i].id;
+		for (let i = 0; i < tabs.length; i++) {
+			tabs[i].addEventListener("click", function(){
 
-                    console.log(valor);
+				valor=tabs[i].id;
 
-                });
-                
-            }
+				console.log(valor);
+				if(valor=="Clientes"){
+					Clienteload();
+				}else if(valor=="Proveedores"){
+					Proveedorload();
+				}else if(valor=="MiStock"){
+					MiStockload();
+				}else{
+					BancaOnlineload();
+				}
+				
+				if(valor=="BancaOnline"){
+					document.getElementById("FlexBancaOnline").style.display="flex";
+				}else{
+					document.getElementById("FlexBancaOnline").style.display="none";
+				}
 
-       		var newRow ="";
-  			newRow +="<table > ";
-			newRow +="<tr><th>ID</th><th>TITULO</th><th>ANIO</th><th>DIRECTOR</th><th>CARTEL</th></tr>";
-       		
-			for (let i = 0; i < pelikulak.length; i++) {
+			});
+			
+		}
+		
+		//////////////////////////////////////////////////////////////////////////////////
+		
+		function Clienteload(){
+			var newRow ="";
+			newRow +="<table> ";
+			newRow +="<tr><th>Fecha</th><th>Numero Factura</th><th>Cliente</th><th>Numero Cuenta</th><th>Producto</th><th>Precio/u</th><th>Cantidad</th><th>Importe</th></tr>";
+			
+			for (let i = 0; i < clientes.length; i++) {
 					
-				newRow += "<tr>" +"<td>"+pelikulak[i].idPelicula+"</td>"
-									+"<td>"+pelikulak[i].TituloPelicula+"</td>"
-									+"<td>"+pelikulak[i].Anio+"</td>"
-									+"<td>"+pelikulak[i].objDirector.NombreDirector+"</td>"
-									+"<td><img src='"+pelikulak[i].cartel+"'/></td>"
+				newRow += "<tr>" +"<td>"+clientes[i].fecha+"</td>"
+									+"<td>"+clientes[i].numerofactura+"</td>"
+									+"<td>"+clientes[i].nombre+"</td>"
+									+"<td>"+clientes[i].idcuenta+"</td>"
+									+"<td>"+clientes[i].idproducto+"</td>"
+									+"<td>"+clientes[i].precio+"</td>"
+									+"<td>"+clientes[i].cantidad+"</td>"
+									+"<td>"+clientes[i].importe+"</td>"
 								+"</tr>";	
 			}
-       		newRow +="</table>";   
-       		document.getElementById("tableFilms").innerHTML = newRow; // add
-       		document.getElementById("numVisits").value=result.numVisits;
-       		
-       		var lista=loadSelect(pelikulak);;
-       		document.getElementById("selectDelete").innerHTML=lista;
-       		document.getElementById("selectUpdate").innerHTML=lista;
-       		
-       		var directors= result.directors;
-       		
-       		var listaDirectors=loadDirectors(directors);
-       		
-       		document.getElementById("SelectDirectorInsert").innerHTML=listaDirectors;
+			newRow +="</table>";   
+			document.getElementById("tabla").innerHTML = newRow;
+			document.getElementById("tabla").style.display="block";			
+		}
+		
+		//////////////////////////////////////////////////////////////////////////////////
+
+		function Proveedorload(){
+			var newRow ="";
+			newRow +="<table> ";
+			newRow +="<tr><th>Fecha</th><th>Numero Factura</th><th>Proveedor</th><th>Producto</th><th>Precio/u</th><th>Cantidad</th><th>Importe</th></tr>";
+			
+			for (let i = 0; i < proveedores.length; i++) {
+					
+				newRow += "<tr>" +"<td>"+proveedores[i].fecha+"</td>"
+									+"<td>"+proveedores[i].numerofactura+"</td>"
+									+"<td>"+proveedores[i].nombre+"</td>"
+									+"<td>"+proveedores[i].idproducto+"</td>"
+									+"<td>"+proveedores[i].precio+"</td>"
+									+"<td>"+proveedores[i].cantidad+"</td>"
+									+"<td>"+proveedores[i].importe+"</td>"
+								+"</tr>";	
+			}
+			newRow +="</table>";   
+			document.getElementById("tabla").innerHTML = newRow;	
+			document.getElementById("tabla").style.display="block";
+		}
+		
+		//////////////////////////////////////////////////////////////////////////////////
+		
+		function MiStockload(){
+			var newRow ="";
+			newRow +="<table> ";
+			newRow +="<tr><th>Producto</th><th>Precio/u</th><th>Stock</th></tr>";
+			
+			for (let i = 0; i < stock.length; i++) {
+					
+				newRow += "<tr>" +"<td>"+stock[i].producto+"</td>"
+									+"<td>"+stock[i].precio+"</td>"
+									+"<td>"+stock[i].stock+"</td>"
+								+"</tr>";	
+			}
+			newRow +="</table>";   
+			document.getElementById("tabla").innerHTML = newRow;
+			document.getElementById("tabla").style.display="block";
+			
+		}
+		
+		//////////////////////////////////////////////////////////////////////////////////
+		
+		function BancaOnlineload(){
+			
+			document.getElementById("tabla").style.display="none";
+			
+			var newRow ="";
+			newRow += "<option>Selecciona una cuenta</option>";
+			
+			for (let i = 0; i < cuentas.length; i++) {
+					
+				newRow += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+"</option>";
+			}
+			
+			newRow +="</table>";   
+			document.getElementById("SelectCuentas").innerHTML = newRow;
+			
+			document.getElementById("SelectCuentas").addEventListener("change", function(){
+				valor=document.getElementById("SelectCuentas").value;
+				console.log(valor);
+			
+
+			    var url = "controller/controller_ExtractoCuenta.php";
+
+				var data = { 'numcuenta':valor};
+
+				fetch(url, {
+				  method: 'GET', // or 'POST'
+				  body: JSON.stringify(data)
+				})
+				.then(res => res.json()).then(result => {
+				
+					var extracto = result.listExtracto;
+				
+					var newRow ="";
+					newRow +="<table> ";
+					newRow +="<tr><th>Fecha</th><th>Concepto/u</th><th>Importe</th><th>Saldo</th></tr>";
+					
+					for (let i = 0; i < extracto.length; i++) {
+							
+						newRow += "<tr>" +"<td>"+extracto[i].fecha+"</td>"
+											+"<td>"+extracto[i].concepto+"</td>"
+											+"<td>"+extracto[i].importe+"</td>"
+											+"<td>"+extracto[i].saldo+"</td>"
+										+"</tr>";	
+					}
+					newRow +="</table>";   
+					document.getElementById("tabla").innerHTML = newRow;
+					document.getElementById("tabla").style.display="block";
+				
+					
+				})
+				.catch(error => console.error('Error status:', error));	
+			
+			});
+						
+		}
+		
+
+
 	})
 	.catch(error => console.error('Error status:', error));	
 

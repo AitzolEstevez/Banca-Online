@@ -1,10 +1,16 @@
 <?php
 
-include_once ("connect_data.php");  // klase honetan gordetzen dira datu basearen datuak. erabiltzailea...
-include_once("peliculaClass.php");
-include_once("directorModel.php");
+if($_SERVER['SERVER_NAME']=="lau.zerbitzaria.net"){
+    include_once ("connect_data_SERV.php");
+}else{
+    include_once ("connect_data_LOCAL.php");
+}
 
-class peliculaModel extends peliculaClass {
+include_once("FacturaClass.php");
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+class FacturaModel extends FacturaClass {
     
     public $link;
     public $objDirector;  //save director data in the object
@@ -31,13 +37,17 @@ class peliculaModel extends peliculaClass {
         mysqli_close ($this->link);
     }
     
-    public function setList()
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    public function setListClientes()
     {
         $this->OpenConnect();  // konexio zabaldu  - abrir conexiÃ³n
         
-        $sql = "CALL spAllFilms()"; // SQL sententzia - sentencia SQL
+        $sql = "CALL MostrarFacturasClientes()"; // SQL sententzia - sentencia SQL
         
-        $result = $this->link->query($sql); 
+        $result = $this->link->query($sql);
         
         //$this->link->num_rows; num rows  of result
         
@@ -45,26 +55,64 @@ class peliculaModel extends peliculaClass {
         
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { //each row
             
-            $newPeli=new FacturaClass();
+            $newFactura=new FacturaModel();
             
-            $newPeli->idPelicula=$row['idPelicula'];
-            $newPeli->TituloPelicula=$row['TituloPelicula'];
-            $newPeli->Anio=$row['Anio'];
-            $newPeli->Director=$row['Director'];
-            $newPeli->cartel=$row['cartel'];
+            $newFactura->id=$row['id'];
+            $newFactura->numerofactura=$row['numerofactura'];
+            $newFactura->nombre=$row['cliente'];
+            $newFactura->idcuenta=$row['numcuenta'];
+            $newFactura->idproducto=$row['producto'];
+            $newFactura->precio=$row['precio'];
+            $newFactura->fecha=$row['fecha'];
+            $newFactura->cantidad=$row['cantidad'];
+            $newFactura->importe=$row['importe'];
             
-            $director=new directorModel();
-            $director->idDirector=$row['Director'];
-            $director->findIdDirector();
-            
-            $newPeli->objDirector=$director;
-     
-            array_push($list, $newPeli);
+            array_push($list, $newFactura);
         }
         mysqli_free_result($result);
         $this->CloseConnect();
         return $list;
     }
+    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    public function setListProveedores()
+    {
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexiÃ³n
+        
+        $sql = "CALL MostrarFacturasProveedores()"; // SQL sententzia - sentencia SQL
+        
+        $result = $this->link->query($sql);
+        
+        //$this->link->num_rows; num rows  of result
+        
+        $list=array();
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { //each row
+            
+            $newFactura=new FacturaModel();
+            
+            $newFactura->id=$row['id'];
+            $newFactura->numerofactura=$row['numerofactura'];
+            $newFactura->nombre=$row['proveedor'];
+            $newFactura->idproducto=$row['producto'];
+            $newFactura->precio=$row['precio'];
+            $newFactura->fecha=$row['fecha'];
+            $newFactura->cantidad=$row['cantidad'];
+            $newFactura->importe=$row['importe'];
+            
+            array_push($list, $newFactura);
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $list;
+    }
+    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    
     
     public function insert(){
         
@@ -77,10 +125,10 @@ class peliculaModel extends peliculaClass {
         
         if ($cartelInsert =="") { $cartelInsert ="view/img/default.png";}
         
-        $sql="CALL spInsertPelicula('$TituloPeliculaInsert',$AnioInsert,$DirectorInsert,'$cartelInsert')";       
+        $sql="CALL spInsertPelicula('$TituloPeliculaInsert',$AnioInsert,$DirectorInsert,'$cartelInsert')";
         
-        if ($this->link->query($sql))  // true if success 
-         //$this->link->affected_rows;  number of inserted rows
+        if ($this->link->query($sql))  // true if success
+        //$this->link->affected_rows;  number of inserted rows
         {
             return "insertado.Num de inserts: ".$this->link->affected_rows;
         } else {
@@ -89,22 +137,31 @@ class peliculaModel extends peliculaClass {
         
         $this->CloseConnect();
     }
+    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
     public function delete(){
         
         $this->OpenConnect();  // konexio zabaldu  - abrir conexiÃ³n
-
-        $id=$this->idPelicula; 
+        
+        $id=$this->idPelicula;
         $sql="CALL spDeletePelicula($id)";
         
-		 if ($this->link->query($sql))  // true if success 
-         //$this->link->affected_rows;  number of deleted rows
+        if ($this->link->query($sql))  // true if success
+        //$this->link->affected_rows;  number of deleted rows
         {
             return "borrado.Num de deletes: ".$this->link->affected_rows;
         } else {
             return "Error al borrar";
         }
-        $this->CloseConnect();     
+        $this->CloseConnect();
     }
+    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    
     
     public function view(){
         
@@ -116,7 +173,7 @@ class peliculaModel extends peliculaClass {
         
         $aurkituta=false;
         
-        $result = $this->link->query($sql);                       
+        $result = $this->link->query($sql);
         if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         {
             $this->TituloPelicula=$row['TituloPelicula'];
@@ -124,11 +181,16 @@ class peliculaModel extends peliculaClass {
             $this->Director=$row['Director'];
             $this->cartel=$row['cartel'];
             $aurkituta=true;
-        }      
+        }
         return $aurkituta;
         mysqli_free_result($result);
         $this->CloseConnect();
     }
+    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
     public function update(){
         
         $this->OpenConnect();  // konexio zabaldu  - abrir conexiÃ³n
