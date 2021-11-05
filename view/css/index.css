@@ -8,6 +8,47 @@
     height: 275px;
 }
 
+.noticia{
+    text-align: center;
+    background: rgba(0, 154, 243, 0.6);
+    border: black 1px solid;
+}
+
+.mininoticia{
+    text-align: center;
+    background: rgba(0, 250, 62, 0.5);
+    border: black 1px solid;
+}
+
+.tiponoticia{
+    margin-top: 47%;
+}
+
+.tiponoticia2{
+    margin-top: 30px;
+}
+
+.mininoticia:hover{
+    background: rgba(0, 250, 62, 1);
+}
+
+.mininoticia:hover .tiponoticia2{
+    display: none;
+}
+
+
+.noticia:hover{
+    background: rgba(0, 154, 243, 1);
+}
+
+.noticia:hover .tiponoticia{
+    display: none;
+}
+
+
+
+
+
 
 
 body{
