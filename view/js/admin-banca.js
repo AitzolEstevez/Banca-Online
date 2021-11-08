@@ -25,3 +25,57 @@
 //         startDate: dateTime
 //     });
 // });
+
+////////////////////////Modal de comprar\\\\\\\\\\\\\\\\\\\\\\\
+function Compra(){
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Dron tactico',
+        text: "420€",
+        imageUrl: "https://m.media-amazon.com/images/I/711UdLKoGbS._AC_SX425_.jpg",
+        showCancelButton: true,
+        confirmButtonText: 'Comprar',
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Comprado!',
+            'Tu compra se ha realizado con exito',
+            'success',
+          )
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelado',
+            'Has cancelado tu compra',
+            'error'
+          )
+        }
+      })
+}
+
+function Confirmacion(){
+    Swal.fire(
+        'Pedido realizado correctamente',
+        'Gracias por confiar en nosotros',
+        'success'
+      )
+      
+}
+function Cancelar(){
+    Swal.fire(
+        'Cancelado',
+        'Has cancelado tu compra',
+        'error'
+      )
+      
+}
