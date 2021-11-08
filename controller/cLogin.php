@@ -9,13 +9,13 @@ $contrasena=$data['contrasena'];
 
 $response=array();
 
-if (( $name !=null ) && ( $password !=null )){
+if (( $nombre !=null ) && ( $contrasena !=null )){
 
     $usuario = new UsuariosModel();
     $usuario->nombre=$nombre;
     $usuario->contrasena=$contrasena;
 
-    if ($user->findUserByUsername()){
+    if ($user->finduser()){
         session_start();
         $_SESSION['nombre']=$nombre;
         

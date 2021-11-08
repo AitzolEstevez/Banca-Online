@@ -20,11 +20,6 @@ function login(){
         })
   .then(res => res.json()).then(result => {
         alert(result.error);
-        document.getElementById("iniciosesion").style.display = "none";        
-        document.getElementById("imagengrande").style.width = "100%";
-        document.getElementById("imagengrande").style.transition = "0.5s";
-        document.getElementById("imggrande").style.width = "94%";
-        document.getElementById("imggrande").style.height = "100%";
   })
   .catch(error => console.error('Error status:', error));
 
