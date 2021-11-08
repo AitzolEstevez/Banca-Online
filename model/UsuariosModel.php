@@ -1,6 +1,5 @@
 <?php
 
-
 if($_SERVER['SERVER_NAME']=="lau.zerbitzaria.net"){
     include_once ("connect_data_SERV.php");
 }else{
@@ -31,29 +30,32 @@ class UsuariosModel extends UsuariosClass{
         mysqli_close ($this->link);
     }
 
-    public function insert(){}
-
-
-    public function update(){}
-
-
-    public function delete(){}
-
-
-    public function setList(){
-        
+    public function finduser(){
         $this->OpenConnect();
 
-        $sql = "";
+        $nombre=$this->nombre;
+        $contrasena=$this->contrasena;
 
-        $result = $this->link->query($sql);
+        $sql="SELECT * FROM 'usuarios' WHERE 'nombre'='$nombre' && 'contraseña'='$contrasena'";
+        $result= $this->link->query($sql);
 
-        $list = array();
-
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            
-            array_push($list, $new);
-        }
+        $userExists=false;
         
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+        { 
+            if ($contrasena==$row['contrasena'])
+            {
+                $this->tipo=$row['tipo'];
+                
+                $userExists=true;
+            }
+        }
+        return $userExists;
+        mysqli_free_result($result);
+        $this->CloseConnect();
+
+
     }
+
+
 }
