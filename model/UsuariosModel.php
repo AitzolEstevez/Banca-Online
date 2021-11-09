@@ -41,10 +41,8 @@ class UsuariosModel extends UsuariosClass{
 
         $userExists=false;
         
-        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-        { 
-            if ($contrasena==$row['contrasena'])
-            {
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){ 
+            if ($contrasena==$row['contrasena']){
                 $this->tipo=$row['tipo'];
                 
                 $userExists=true;

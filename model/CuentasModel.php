@@ -48,6 +48,7 @@ class CuentasModel extends CuentasClass {
         $sql = "CALL SelectCuentasAdmin()"; // SQL sententzia - sentencia SQL
         
         $result = $this->link->query($sql);
+<<<<<<< HEAD
         
         //$this->link->num_rows; num rows  of result
         
@@ -56,6 +57,13 @@ class CuentasModel extends CuentasClass {
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { //each row
             
             $newCuenta=new CuentasModel();
+=======
+
+        $list = array();
+
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $new=new CuentasClass();
+>>>>>>> Pol
             
             $newCuenta->idCuentas=$row['id'];
             $newCuenta->numcuenta=$row['numcuenta'];
