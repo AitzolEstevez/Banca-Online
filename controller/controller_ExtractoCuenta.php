@@ -1,20 +1,18 @@
 <?php
-
 include_once ("../model/ExtractoModel.php");
 
-$extracto= new ExtractoModel();
+$extracto = new ExtractoModel();
 
-$data=file_get_contents("php://input");
-$data=json_decode($data);
+$data = json_decode(file_get_contents("php://input"), true);
 
-$response=array();
+$response = array();
 
-$numcuenta=$data->numcuenta;
-$response['listExtracto']=$extracto->setListExtractoByCuenta($numcuenta);
+$numcuenta = $data['numcuenta'];
+$response['listExtracto'] = $extracto->setListExtractoByCuenta($numcuenta);
 
-$response['error']="no error";
+$response['error'] = "no error";
 
 echo json_encode($response);
 
-unset ($extracto);
-unset ($response);
+unset($extracto);
+unset($response);

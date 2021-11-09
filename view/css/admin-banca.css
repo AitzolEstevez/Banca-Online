@@ -1,48 +1,97 @@
 /*CSS de Banca Online*/
-#FlexBancaOnline{
-    display: flex;
-    flex-direction: row;
+#FlexBancaOnline {
+	display: flex;
+	flex-direction: row;
 }
 
-#Cuentas{
-    width: 49%;
-    margin: 1% 1%;
+#Cuentas {
+	width: 49%;
+	margin: 1% 1%;
 }
-#SelectCuentas{
-    width: 50%;
+
+#SelectCuentas {
+	width: 50%;
 }
-#Fondos{
-    width: 49%;
-    margin: 1% 1%;
+
+#Fondos {
+	width: 49%;
+	margin: 1% 1%;
 }
-#AñadirFondos{
-    width: 50%;
-    display: inline-block;
+
+#AñadirFondos {
+	width: 50%;
+	display: inline-block;
 }
-table#Extracto{border:1px solid black;width:60%;background: darkgray ;margin:auto;}
-table#Extracto	tr{text-align: center;}
-table#Extracto  tr#titulo{background: darkgray ;text-align: center;}
-table#Extracto   tr:nth-child(odd){background:  lightcyan;}
-table#Extracto tr:nth-child(even){background: ivory; }
-table#Extracto{margin-top: 10px;}
+
+table#Extracto {
+	border: 1px solid black;
+	width: 60%;
+	background: darkgray;
+	margin: auto;
+}
+
+table#Extracto	tr {
+	text-align: center;
+}
+
+table#Extracto  tr#titulo {
+	background: darkgray;
+	text-align: center;
+}
+
+table#Extracto   tr:nth-child(odd) {
+	background: lightcyan;
+}
+
+table#Extracto tr:nth-child(even) {
+	background: ivory;
+}
+
+table#Extracto {
+	margin-top: 10px;
+}
 /*CSS de Clientes*/
-#TituloClientes{
-    border: solid black 1px;
+#TituloClientes {
+	border: solid black 1px;
+	width: 50%;
+	margin: auto;
+	text-align: center;
+}
+
+#tabla {
+	width: 100%;
+}
+
+#tabla table {
+	border: solid black 1px;
+	width: 80%;
+	margin: auto;
+}
+
+#tabla table tr {
+	border: solid black 1px;
+}
+
+#btnProveedor{
+    position: absolute;
+    right: 20%;
+}
+.modalCombo{
     width: 50%;
-    margin: auto;
-    text-align: center;
-}   
-
-#tabla{
-	width:100%;
+    height: 40px;
 }
-
-#tabla table{
-	border: solid black 1px;
-	width:80%;
-	margin:auto;
+#ProductoFlex{
+    display: flex;
+    padding-top: 15px;
 }
-
-#tabla table tr{
-	border: solid black 1px;
+#modalImg{
+float: right;
+margin-right: 20%;
+}
+#modalFlex{
+    display: flex;
+    justify-content: space-between;
+}
+#modalFlex div{
+width: 45%;
 }
