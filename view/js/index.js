@@ -19,8 +19,11 @@ function login(){
         headers:{'Content-Type': 'application/json'}
         })
   .then(res => res.json()).then(result => {
-        alert(result.error);
-        location.href = "admin-banca.html";
+        if(result.error = "no error"){
+            location.href = "admin-banca.html";
+        }
+
+        
   })
   .catch(error => console.error('Error status:', error));
 
