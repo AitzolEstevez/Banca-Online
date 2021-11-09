@@ -20,6 +20,7 @@ function login(){
         })
   .then(res => res.json()).then(result => {
         alert(result.error);
+        location.href = "admin-banca.html";
   })
   .catch(error => console.error('Error status:', error));
 
