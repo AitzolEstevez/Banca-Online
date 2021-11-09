@@ -61,7 +61,11 @@
               <td>Saldo</td>
           </tr>
       </table>
-
+      <div id="BotonesBanca">
+        <button type="button" id="Prestamo" class="btn btn-primary">X</button>
+        <button type="button" class="btn btn-success">Y</button>
+        <button type="button" class="btn btn-danger">Z</button>
+      </div>
 
         </div>
         <div class="tab-pane fade" id="Clientes" role="tabpanel" aria-labelledby="Clientes-tab">
@@ -135,7 +139,7 @@
                     </div>
                     <div>
                      <h3>Cantidad</h3>
-                     <input type="text" id="Cantidad" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                     <input type="text" id="Cantidad" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" onkeypress="return onlyNumberKey(event)">
                     </div>
                   </div>
                   <h3>Total</h3>
