@@ -36,7 +36,7 @@ class UsuariosModel extends UsuariosClass{
         $nombre=$this->nombre;
         $contrasena=$this->contrasena;
 
-        $sql="SELECT * FROM 'usuarios' WHERE 'nombre'='$nombre' && 'contraseña'='$contrasena'";
+        $sql="SELECT * FROM usuarios WHERE nombre=$nombre && contraseña=$contrasena";
         $result= $this->link->query($sql);
 
         $userExists=false;
