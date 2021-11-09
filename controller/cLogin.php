@@ -15,7 +15,7 @@ if (( $nombre !=null ) && ( $contrasena !=null )){
     $usuario->nombre=$nombre;
     $usuario->contrasena=$contrasena;
 
-    if ($user->finduser()){
+    if ($usuario->finduser()){
         session_start();
         $_SESSION['nombre']=$nombre;
         

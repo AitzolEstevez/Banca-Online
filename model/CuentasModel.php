@@ -50,7 +50,7 @@ class CuentasModel extends CuentasClass{
         $list = array();
 
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $new=new peli_class();
+            $new=new CuentasClass();
             
             $new->setIdPelicula($row['idPelicula']);
             $new->setTituloPelicula($row['TituloPelicula']);
