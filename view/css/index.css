@@ -2,6 +2,29 @@
     justify-content: center;
 }
 
+#iniciosesion{
+    display: none;
+    z-index: 1;
+}
+
+#imgrande{
+    z-index: 5;
+}
+
+.logindiv{
+    margin-left: 50px;
+}
+
+.loginbutton{
+    margin-left: 50px;
+    border: 1px solid gray;
+    border-radius: 7px;
+}
+
+.icono{
+    padding: 10px;
+}
+
 .producto, .noticia{
     margin-left: 45px;
     margin-right: 45px;
@@ -66,4 +89,5 @@ body{
 
 #imagengrande{
     height: 400px;
+    z-index: 5;
 }
