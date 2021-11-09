@@ -21,7 +21,6 @@ function login(){
   .then(res => res.json()).then(result => {
     
     if(result.error == "no error"){
-        alert(result.error);
         location.href = "admin-banca.html";
     }else if (result.error == "incorrect user"){
         alert("Nombre o contraseña incorrectas");
