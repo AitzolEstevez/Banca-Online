@@ -1,25 +1,30 @@
 <?php
 
-class ProveedorClass{
+class ProveedorClass
+{
 
     public $id;
     public $nombre;
 
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
- 
-    public function setId($id){
+
+    public function setId($id)
+    {
         $this->id = $id;
 
         return $this;
     }
- 
-    public function getNombre(){
+
+    public function getNombre()
+    {
         return $this->nombre;
     }
- 
-    public function setNombre($nombre){
+
+    public function setNombre($nombre)
+    {
         $this->nombre = $nombre;
 
         return $this;
