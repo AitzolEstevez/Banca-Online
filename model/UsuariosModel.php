@@ -1,10 +1,10 @@
 <?php
-
+/*
 if($_SERVER['SERVER_NAME']=="lau.zerbitzaria.net"){
     include_once ("connect_data_SERV.php");
-}else{
+}else{*/
     include_once ("connect_data_LOCAL.php");
-}
+//}
 
 include_once("UsuariosClass.php");
 
@@ -36,17 +36,18 @@ class UsuariosModel extends UsuariosClass{
         $nombre=$this->nombre;
         $contrasena=$this->contrasena;
 
-        $sql="select * from usuarios where nombre='$nombre' && contraseña='$contrasena'";
+        $sql="select * from usuario where nombre='$nombre' && contrasena='$contrasena'";
         $result= $this->link->query($sql);
 
         $userExists=false;
         
         if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){ 
-            if ($contrasena==$row['contrasena']){
+           /* if ($contrasena==$row['contrasena']){
                 $this->tipo=$row['tipo'];
                 
-                $userExists=true;
-            }
+            }*/                
+            $userExists=true;
+
         }
         return $userExists;
         mysqli_free_result($result);
