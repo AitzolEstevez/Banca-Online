@@ -26,6 +26,7 @@
 //     });
 // });
 
+<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", function (event) {
 
     loadExtracto();
@@ -225,4 +226,66 @@ function loadExtracto(){
 	.catch(error => console.error('Error status:', error));	
 
 
+=======
+////////////////////////Modal de comprar\\\\\\\\\\\\\\\\\\\\\\\
+function Compra(){
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Dron tactico',
+        text: "420€",
+        imageUrl: "https://m.media-amazon.com/images/I/711UdLKoGbS._AC_SX425_.jpg",
+        showCancelButton: true,
+        confirmButtonText: 'Comprar',
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Comprado!',
+            'Tu compra se ha realizado con exito',
+            'success',
+          )
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelado',
+            'Has cancelado tu compra',
+            'error'
+          )
+        }
+      })
+}
+
+function Confirmacion(){
+    Swal.fire(
+        'Pedido realizado correctamente',
+        'Gracias por confiar en nosotros',
+        'success'
+      )
+      
+}
+function Cancelar(){
+    Swal.fire(
+        'Cancelado',
+        'Has cancelado tu compra',
+        'error'
+      )
+      
+}
+function onlyNumberKey(evt) {
+          
+  // Only ASCII character in that range allowed
+  var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+  if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+      return false;
+  return true;
+>>>>>>> Aitzol
 }

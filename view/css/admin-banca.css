@@ -19,6 +19,29 @@
     width: 50%;
     display: inline-block;
 }
+#btnProveedor{
+    position: absolute;
+    right: 20%;
+}
+#modalCombo{
+    width: 50%;
+    height: 40px;
+}
+#ProductoFlex{
+    display: flex;
+    padding-top: 15px;
+}
+#modalImg{
+float: right;
+margin-right: 20%;
+}
+#modalFlex{
+    display: flex;
+    justify-content: space-between;
+}
+#modalFlex div{
+width: 45%;
+}
 table#Extracto{border:1px solid black;width:60%;background: darkgray ;margin:auto;}
 table#Extracto	tr{text-align: center;}
 table#Extracto  tr#titulo{background: darkgray ;text-align: center;}
