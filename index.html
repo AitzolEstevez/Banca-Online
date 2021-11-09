@@ -15,14 +15,31 @@
     <div class="container-fluid">
         <div class="row bg-light">
             <div class="col-12 border-bottom" id="header">
-                <img class="imagen ms-5 mt-2 mb-2" src="https://picsum.photos/120/120">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="imagen ms-5 mt-2 mb-2" src="https://picsum.photos/100/100">
+                    </div>
+                    <div class="col-lg-5">
+                        <div id="logindiv" class="logindiv mt-2 mb-2 cerrado">
+                            <button id="loginbutton" class="loginbutton mt-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="icono bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                    <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                  </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                
             </div>
         </div>
         
         <div class="row">
-            <div class="col-lg-7" id="imagengrande">
-                <img id="imggrande" class="ms-5 mt-4 mb-4" src="https://picsum.photos/750/350">
+            <div class="col-lg-12" id="imagengrande">
+                <img id="imgrande" class="ms-5 mt-4 mb-4" src="view/img/img.jpg" width="1400px" height="350px">
             </div>
+
             <div class="col-lg-5 border-start border-dark mt-3" id="iniciosesion">
                 <h3 class="mt-4 ms-5">Acceso banca online</h3>
                 <input class="mt-4 ms-5" type="text" name="user" id="user" placeholder="Usuario" size="30" height="10" required><br>

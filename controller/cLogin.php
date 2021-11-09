@@ -14,14 +14,20 @@ if (( $nombre !=null ) && ( $contrasena !=null )){
     $usuario = new UsuariosModel();
     $usuario->nombre=$nombre;
     $usuario->contrasena=$contrasena;
-
+    
     if ($usuario->finduser()){
         session_start();
         $_SESSION['nombre']=$nombre;
+
         
-        $_SESSION['tipo']=$usuario->tipo;
-    
-        $response['usuario']=$usuario; 
+        if($usuario->findadmin()){
+            $response['tipo'] = "admin"; 
+        }else{
+            $response['tipo'] = "cliente";
+        }
+
+
+        $response['nombre']=$nombre;
         $response['error']="no error";       
     } else{
         $response['error']="incorrect user";
