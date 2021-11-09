@@ -26,7 +26,7 @@ function login(){
     }else if (result.error == "incorrect user"){
         alert("Nombre o contraseña incorrectas");
     }else{
-        alert("No se admite los dos campos vacios");
+        alert("No se admite los campos vacios");
     }
     
     
