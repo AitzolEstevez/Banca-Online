@@ -21,6 +21,8 @@ function login(){
   .then(res => res.json()).then(result => {
         if(result.error = "no error"){
             location.href = "admin-banca.html";
+        } else{
+            alert(result.error);
         }
 
         
