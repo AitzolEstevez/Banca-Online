@@ -142,14 +142,14 @@ function loadExtracto(){
 					  +"</div>"
 					  +"<div>"
 					  +"<h3>Cantidad</h3>"
-					  +"<input type='number' id='Cantidad' class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm'>"
+					  +"<input type='text' id='Cantidad' class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm' onkeypress='return onlyNumberKey(event)'>"
 					  +"</div>"
 	                  +"</div>"
 	                  +"<h3>Total</h3>"
 	                  +"<input type='text' id='Total' disabled class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm'>"
 					  +"</div>"
 					  +"<div class='modal-footer'>"
-	                  +"<button type='button' id='btnCancelar' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>"
+	                  +"<button type='button' id='btnCancelar' class='btn btn-danger' data-bs-dismiss='modal'>Cancelar</button>"
 	                  +"<button type='button' id='btnPedido' class='btn btn-primary' data-bs-dismiss='modal'>Hacer pedido</button>"
 					  +"</div>"
 					  +"</div>"
@@ -444,4 +444,12 @@ function loadExtracto(){
 		
 	}
 
+}
+function onlyNumberKey(evt) {
+          
+  // Only ASCII character in that range allowed
+  var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+  if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+      return false;
+  return true;
 }
