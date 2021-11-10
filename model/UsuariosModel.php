@@ -36,7 +36,7 @@ class UsuariosModel extends UsuariosClass{
         $nombre=$this->nombre;
         $contrasena=$this->contrasena;
 
-        $sql="select * from usuario where nombre='$nombre' && contrasena='$contrasena'";
+        $sql="select * from usuarios where nombre='$nombre' && contrasena='$contrasena'";
         $result= $this->link->query($sql);
 
         $userExists=false;
@@ -62,7 +62,7 @@ class UsuariosModel extends UsuariosClass{
         $nombre=$this->nombre;
         $contrasena=$this->contrasena;
 
-        $sql="select * from usuario where nombre='$nombre' && contrasena='$contrasena' && tipo = 1;";
+        $sql="select * from usuarios where nombre='$nombre' && contrasena='$contrasena' && tipo = 1;";
         $result= $this->link->query($sql);
 
         $userAdmin = false;
