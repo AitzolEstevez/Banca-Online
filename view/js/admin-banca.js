@@ -130,7 +130,7 @@ function loadExtracto(){
 	                +"</div>"
 	                +"<div class='modal-body'>"
 					  +"<h3>Cuenta</h3>"
-					  +"<div id='Cuentas'></div>"
+					  +"<div id='Cuentas2'></div>"
 	                  +"<h3>Proveedor</h3>"
 					  +"<div id='Proveedores2'></div>"
 					  +"<img id='modalImg' width='100px' height='100px' src='https://d.newsweek.com/en/full/1064234/base-goku-dramatic-finish.jpg?w=1600&h=1200&q=88&f=bde9c6b36d3234f7b7e7e898f29aa21a' alt=''>"
@@ -169,7 +169,7 @@ function loadExtracto(){
 					  document.getElementById("btnProveedor").addEventListener("click",function(){
 						
 						var newRow ="";
-						newRow += "<select class='modalCombo' id='SelectCuentas' class='form-select' aria-label='Default select example'>";
+						newRow += "<select class='modalCombo' id='SelectCuentas2' class='form-select' aria-label='Default select example'>";
 						newRow +="<option selected value=-1>Selecciona una cuenta</option>";
 
 						for (let i = 0; i < cuentas.length; i++) {
@@ -181,7 +181,7 @@ function loadExtracto(){
 
 						console.log(newRow);
 
-						document.getElementById("Cuentas").innerHTML=newRow;
+						document.getElementById("Cuentas2").innerHTML=newRow;
 
 						document.getElementById("Cantidad").value="";
 						document.getElementById("Total").value="";
