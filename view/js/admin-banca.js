@@ -24,7 +24,7 @@ function loadExtracto(){
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
-			newRow += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+			newRow += "<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
 		}
 		
 		document.getElementById("SelectCuentas").innerHTML = newRow;
@@ -185,7 +185,7 @@ function loadExtracto(){
 
 						for (let i = 0; i < cuentas.length; i++) {
 								
-							newRow +="<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+"</option>";
+							newRow +="<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+"</option>";
 						}
 
 						newRow +="</select>";
@@ -317,31 +317,40 @@ function loadExtracto(){
 						precio=document.getElementById("Precio").value;
 						cantidad=document.getElementById("Cantidad").value;
 						total=document.getElementById("Total").value;
+						img=document.getElementById("modalImg").src;
+						nombreproducto=document.getElementById("SelectProducto");
+						selected = nombreproducto.options[nombreproducto.selectedIndex].text;
 
+						//console.log(selected);
 
-						var url = "controller/controller_insert.php";
+						if (cuenta==-1) {
+							alert("Introduce una cuenta");
+						}
+						else{
 
-						var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total };
-		
-						fetch(url, {
-						  method: 'POST', // or 'POST'
-						  body: JSON.stringify(data),
-							headers:{'Content-Type': 'application/json'}  //input data
-						})
-						.then(res => res.json()).then(result => {
+							var url = "controller/controller_insert.php";
 
-							//alert(result.insertFactura);
+							var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total, 'img':img, 'selected':selected };
+			
+							fetch(url, {
+							method: 'POST', // or 'POST'
+							body: JSON.stringify(data),
+								headers:{'Content-Type': 'application/json'}  //input data
+							})
+							.then(res => res.json()).then(result => {
+
+								//alert(result.insertFactura);
+								
+								Swal.fire(
+								'Pedido realizado correctamente',
+								'Gracias por confiar en nosotros',
+								'success'
+								)
+
+							})
+							.catch(error => console.error('Error status:', error));	
 							
-							
-
-						})
-						.catch(error => console.error('Error status:', error));	
-						
-						/*Swal.fire(
-							'Pedido realizado correctamente',
-							'Gracias por confiar en nosotros',
-							'success'
-						)		*/			
+						}
 
 					});
 
@@ -380,7 +389,7 @@ function loadExtracto(){
 			
 			for (let i = 0; i < cuentas.length; i++) {
 					
-				newRow += "<option value='"+cuentas[i].numcuenta+"'>Cuenta "+cuentas[i].tipo+" ---> "+cuentas[i].numcuenta+"</option>";
+				newRow += "<option value='"+cuentas[i].idCuentas+"'>Cuenta "+cuentas[i].tipo+" ---> "+cuentas[i].numcuenta+"</option>";
 			}
 			   
 			document.getElementById("SelectCuentas").innerHTML = newRow;

@@ -74,15 +74,12 @@ class ExtractoModel extends ExtractoClass
         $importe = $this->importe;
         $idcuenta = $this->idcuenta;
 
-        $sql = "CALL insertFactura($fecha,'$concepto',$importe,$idcuenta)";
+        $sql = "CALL updateCuentas($importe,$idcuenta)";
+        $this->link->query($sql);
 
-        if ($this->link->query($sql)) // true if success
-            // $this->link->affected_rows; number of inserted rows
-        {
-            return "insertado.Num de inserts: " . $this->link->affected_rows;
-        } else {
-            return $sql . "Error al insertar";
-        }
+
+        $sql = "CALL insertExtracto('$fecha','$concepto',$importe,$idcuenta)";
+        $this->link->query($sql);
 
         $this->CloseConnect();
     }
