@@ -156,17 +156,18 @@ function loadExtracto(){
 					  +"</div>"
 					  +"</div>"
 
-					  document.getElementById("btnRealizarPedido").style.display="block";
-					  document.getElementById("btnRealizarPedido").innerHTML = newRow2;	
+					document.getElementById("btnRealizarPedido").style.display="block";
+					document.getElementById("btnRealizarPedido").innerHTML = newRow2;	
 
-					  document.getElementById("btnCancelar").addEventListener("click",function(){
+					document.getElementById("btnCancelar").addEventListener("click",function(){
 						Cancelar();
-					  });
-					  document.getElementById("btnPedido").addEventListener("click",function(){
-						  Confirmacion();
-					  });
+					});
 
-					  document.getElementById("btnProveedor").addEventListener("click",function(){
+					/*document.getElementById("btnPedido").addEventListener("click",function(){
+						Confirmacion();
+					});*/
+
+					document.getElementById("btnProveedor").addEventListener("click",function(){
 						
 						var newRow ="";
 						newRow += "<select class='modalCombo' id='SelectCuentas2' class='form-select' aria-label='Default select example'>";
@@ -296,7 +297,43 @@ function loadExtracto(){
 
 						});
 
-					  });
+					});
+
+					document.getElementById("btnPedido").addEventListener("click",function(){
+
+						cuenta=document.getElementById("SelectCuentas2").value;
+						proveedor=document.getElementById("SelectProveedor").value;
+						producto=document.getElementById("SelectProducto").value;
+						precio=document.getElementById("Precio").value;
+						cantidad=document.getElementById("Cantidad").value;
+						total=document.getElementById("Total").value;
+
+
+						var url = "controller/controller_insert.php";
+
+						var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total };
+		
+						fetch(url, {
+						  method: 'POST', // or 'POST'
+						  body: JSON.stringify(data),
+							headers:{'Content-Type': 'application/json'}  //input data
+						})
+						.then(res => res.json()).then(result => {
+
+							//alert(result.insertFactura);
+							
+							
+
+						})
+						.catch(error => console.error('Error status:', error));	
+						
+						/*Swal.fire(
+							'Pedido realizado correctamente',
+							'Gracias por confiar en nosotros',
+							'success'
+						)		*/			
+
+					});
 
 
 		}

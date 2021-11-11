@@ -52,7 +52,6 @@ class ExtractoModel extends ExtractoClass
 
             $newFactura = new ExtractoModel();
 
-            $newFactura->id = $row['id'];
             $newFactura->fecha = $row['fecha'];
             $newFactura->concepto = $row['concepto'];
             $newFactura->importe = $row['importe'];
@@ -63,6 +62,29 @@ class ExtractoModel extends ExtractoClass
         mysqli_free_result($result);
         $this->CloseConnect();
         return $list;
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    public function insertExtracto()
+    {
+        $this->OpenConnect(); // konexio zabaldu - abrir conexiÃ³n
+
+        $fecha = $this->fecha;
+        $concepto = $this->concepto;
+        $importe = $this->importe;
+        $idcuenta = $this->idcuenta;
+
+        $sql = "CALL insertFactura($fecha,'$concepto',$importe,$idcuenta)";
+
+        if ($this->link->query($sql)) // true if success
+            // $this->link->affected_rows; number of inserted rows
+        {
+            return "insertado.Num de inserts: " . $this->link->affected_rows;
+        } else {
+            return $sql . "Error al insertar";
+        }
+
+        $this->CloseConnect();
     }
 }
 
