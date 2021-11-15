@@ -100,6 +100,10 @@ table#Extracto {
     display: flex;
     padding-top: 15px;
 }
+#modalImg{
+float: right;
+margin-right: 20%;
+}
 #modalFlex{
     display: flex;
     justify-content: space-between;

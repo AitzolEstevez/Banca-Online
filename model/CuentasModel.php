@@ -35,7 +35,7 @@ class CuentasModel extends CuentasClass
         mysqli_close($this->link);
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////////////////////////
     public function setListCuentas()
     {
         $this->OpenConnect(); // konexio zabaldu - abrir conexiÃ³n
@@ -55,34 +55,13 @@ class CuentasModel extends CuentasClass
             $newCuenta->idCuentas = $row['id'];
             $newCuenta->numcuenta = $row['numcuenta'];
             $newCuenta->tipo = $row['tipo'];
-            $newCuenta->saldo = $row['saldo'];
+            $newCuenta->interes = $row['interes'];
+            $newCuenta->negociado = $row['negociado'];
 
             array_push($list, $newCuenta);
         }
         mysqli_free_result($result);
         $this->CloseConnect();
         return $list;
-    }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////
-
-    public function updateCuentas()
-    {
-        $this->OpenConnect(); // konexio zabaldu - abrir conexiÃ³n
-
-        $saldo = $this->saldo;
-        $idcuenta = $this->idCuentas;
-
-        $sql = "CALL updateCuentas($saldo,$idcuenta)";
-
-        if ($this->link->query($sql)) // true if success
-                                       // $this->link->affected_rows; number of inserted rows
-        {
-            return "updated.Num de updates: " . $this->link->affected_rows;
-        } else {
-            return "Error al modificar";
-        }
-
-        $this->CloseConnect();
     }
 }

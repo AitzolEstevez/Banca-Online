@@ -36,7 +36,7 @@ class FacturaModel extends FacturaClass
     }
 
     // ////////////////////////////////////////////////////////////////////////////////////////////
-    /*public function setListClientes()
+    public function setListClientes()
     {
         $this->OpenConnect(); // konexio zabaldu - abrir conexiÃ³n
 
@@ -67,7 +67,7 @@ class FacturaModel extends FacturaClass
         mysqli_free_result($result);
         $this->CloseConnect();
         return $list;
-    }*/
+    }
 
     // ////////////////////////////////////////////////////////////////////////////////////////////
     public function setListProveedores()
@@ -102,23 +102,24 @@ class FacturaModel extends FacturaClass
         return $list;
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////
-    public function insertFactura()
+    // ////////////////////////////////////////////////////////////////////////////////////////////
+    public function insert()
     {
         $this->OpenConnect(); // konexio zabaldu - abrir conexiÃ³n
 
-        $numerofactura = $this->numerofactura;
-        $proveedor = $this->nombre;
-        $idproducto = $this->idproducto;
-        $precio = $this->precio;
-        $fecha = $this->fecha;
-        $cantidad = $this->cantidad;
-        $importe = $this->importe;
+        $TituloPeliculaInsert = $this->TituloPelicula;
+        $AnioInsert = $this->Anio;
+        $DirectorInsert = $this->Director;
+        $cartelInsert = $this->cartel;
 
-        $sql = "CALL insertFactura($numerofactura,$proveedor,$idproducto,$precio,'$fecha',$cantidad,$importe)";
+        if ($cartelInsert == "") {
+            $cartelInsert = "view/img/default.png";
+        }
+
+        $sql = "CALL spInsertPelicula('$TituloPeliculaInsert',$AnioInsert,$DirectorInsert,'$cartelInsert')";
 
         if ($this->link->query($sql)) // true if success
-            // $this->link->affected_rows; number of inserted rows
+                                       // $this->link->affected_rows; number of inserted rows
         {
             return "insertado.Num de inserts: " . $this->link->affected_rows;
         } else {
