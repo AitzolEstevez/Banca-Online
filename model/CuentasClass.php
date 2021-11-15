@@ -9,17 +9,26 @@ class CuentasClass
 
     public $tipo;
 
-    public $interes;
-
-    public $negociado;
+    public $saldo;
 
     public $borrado;
 
+    
+
+
+    /**
+     * Get the value of idCuentas
+     */ 
     public function getIdCuentas()
     {
         return $this->idCuentas;
     }
 
+    /**
+     * Set the value of idCuentas
+     *
+     * @return  self
+     */ 
     public function setIdCuentas($idCuentas)
     {
         $this->idCuentas = $idCuentas;
@@ -27,11 +36,19 @@ class CuentasClass
         return $this;
     }
 
+    /**
+     * Get the value of numcuenta
+     */ 
     public function getNumcuenta()
     {
         return $this->numcuenta;
     }
 
+    /**
+     * Set the value of numcuenta
+     *
+     * @return  self
+     */ 
     public function setNumcuenta($numcuenta)
     {
         $this->numcuenta = $numcuenta;
@@ -39,11 +56,19 @@ class CuentasClass
         return $this;
     }
 
+    /**
+     * Get the value of tipo
+     */ 
     public function getTipo()
     {
         return $this->tipo;
     }
 
+    /**
+     * Set the value of tipo
+     *
+     * @return  self
+     */ 
     public function setTipo($tipo)
     {
         $this->tipo = $tipo;
@@ -51,35 +76,39 @@ class CuentasClass
         return $this;
     }
 
-    public function getInteres()
+    /**
+     * Get the value of saldo
+     */ 
+    public function getSaldo()
     {
-        return $this->interes;
+        return $this->saldo;
     }
 
-    public function setInteres($interes)
+    /**
+     * Set the value of saldo
+     *
+     * @return  self
+     */ 
+    public function setSaldo($saldo)
     {
-        $this->interes = $interes;
+        $this->saldo = $saldo;
 
         return $this;
     }
 
-    public function getNegociado()
-    {
-        return $this->negociado;
-    }
-
-    public function setNegociado($negociado)
-    {
-        $this->negociado = $negociado;
-
-        return $this;
-    }
-
+    /**
+     * Get the value of borrado
+     */ 
     public function getBorrado()
     {
         return $this->borrado;
     }
 
+    /**
+     * Set the value of borrado
+     *
+     * @return  self
+     */ 
     public function setBorrado($borrado)
     {
         $this->borrado = $borrado;
