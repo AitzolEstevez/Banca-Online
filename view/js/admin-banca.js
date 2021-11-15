@@ -131,7 +131,7 @@ function loadExtracto(){
 	                +"<div class='modal-body'>"
 					+"<div style='display:flex;'>"
 					  +"<div style='width:40%; padding:10px;'>"
-					  +"<img id='modalImg' width='100%' height='100%' src='https://lh3.googleusercontent.com/proxy/kl6451Rlw_ftQ_gvwliykEuW_E5-PezUqO8nB6kmKHqcB4oWP-tUYtevjMBNN-jab4ooR6_wyBkrG3i9_1kzOGxqc4sy-EKLqCgrdAoFFLs2rm32hypmoDfAp8pyfPWh' alt=''>"
+					  +"<img id='modalImg' width='100%' height='100%' src='view/img/placeholder.png'>"
 					  +"</div>" 
 					  +"<div style='width:60%; padding:10px;'>"
 					  +"<h3>Cuenta</h3>"
@@ -197,7 +197,7 @@ function loadExtracto(){
 						document.getElementById("Cantidad").value="";
 						document.getElementById("Total").value="";
 						document.getElementById("Precio").value="";
-						document.getElementById("modalImg").src="https://lh3.googleusercontent.com/proxy/kl6451Rlw_ftQ_gvwliykEuW_E5-PezUqO8nB6kmKHqcB4oWP-tUYtevjMBNN-jab4ooR6_wyBkrG3i9_1kzOGxqc4sy-EKLqCgrdAoFFLs2rm32hypmoDfAp8pyfPWh";
+						document.getElementById("modalImg").src="view/img/placeholder.png";
 
 						var url = "controller/controller_Proveedores.php";
 		
@@ -241,7 +241,7 @@ function loadExtracto(){
 								document.getElementById("Total").value="";
 								document.getElementById("Cantidad").value="";
 								document.getElementById("Precio").value="";
-								document.getElementById("modalImg").src="https://lh3.googleusercontent.com/proxy/kl6451Rlw_ftQ_gvwliykEuW_E5-PezUqO8nB6kmKHqcB4oWP-tUYtevjMBNN-jab4ooR6_wyBkrG3i9_1kzOGxqc4sy-EKLqCgrdAoFFLs2rm32hypmoDfAp8pyfPWh";		
+								document.getElementById("modalImg").src="view/img/placeholder.png";		
 							}
 
 							valor=document.getElementById("SelectProveedor").value;
@@ -285,7 +285,7 @@ function loadExtracto(){
 										document.getElementById("Total").value="";
 										document.getElementById("Cantidad").value="";
 										document.getElementById("Precio").value="";
-										document.getElementById("modalImg").src="https://lh3.googleusercontent.com/proxy/kl6451Rlw_ftQ_gvwliykEuW_E5-PezUqO8nB6kmKHqcB4oWP-tUYtevjMBNN-jab4ooR6_wyBkrG3i9_1kzOGxqc4sy-EKLqCgrdAoFFLs2rm32hypmoDfAp8pyfPWh";				
+										document.getElementById("modalImg").src="view/img/placeholder.png";				
 									}
 
 	
