@@ -1,74 +1,96 @@
 <?php
-    
-class ProductosClass {
-    
+
+class ProductosClass
+{
+
     public $id;
+
     public $nombre;
+
     public $precio;
-    public $stock;
+
+    public $img;
+
     
+
+
     /**
-     * @return mixed
-     */
+     * Get the value of id
+     */ 
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
-     */
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nombre
+     */ 
     public function getNombre()
     {
         return $this->nombre;
     }
 
     /**
-     * @return mixed
-     */
+     * Set the value of nombre
+     *
+     * @return  self
+     */ 
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of precio
+     */ 
     public function getPrecio()
     {
         return $this->precio;
     }
 
     /**
-     * @return mixed
-     */
-    public function getStock()
-    {
-        return $this->stock;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @param mixed $nombre
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-    }
-
-    /**
-     * @param mixed $precio
-     */
+     * Set the value of precio
+     *
+     * @return  self
+     */ 
     public function setPrecio($precio)
     {
         $this->precio = $precio;
+
+        return $this;
     }
 
     /**
-     * @param mixed $stock
-     */
-    public function setStock($stock)
+     * Get the value of img
+     */ 
+    public function getImg()
     {
-        $this->stock = $stock;
+        return $this->img;
     }
-    
+
+    /**
+     * Set the value of img
+     *
+     * @return  self
+     */ 
+    public function setImg($img)
+    {
+        $this->img = $img;
+
+        return $this;
+    }
 }

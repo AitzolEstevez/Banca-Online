@@ -1,34 +1,28 @@
 <?php
+<<<<<<< HEAD
 /*
 if($_SERVER['SERVER_NAME']=="lau.zerbitzaria.net"){
     include_once ("connect_data_SERV.php");
 }else{*/
+=======
+if ($_SERVER['SERVER_NAME'] == "lau.zerbitzaria.net") {
+    include_once ("connect_data_SERV.php");
+} else {
+>>>>>>> 88ea93492678a9aec0c7de9be86d02a5fcc08b1f
     include_once ("connect_data_LOCAL.php");
 //}
 
-include_once("UsuariosClass.php");
+class UsuariosModel extends UsuariosClass
+{
 
-class UsuariosModel extends UsuariosClass{
-    
-    public $link;
+    public function OpenConnect()
+    {}
 
-    public function OpenConnect(){
-        
-        $konDat=new connect_data();
-        try{
-            $this->link=new mysqli($konDat->host,$konDat->userbbdd,$konDat->passbbdd,$konDat->ddbbname);
-        }
-        catch(Exception $e)
-        {
-            echo $e->getMessage();
-        }
-
-        $this->link->set_charset("utf8");
+    public function CloseConnect()
+    {
+        // mysqli_close ($this->link);
     }
-
-    public function CloseConnect(){
-        mysqli_close ($this->link);
-    }
+<<<<<<< HEAD
 
     public function finduser(){
         $this->OpenConnect();
@@ -79,4 +73,6 @@ class UsuariosModel extends UsuariosClass{
     }
 
 
+=======
+>>>>>>> 88ea93492678a9aec0c7de9be86d02a5fcc08b1f
 }
