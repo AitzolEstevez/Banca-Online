@@ -91,3 +91,6 @@ table#Extracto {
 #modalFlex div{
 width: 45%;
 }
+#proveedortabla tr td{
+background-color: rgb(240, 240, 240);
+}
