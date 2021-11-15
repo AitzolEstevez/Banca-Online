@@ -11,6 +11,8 @@ class MiStockClass
 
     public $stock;
 
+    public $img;
+
     public function getId()
     {
         return $this->id;
@@ -55,6 +57,26 @@ class MiStockClass
     public function setStock($stock)
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of img
+     */ 
+    public function getImg()
+    {
+        return $this->img;
+    }
+
+    /**
+     * Set the value of img
+     *
+     * @return  self
+     */ 
+    public function setImg($img)
+    {
+        $this->img = $img;
 
         return $this;
     }

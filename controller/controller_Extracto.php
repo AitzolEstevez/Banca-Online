@@ -6,8 +6,8 @@ $extracto= new ExtractoModel();
 
 $response=array();
 
-$response['listClientes']=$extracto->setListClientes();
-$response['listProveedores']=$extracto->setListProveedores();
+//$response['listClientes']=$extracto->setListClientes();
+//$response['listProveedores']=$extracto->setListProveedores();
 $response['error']="no error";
 
 echo json_encode($response);

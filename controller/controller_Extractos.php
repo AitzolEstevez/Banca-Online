@@ -12,7 +12,7 @@ $cuentas = new CuentasModel();
 
 $response = array();
 
-$response['listClientes'] = $factura->setListClientes();
+//$response['listClientes'] = $factura->setListClientes();
 $response['listProveedores'] = $factura->setListProveedores();
 $response['listStock'] = $stock->setListMiStock();
 $response['listCuentas'] = $cuentas->setListCuentas();
