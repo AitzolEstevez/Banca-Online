@@ -412,8 +412,8 @@ function loadExtracto(){
 						+"</div>"
 						+"</div>"
 						+"<div>"
-						+"<h3>Cantidad</h3>"
-						+"<input type='text' onkeypress='return onlyNumberKey(event)'></input>"
+						+"<h3>Importe</h3>"
+						+"<input type='text' id='importe' onkeypress='return onlyNumberKey(event)'></input>"
 						+"</div>"
 						+"</div>"
 						+"<div class='modal-footer'>"
@@ -447,9 +447,15 @@ function loadExtracto(){
 
 			document.getElementById("btnCancelar").addEventListener("click",function(){
 				CancelTrans();
+				document.getElementById("Trans1").value="";
+				document.getElementById("Trans2").value="";
+				document.getElementById("importe").value="";
 			  });
 			  document.getElementById("btnPedido").addEventListener("click",function(){
 				  Transferencia();
+				  	document.getElementById("Trans1").value="";
+					document.getElementById("Trans2").value="";
+					document.getElementById("importe").value="";
 			  });
 
 			  
