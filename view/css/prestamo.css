@@ -1,3 +1,41 @@
 h1{
     text-align: center;
 }
+#container{
+    width: 100%;
+}
+
+#container table{
+    display: flex;
+    width: 100%;
+    flex-flow: row;
+}
+#container table tbody{
+    width: 100%;
+    display: grid;
+    grid-template-columns:auto auto auto ;
+}
+#boton{
+    width: 150px;
+    height: 50px;
+}
+#resultado{
+    border: solid black 2px;
+    float: right;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(255, 239, 147);
+}
+#tabla{
+    width: 100%;
+    text-align: center;
+    border: 1px gray solid;
+    border-collapse: collapse;
+}
+#tbody{
+    background-color: rgb(153, 188, 253);
+    border: solid 1px;
+}
+#tbody_1{
+    background-color: rgb(213, 229, 235);
+}

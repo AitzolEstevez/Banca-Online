@@ -50,6 +50,22 @@ table#Extracto tr:nth-child(even) {
 table#Extracto {
 	margin-top: 10px;
 }
+/*Css Modal Transferencia*/
+#modalCuentas{
+	flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+#transferenciaFlex{
+	display: flex;
+	justify-content: center;
+}
+#cuenta1{
+    flex-direction: column;
+}
+#flechita{
+    width: 100px;
+}
 /*CSS de Clientes*/
 #TituloClientes {
 	border: solid black 1px;
