@@ -31,7 +31,6 @@ function loadExtracto(){
 		
 		document.getElementById("SelectCuentas").addEventListener("change", BancaOnlineload());
 			
-			
 		
 		console.log('Success:', clientes);
 
@@ -65,32 +64,6 @@ function loadExtracto(){
 			
 		}
 		
-		//////////////////////////////////////////////////////////////////////////////////
-		
-		function Clienteload(){
-			var newRow ="";
-			newRow +="<table> ";
-			newRow +="<tr><th>Fecha</th><th>Numero Factura</th><th>Cliente</th><th>Numero Cuenta</th><th>Producto</th><th>Precio/u</th><th>Cantidad</th><th>Importe</th></tr>";
-			
-			for (let i = 0; i < clientes.length; i++) {
-					
-				newRow += "<tr>" +"<td>"+clientes[i].fecha+"</td>"
-									+"<td>"+clientes[i].numerofactura+"</td>"
-									+"<td>"+clientes[i].nombre+"</td>"
-									+"<td>"+clientes[i].idcuenta+"</td>"
-									+"<td>"+clientes[i].idproducto+"</td>"
-									+"<td>"+clientes[i].precio+"</td>"
-									+"<td>"+clientes[i].cantidad+"</td>"
-									+"<td>"+clientes[i].importe+"</td>"
-								+"</tr>";	
-			}
-			newRow +="</table>";   
-			document.getElementById("tabla").innerHTML = newRow;
-			document.getElementById("tabla").style.display="block";		
-			document.getElementById("btnRealizarPedido").style.display="none";	
-		}
-		
-		//////////////////////////////////////////////////////////////////////////////////
 
 		function Proveedorload(){
 			var newRow ="";
@@ -111,7 +84,7 @@ function loadExtracto(){
 			newRow +="</table>";   
 			document.getElementById("tabla").innerHTML = newRow;	
 			document.getElementById("tabla").style.display="block";
-			
+			document.getElementById("Transferencia").style.display= "none";
 			
 			var newRow2 ="";
 			
@@ -375,7 +348,7 @@ function loadExtracto(){
 			document.getElementById("tabla").innerHTML = newRow;
 			document.getElementById("tabla").style.display="block";
 			document.getElementById("btnRealizarPedido").style.display="none";
-			
+			document.getElementById("Transferencia").style.display = "none";
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////
@@ -394,6 +367,7 @@ function loadExtracto(){
 			   
 			document.getElementById("SelectCuentas").innerHTML = newRow;
 			document.getElementById("btnRealizarPedido").style.display="none";
+			document.getElementById("Transferencia").style.display = "block";	
 
 			
 			document.getElementById("SelectCuentas").addEventListener("change", function(){
@@ -443,6 +417,8 @@ function loadExtracto(){
 			+"<button type='button' class='btn btn-primary' id='btnTransferencia' data-bs-toggle='modal' data-bs-target='#exampleModal'>"
 			  +"Transferencia"
 			+"</button>"
+
+			+"<a href='prestamo.html' class='btn btn-primary'>Prestamo</a>"
 
 			+"<!-- Modal -->"
 			+"<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
