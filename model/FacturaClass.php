@@ -6,7 +6,7 @@ class FacturaClass
     public $id;
 
     public $numerofactura;
-
+    
     public $nombre;
 
     public $idcuenta;
