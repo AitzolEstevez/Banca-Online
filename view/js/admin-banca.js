@@ -24,7 +24,7 @@ function loadExtracto(){
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
-			newRow += "<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+			newRow += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
 		}
 		
 		document.getElementById("SelectCuentas").innerHTML = newRow;
@@ -129,19 +129,13 @@ function loadExtracto(){
 	                  +"<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>"
 	                +"</div>"
 	                +"<div class='modal-body'>"
-					+"<div style='display:flex;'>"
-					  +"<div style='width:40%; padding:10px;'>"
-					  +"<img id='modalImg' width='100%' height='100%' src='https://lh3.googleusercontent.com/proxy/kl6451Rlw_ftQ_gvwliykEuW_E5-PezUqO8nB6kmKHqcB4oWP-tUYtevjMBNN-jab4ooR6_wyBkrG3i9_1kzOGxqc4sy-EKLqCgrdAoFFLs2rm32hypmoDfAp8pyfPWh' alt=''>"
-					  +"</div>" 
-					  +"<div style='width:60%; padding:10px;'>"
 					  +"<h3>Cuenta</h3>"
-					  +"<div id='Cuentas2'></div>"
+					  +"<div id='Cuentas'></div>"
 	                  +"<h3>Proveedor</h3>"
 					  +"<div id='Proveedores2'></div>"
+					  +"<img id='modalImg' width='100px' height='100px' src='https://d.newsweek.com/en/full/1064234/base-goku-dramatic-finish.jpg?w=1600&h=1200&q=88&f=bde9c6b36d3234f7b7e7e898f29aa21a' alt=''>"
 					  +"<h3>Producto</h3>"
 					  +"<div id='Productos'></div>"
-					  +"</div>"
-					+"</div>"
 	                  +"<div id='modalFlex'><div>"
 					  +"<h3>Precio/Ud</h3>"
 					  +"<input id='Precio' type='text' disabled class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm'>"
@@ -162,42 +156,37 @@ function loadExtracto(){
 					  +"</div>"
 					  +"</div>"
 
-					document.getElementById("btnRealizarPedido").style.display="block";
-					document.getElementById("btnRealizarPedido").innerHTML = newRow2;	
+					  document.getElementById("btnRealizarPedido").style.display="block";
+					  document.getElementById("btnRealizarPedido").innerHTML = newRow2;	
 
-					document.getElementById("btnCancelar").addEventListener("click",function(){
+					  document.getElementById("btnCancelar").addEventListener("click",function(){
 						Cancelar();
-					});
+					  });
+					  document.getElementById("btnPedido").addEventListener("click",function(){
+						  Confirmacion();
+					  });
 
-					document.querySelector(".btn-close").addEventListener("click",function(){
-						Cancelar();
-					});
-
-					/*document.getElementById("btnPedido").addEventListener("click",function(){
-						Confirmacion();
-					});*/
-
-					document.getElementById("btnProveedor").addEventListener("click",function(){
+					  document.getElementById("btnProveedor").addEventListener("click",function(){
 						
 						var newRow ="";
-						newRow += "<select class='modalCombo' id='SelectCuentas2' style='width:100%;' class='form-select' aria-label='Default select example'>";
+						newRow += "<select class='modalCombo' id='SelectCuentas' class='form-select' aria-label='Default select example'>";
 						newRow +="<option selected value=-1>Selecciona una cuenta</option>";
 
 						for (let i = 0; i < cuentas.length; i++) {
 								
-							newRow +="<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+"</option>";
+							newRow +="<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+"</option>";
 						}
 
 						newRow +="</select>";
 
 						console.log(newRow);
 
-						document.getElementById("Cuentas2").innerHTML=newRow;
+						document.getElementById("Cuentas").innerHTML=newRow;
 
 						document.getElementById("Cantidad").value="";
 						document.getElementById("Total").value="";
 						document.getElementById("Precio").value="";
-						document.getElementById("modalImg").src="https://lh3.googleusercontent.com/proxy/kl6451Rlw_ftQ_gvwliykEuW_E5-PezUqO8nB6kmKHqcB4oWP-tUYtevjMBNN-jab4ooR6_wyBkrG3i9_1kzOGxqc4sy-EKLqCgrdAoFFLs2rm32hypmoDfAp8pyfPWh";
+						document.getElementById("modalImg").src="https://d.newsweek.com/en/full/1064234/base-goku-dramatic-finish.jpg?w=1600&h=1200&q=88&f=bde9c6b36d3234f7b7e7e898f29aa21a";
 
 						var url = "controller/controller_Proveedores.php";
 		
@@ -209,7 +198,7 @@ function loadExtracto(){
 							var proveedor = result.listProveedores;
 
 							var newRow ="";
-							newRow += "<select class='modalCombo' id='SelectProveedor' style='width:100%;' class='form-select' aria-label='Default select example'>";
+							newRow += "<select class='modalCombo' id='SelectProveedor' class='form-select' aria-label='Default select example'>";
 							newRow +="<option selected value=-1>Selecciona un proveedor</option>";
 
 							
@@ -227,7 +216,7 @@ function loadExtracto(){
 						.catch(error => console.error('Error status:', error));	
 
 							var newRow ="";
-							newRow += "<select class='modalCombo' id='SelectProducto' style='width:100%;' class='form-select' aria-label='Default select example'>";
+							newRow += "<select class='modalCombo' id='SelectProducto' class='form-select' aria-label='Default select example'>";
 							newRow +="<option selected value=-1>Selecciona un producto</option>";
 
 							newRow +="</select>";
@@ -241,7 +230,7 @@ function loadExtracto(){
 								document.getElementById("Total").value="";
 								document.getElementById("Cantidad").value="";
 								document.getElementById("Precio").value="";
-								document.getElementById("modalImg").src="https://lh3.googleusercontent.com/proxy/kl6451Rlw_ftQ_gvwliykEuW_E5-PezUqO8nB6kmKHqcB4oWP-tUYtevjMBNN-jab4ooR6_wyBkrG3i9_1kzOGxqc4sy-EKLqCgrdAoFFLs2rm32hypmoDfAp8pyfPWh";		
+								document.getElementById("modalImg").src="https://d.newsweek.com/en/full/1064234/base-goku-dramatic-finish.jpg?w=1600&h=1200&q=88&f=bde9c6b36d3234f7b7e7e898f29aa21a";		
 							}
 
 							valor=document.getElementById("SelectProveedor").value;
@@ -262,7 +251,7 @@ function loadExtracto(){
 								var productos = result.listProductos;
 							
 								var newRow ="";
-								newRow += "<select class='modalCombo' id='SelectProducto' style='width:100%;' class='form-select' aria-label='Default select example'>";
+								newRow += "<select class='modalCombo' id='SelectProducto' class='form-select' aria-label='Default select example'>";
 								newRow +="<option selected value=-1>Selecciona un producto</option>";
 	
 								
@@ -285,7 +274,7 @@ function loadExtracto(){
 										document.getElementById("Total").value="";
 										document.getElementById("Cantidad").value="";
 										document.getElementById("Precio").value="";
-										document.getElementById("modalImg").src="https://lh3.googleusercontent.com/proxy/kl6451Rlw_ftQ_gvwliykEuW_E5-PezUqO8nB6kmKHqcB4oWP-tUYtevjMBNN-jab4ooR6_wyBkrG3i9_1kzOGxqc4sy-EKLqCgrdAoFFLs2rm32hypmoDfAp8pyfPWh";				
+										document.getElementById("modalImg").src="https://d.newsweek.com/en/full/1064234/base-goku-dramatic-finish.jpg?w=1600&h=1200&q=88&f=bde9c6b36d3234f7b7e7e898f29aa21a";				
 									}
 
 	
@@ -307,53 +296,9 @@ function loadExtracto(){
 
 						});
 
-					});
+					  });
 
-					document.getElementById("btnPedido").addEventListener("click",function(){
-
-						cuenta=document.getElementById("SelectCuentas2").value;
-						proveedor=document.getElementById("SelectProveedor").value;
-						producto=document.getElementById("SelectProducto").value;
-						precio=document.getElementById("Precio").value;
-						cantidad=document.getElementById("Cantidad").value;
-						total=document.getElementById("Total").value;
-						img=document.getElementById("modalImg").src;
-						nombreproducto=document.getElementById("SelectProducto");
-						selected = nombreproducto.options[nombreproducto.selectedIndex].text;
-
-						//console.log(selected);
-
-						if (cuenta==-1) {
-							alert("Introduce una cuenta");
-						}
-						else{
-
-							var url = "controller/controller_insert.php";
-
-							var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total, 'img':img, 'selected':selected };
-			
-							fetch(url, {
-							method: 'POST', // or 'POST'
-							body: JSON.stringify(data),
-								headers:{'Content-Type': 'application/json'}  //input data
-							})
-							.then(res => res.json()).then(result => {
-
-								//alert(result.insertFactura);
-								
-								Swal.fire(
-								'Pedido realizado correctamente',
-								'Gracias por confiar en nosotros',
-								'success'
-								)
-
-							})
-							.catch(error => console.error('Error status:', error));	
-							
-						}
-
-					});
-
+					  document.getElementById("Transferencia").style.display="none";	
 
 		}
 		
@@ -375,7 +320,8 @@ function loadExtracto(){
 			document.getElementById("tabla").innerHTML = newRow;
 			document.getElementById("tabla").style.display="block";
 			document.getElementById("btnRealizarPedido").style.display="none";
-			
+			document.getElementById("Transferencia").style.display="none";	
+
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////
@@ -389,7 +335,7 @@ function loadExtracto(){
 			
 			for (let i = 0; i < cuentas.length; i++) {
 					
-				newRow += "<option value='"+cuentas[i].idCuentas+"'>Cuenta "+cuentas[i].tipo+" ---> "+cuentas[i].numcuenta+"</option>";
+				newRow += "<option value='"+cuentas[i].numcuenta+"'>Cuenta "+cuentas[i].tipo+" ---> "+cuentas[i].numcuenta+"</option>";
 			}
 			   
 			document.getElementById("SelectCuentas").innerHTML = newRow;
@@ -471,8 +417,8 @@ function loadExtracto(){
 						+"</div>"
 						+"</div>"
 						+"<div>"
-						+"<h3>Cantidad</h3>"
-						+"<input type='text' onkeypress='return onlyNumberKey(event)'></input>"
+						+"<h3>Importe</h3>"
+						+"<input type='text' id='importe' onkeypress='return onlyNumberKey(event)'></input>"
 						+"</div>"
 						+"</div>"
 						+"<div class='modal-footer'>"
@@ -483,6 +429,7 @@ function loadExtracto(){
 				+"</div>"
 			+"</div>"	
 			document.getElementById("Transferencia").innerHTML=newRow3;	
+			document.getElementById("Transferencia").style.display="block";
 
 			var newRow4 ="";
 		newRow4 += "<option>Selecciona una cuenta</option>";
@@ -506,9 +453,15 @@ function loadExtracto(){
 
 			document.getElementById("btnCancelar").addEventListener("click",function(){
 				CancelTrans();
+				document.getElementById("Trans1").value="";
+				document.getElementById("Trans2").value="";
+				document.getElementById("importe").value="";
 			  });
 			  document.getElementById("btnPedido").addEventListener("click",function(){
 				  Transferencia();
+				  	document.getElementById("Trans1").value="";
+					document.getElementById("Trans2").value="";
+					document.getElementById("importe").value="";
 			  });
 
 			  

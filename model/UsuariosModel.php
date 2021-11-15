@@ -1,15 +1,17 @@
 <?php
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 66d4d39264db111e92bcd8d421d683ad95457581
 /*
 if($_SERVER['SERVER_NAME']=="lau.zerbitzaria.net"){
     include_once ("connect_data_SERV.php");
 }else{*/
-=======
 if ($_SERVER['SERVER_NAME'] == "lau.zerbitzaria.net") {
     include_once ("connect_data_SERV.php");
 } else {
->>>>>>> 88ea93492678a9aec0c7de9be86d02a5fcc08b1f
     include_once ("connect_data_LOCAL.php");
 //}
 
@@ -23,7 +25,6 @@ class UsuariosModel extends UsuariosClass
     {
         // mysqli_close ($this->link);
     }
-<<<<<<< HEAD
 
     public function finduser(){
         $this->OpenConnect();
@@ -74,11 +75,16 @@ class UsuariosModel extends UsuariosClass
     }
 
 
-=======
->>>>>>> 88ea93492678a9aec0c7de9be86d02a5fcc08b1f
 }
+<<<<<<< HEAD
 =======
 $fechaActual = date('Y-m-d');
    
 echo $fechaActual;
 >>>>>>> Iker
+=======
+$fechaActual = date('Y-m-d');
+   
+echo $fechaActual;
+}
+>>>>>>> 66d4d39264db111e92bcd8d421d683ad95457581

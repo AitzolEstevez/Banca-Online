@@ -35,7 +35,7 @@ class MiStockModel extends MiStockClass
         mysqli_close($this->link);
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////////////////////////
     public function setListMiStock()
     {
         $this->OpenConnect(); // konexio zabaldu - abrir conexiÃ³n
@@ -62,36 +62,5 @@ class MiStockModel extends MiStockClass
         mysqli_free_result($result);
         $this->CloseConnect();
         return $list;
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////////////////
-
-    public function updateMiStock(){
-        $this->OpenConnect();
-
-        $idproducto=$this->idproducto;
-        $stock=$this->stock;
-        $precio=$this->precio;
-        $img=$this->img;
-
-        $sql="select * from mistock where idproducto=$idproducto";
-        $result= $this->link->query($sql);
-
-        
-        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){ 
-           
-            $sql = "CALL updateStock($stock,$idproducto)";
-            $this->link->query($sql);
-            return "Numero de stocks actualizados";
-
-        }else{
-
-            $sql = "CALL insertStock($idproducto,$precio,$stock,$img)";
-            $this->link->query($sql);
-            return "Nuevo producto insertado al inventario";
-        }
-
-        $this->CloseConnect();
-
     }
 }
