@@ -298,6 +298,7 @@ function loadExtracto(){
 
 					  });
 
+					  document.getElementById("Transferencia").style.display="none";	
 
 		}
 		
@@ -319,7 +320,8 @@ function loadExtracto(){
 			document.getElementById("tabla").innerHTML = newRow;
 			document.getElementById("tabla").style.display="block";
 			document.getElementById("btnRealizarPedido").style.display="none";
-			
+			document.getElementById("Transferencia").style.display="none";	
+
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////
@@ -424,6 +426,7 @@ function loadExtracto(){
 				+"</div>"
 			+"</div>"	
 			document.getElementById("Transferencia").innerHTML=newRow3;	
+			document.getElementById("Transferencia").style.display="block";
 
 			var newRow4 ="";
 		newRow4 += "<option>Selecciona una cuenta</option>";
