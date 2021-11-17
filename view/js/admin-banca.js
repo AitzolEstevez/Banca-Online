@@ -21,7 +21,7 @@ function loadExtracto(){
 		BancaOnlineload(cuentas);
 		
 		var newRow ="";
-		newRow += "<option>Selecciona una cuenta</option>";
+		newRow += "<option value=-1>Selecciona una cuenta</option>";
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
@@ -431,6 +431,10 @@ function loadExtracto(){
 			.then(res => res.json()).then(result => {
 			
 				//console.log("hola");
+
+				if (valor=-1) {
+					document.getElementById("tabla").style.display="none";
+				}
 			
 				var extracto = result.listExtracto;
 			
@@ -444,9 +448,9 @@ function loadExtracto(){
 					newRow += "<td>"+extracto[i].concepto+"</td>";
 
 					if (extracto[i].importe>0) {
-						newRow += "<td>+"+extracto[i].importe+"</td>";
+						newRow += "<td style='color:#15D800;'>+"+extracto[i].importe+"</td>";
 					}else if(extracto[i].importe<0){
-						newRow += "<td>"+extracto[i].importe+"</td>";
+						newRow += "<td style='color:red;'>"+extracto[i].importe+"</td>";
 					}
 
 					newRow += "<td>"+extracto[i].saldo+"</td></tr>";
