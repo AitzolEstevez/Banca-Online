@@ -217,7 +217,7 @@ function loadExtracto(){
 					+"</div>"
 					+"<div>"
 					+"<h3>Cantidad</h3>"
-					+"<input type='number' id='Cantidad' class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm'>"
+					+"<input type='text' id='Cantidad' class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm'>"
 					+"</div>"
 					+"</div>"
 					+"<h3>Total</h3>"
