@@ -17,7 +17,8 @@ function loadExtracto(){
 		var proveedores = result.listProveedores;
 		var stock = result.listStock;
 		var cuentas = result.listCuentas;
-		
+
+		BancaOnlineload(cuentas);
 		
 		var newRow ="";
 		newRow += "<option>Selecciona una cuenta</option>";
@@ -29,8 +30,16 @@ function loadExtracto(){
 		
 		document.getElementById("SelectCuentas").innerHTML = newRow;
 		
+<<<<<<< HEAD
 		document.getElementById("SelectCuentas").addEventListener("change", BancaOnlineload());
 			
+=======
+		//document.getElementById("SelectCuentas").addEventListener("change", BancaOnlineload(cuentas));
+			
+		document.getElementById("AñadirFondos").addEventListener("click",function(){
+			AñadirFondos();
+		});
+>>>>>>> Iker
 		
 		console.log('Success:', clientes);
 
@@ -47,11 +56,11 @@ function loadExtracto(){
 				if(valor=="Clientes"){
 					Clienteload();
 				}else if(valor=="Proveedores"){
-					Proveedorload();
+					Proveedorload(proveedores,cuentas);
 				}else if(valor=="MiStock"){
-					MiStockload();
+					MiStockload(stock);
 				}else{
-					BancaOnlineload();
+					BancaOnlineload(cuentas);
 				}
 				
 				if(valor=="BancaOnline"){
@@ -63,15 +72,130 @@ function loadExtracto(){
 			});
 			
 		}
-		
 
-		function Proveedorload(){
-			var newRow ="";
-			newRow +="<table> ";
-			newRow +="<tr><th>Fecha</th><th>Numero Factura</th><th>Proveedor</th><th>Producto</th><th>Precio/u</th><th>Cantidad</th><th>Importe</th></tr>";
-			
-			for (let i = 0; i < proveedores.length; i++) {
+	})
+	.catch(error => console.error('Error status:', error));	
+
+}
+		
+<<<<<<< HEAD
+=======
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	function Clienteload(){
+		var newRow ="";
+		newRow +="<table> ";
+		newRow +="<tr><th>Fecha</th><th>Numero Factura</th><th>Cliente</th><th>Numero Cuenta</th><th>Producto</th><th>Precio/u</th><th>Cantidad</th><th>Importe</th></tr>";
+		
+		for (let i = 0; i < clientes.length; i++) {
+				
+			newRow += "<tr>" +"<td>"+clientes[i].fecha+"</td>"
+								+"<td>"+clientes[i].numerofactura+"</td>"
+								+"<td>"+clientes[i].nombre+"</td>"
+								+"<td>"+clientes[i].idcuenta+"</td>"
+								+"<td>"+clientes[i].idproducto+"</td>"
+								+"<td>"+clientes[i].precio+"</td>"
+								+"<td>"+clientes[i].cantidad+"</td>"
+								+"<td>"+clientes[i].importe+"</td>"
+							+"</tr>";	
+		}
+		newRow +="</table>";   
+		document.getElementById("tabla").innerHTML = newRow;
+		document.getElementById("tabla").style.display="block";		
+		document.getElementById("btnRealizarPedido").style.display="none";	
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+
+	function Proveedorload(proveedores, cuentas){
+		var newRow ="";
+		newRow +="<table id='proveedortabla'> ";
+		newRow +="<tr><th>Fecha</th><th>Numero Factura</th><th>Proveedor</th><th>Producto</th><th>Precio/u</th><th>Cantidad</th><th>Importe</th></tr>";
+		
+		for (let i = 0; i < proveedores.length; i++) {
+				
+			newRow += "<tr>" +"<td>"+proveedores[i].fecha+"</td>"
+								+"<td>"+proveedores[i].numerofactura+"</td>"
+								+"<td>"+proveedores[i].nombre+"</td>"
+								+"<td>"+proveedores[i].idproducto+"</td>"
+								+"<td>"+proveedores[i].precio+"</td>"
+								+"<td>"+proveedores[i].cantidad+"</td>"
+								+"<td>"+proveedores[i].importe+"</td>"
+							+"</tr>";	
+		}
+		newRow +="</table>";   
+		document.getElementById("tabla").innerHTML = newRow;	
+		document.getElementById("tabla").style.display="block";
+		
+		
+		var newRow2 ="";
+		
+		newRow2 +="<!-- Button trigger modal -->"
+		+"<button type='button' class='btn btn-success' id='btnProveedor' data-bs-toggle='modal' data-bs-target='#exampleModal'>"
+			+"Hacer pedido"
+		+"</button>"
+
+		+"<!-- Modal -->"
+			+"<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
+			+"<div class='modal-dialog modal-lg'>"
+				+"<div class='modal-content'>"
+				+"<div class='modal-header'>"
+					+"<h1 class='modal-title' id='exampleModalLabel'>Pedido</h1>"
+					+"<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>"
+				+"</div>"
+				+"<div class='modal-body'>"
+				+"<div style='display:flex;'>"
+					+"<div style='width:40%; padding:10px;'>"
+					+"<img id='modalImg' width='100%' height='100%' src='view/img/placeholder.png'>"
+					+"</div>" 
+					+"<div style='width:60%; padding:10px;'>"
+					+"<h3>Cuenta</h3>"
+					+"<div id='Cuentas2'></div>"
+					+"<h3>Proveedor</h3>"
+					+"<div id='Proveedores2'></div>"
+					+"<h3>Producto</h3>"
+					+"<div id='Productos'></div>"
+					+"</div>"
+				+"</div>"
+					+"<div id='modalFlex'><div>"
+					+"<h3>Precio/Ud</h3>"
+					+"<input id='Precio' type='text' disabled class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm'>"
+					+"</div>"
+					+"<div>"
+					+"<h3>Cantidad</h3>"
+					+"<input type='number' id='Cantidad' class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm'>"
+					+"</div>"
+					+"</div>"
+					+"<h3>Total</h3>"
+					+"<input type='text' id='Total' disabled class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm'>"
+					+"</div>"
+					+"<div class='modal-footer'>"
+					+"<button type='button' id='btnCancelar' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>"
+					+"<button type='button' id='btnPedido' class='btn btn-primary' data-bs-dismiss='modal'>Hacer pedido</button>"
+					+"</div>"
+					+"</div>"
+					+"</div>"
+					+"</div>"
+>>>>>>> Iker
+
+				document.getElementById("btnRealizarPedido").style.display="block";
+				document.getElementById("btnRealizarPedido").innerHTML = newRow2;	
+
+				document.getElementById("btnCancelar").addEventListener("click",function(){
+					Cancelar();
+				});
+
+				document.querySelector(".btn-close").addEventListener("click",function(){
+					Cancelar();
+				});
+
+				/*document.getElementById("btnPedido").addEventListener("click",function(){
+					Confirmacion();
+				});*/
+
+				document.getElementById("btnProveedor").addEventListener("click",function(){
 					
+<<<<<<< HEAD
 				newRow += "<tr>" +"<td>"+proveedores[i].fecha+"</td>"
 									+"<td>"+proveedores[i].numerofactura+"</td>"
 									+"<td>"+proveedores[i].nombre+"</td>"
@@ -141,114 +265,146 @@ function loadExtracto(){
 					document.getElementById("btnCancelar").addEventListener("click",function(){
 						Cancelar();
 					});
+=======
+					var newRow ="";
+					newRow += "<select class='modalCombo' id='SelectCuentas2' style='width:100%;' class='form-select' aria-label='Default select example'>";
+					newRow +="<option selected value=-1>Selecciona una cuenta</option>";
+>>>>>>> Iker
 
-					document.querySelector(".btn-close").addEventListener("click",function(){
-						Cancelar();
-					});
+					for (let i = 0; i < cuentas.length; i++) {
+							
+						newRow +="<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+"</option>";
+					}
 
-					/*document.getElementById("btnPedido").addEventListener("click",function(){
-						Confirmacion();
-					});*/
+					newRow +="</select>";
 
-					document.getElementById("btnProveedor").addEventListener("click",function(){
-						
+					console.log(newRow);
+
+					document.getElementById("Cuentas2").innerHTML=newRow;
+
+					document.getElementById("Cantidad").value="";
+					document.getElementById("Total").value="";
+					document.getElementById("Precio").value="";
+					document.getElementById("modalImg").src="view/img/placeholder.png";
+
+					var url = "controller/controller_Proveedores.php";
+	
+					fetch(url, {
+						method: 'GET', // or 'POST'
+					})
+					.then(res => res.json()).then(result => {
+											
+						var proveedor = result.listProveedores;
+
 						var newRow ="";
-						newRow += "<select class='modalCombo' id='SelectCuentas2' style='width:100%;' class='form-select' aria-label='Default select example'>";
-						newRow +="<option selected value=-1>Selecciona una cuenta</option>";
+						newRow += "<select class='modalCombo' id='SelectProveedor' style='width:100%;' class='form-select' aria-label='Default select example'>";
+						newRow +="<option selected value=-1>Selecciona un proveedor</option>";
 
-						for (let i = 0; i < cuentas.length; i++) {
+						
+						for (let i = 0; i < proveedor.length; i++) {
 								
-							newRow +="<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+"</option>";
+							newRow +="<option value='"+proveedor[i].id+"'>"+proveedor[i].nombre+"</option>";
 						}
 
 						newRow +="</select>";
 
-						console.log(newRow);
+						document.getElementById("Proveedores2").innerHTML = newRow;
+					
+						
+					})
+					.catch(error => console.error('Error status:', error));	
 
-						document.getElementById("Cuentas2").innerHTML=newRow;
+						var newRow ="";
+						newRow += "<select class='modalCombo' id='SelectProducto' style='width:100%;' class='form-select' aria-label='Default select example'>";
+						newRow +="<option selected value=-1>Selecciona un producto</option>";
 
+<<<<<<< HEAD
 						document.getElementById("Cantidad").value="";
 						document.getElementById("Total").value="";
 						document.getElementById("Precio").value="";
 						document.getElementById("modalImg").src="https://lh3.googleusercontent.com/proxy/kl6451Rlw_ftQ_gvwliykEuW_E5-PezUqO8nB6kmKHqcB4oWP-tUYtevjMBNN-jab4ooR6_wyBkrG3i9_1kzOGxqc4sy-EKLqCgrdAoFFLs2rm32hypmoDfAp8pyfPWh";
+=======
+						newRow +="</select>";
 
-						var url = "controller/controller_Proveedores.php";
+						document.getElementById("Productos").innerHTML = newRow;
+
+
+					document.getElementById("Proveedores2").addEventListener("change",function(){
+
+						if (document.getElementById("Proveedores2").value=-1) {
+							document.getElementById("Total").value="";
+							document.getElementById("Cantidad").value="";
+							document.getElementById("Precio").value="";
+							document.getElementById("modalImg").src="view/img/placeholder.png";		
+						}
+>>>>>>> Iker
+
+						valor=document.getElementById("SelectProveedor").value;
+
+						console.log(valor);
+
+						var url = "controller/controller_Productos.php";
+
+						var data = { 'proveedor':valor};
 		
 						fetch(url, {
-						  method: 'GET', // or 'POST'
+							method: 'POST', // or 'POST'
+							body: JSON.stringify(data),
+							headers:{'Content-Type': 'application/json'}  //input data
 						})
 						.then(res => res.json()).then(result => {
-												
-							var proveedor = result.listProveedores;
-
-							var newRow ="";
-							newRow += "<select class='modalCombo' id='SelectProveedor' style='width:100%;' class='form-select' aria-label='Default select example'>";
-							newRow +="<option selected value=-1>Selecciona un proveedor</option>";
-
-							
-							for (let i = 0; i < proveedor.length; i++) {
-									
-								newRow +="<option value='"+proveedor[i].id+"'>"+proveedor[i].nombre+"</option>";
-							}
-
-							newRow +="</select>";
-
-							document.getElementById("Proveedores2").innerHTML = newRow;
+													
+							var productos = result.listProductos;
 						
-							
-						})
-						.catch(error => console.error('Error status:', error));	
-
 							var newRow ="";
 							newRow += "<select class='modalCombo' id='SelectProducto' style='width:100%;' class='form-select' aria-label='Default select example'>";
 							newRow +="<option selected value=-1>Selecciona un producto</option>";
 
+							
+							for (let i = 0; i < productos.length; i++) {
+									
+								newRow +="<option value='"+productos[i].id+"'>"+productos[i].nombre+"</option>";
+								index=i;
+							}
+
 							newRow +="</select>";
 
 							document.getElementById("Productos").innerHTML = newRow;
+						
+							document.getElementById("SelectProducto").addEventListener("change",function(){
+
+								document.getElementById("modalImg").src=productos[index].img;
+								precio=document.getElementById("Precio").value=productos[index].precio;
+
+								if (document.getElementById("SelectProducto").value==-1) {
+									document.getElementById("Total").value="";
+									document.getElementById("Cantidad").value="";
+									document.getElementById("Precio").value="";
+									document.getElementById("modalImg").src="view/img/placeholder.png";				
+								}
 
 
-						document.getElementById("Proveedores2").addEventListener("change",function(){
+							});
 
+<<<<<<< HEAD
 							if (document.getElementById("Proveedores2").value=-1) {
 								document.getElementById("Total").value="";
 								document.getElementById("Cantidad").value="";
 								document.getElementById("Precio").value="";
 								document.getElementById("modalImg").src="https://lh3.googleusercontent.com/proxy/kl6451Rlw_ftQ_gvwliykEuW_E5-PezUqO8nB6kmKHqcB4oWP-tUYtevjMBNN-jab4ooR6_wyBkrG3i9_1kzOGxqc4sy-EKLqCgrdAoFFLs2rm32hypmoDfAp8pyfPWh";		
 							}
+=======
+							document.getElementById("Cantidad").addEventListener("keyup",function(){
+>>>>>>> Iker
 
-							valor=document.getElementById("SelectProveedor").value;
+								cantidad=document.getElementById("Cantidad").value;
 
-							console.log(valor);
+								document.getElementById("Total").value=cantidad*precio;
 
-							var url = "controller/controller_Productos.php";
+							});
 
-							var data = { 'proveedor':valor};
-			
-							fetch(url, {
-							  method: 'POST', // or 'POST'
-							  body: JSON.stringify(data),
-								headers:{'Content-Type': 'application/json'}  //input data
-							})
-							.then(res => res.json()).then(result => {
-														
-								var productos = result.listProductos;
 							
-								var newRow ="";
-								newRow += "<select class='modalCombo' id='SelectProducto' style='width:100%;' class='form-select' aria-label='Default select example'>";
-								newRow +="<option selected value=-1>Selecciona un producto</option>";
-	
-								
-								for (let i = 0; i < productos.length; i++) {
-										
-									newRow +="<option value='"+productos[i].id+"'>"+productos[i].nombre+"</option>";
-									index=i;
-								}
-	
-								newRow +="</select>";
-	
-								document.getElementById("Productos").innerHTML = newRow;
-							
+<<<<<<< HEAD
 								document.getElementById("SelectProducto").addEventListener("change",function(){
 
 									document.getElementById("modalImg").src=productos[index].img;
@@ -260,78 +416,105 @@ function loadExtracto(){
 										document.getElementById("Precio").value="";
 										document.getElementById("modalImg").src="https://lh3.googleusercontent.com/proxy/kl6451Rlw_ftQ_gvwliykEuW_E5-PezUqO8nB6kmKHqcB4oWP-tUYtevjMBNN-jab4ooR6_wyBkrG3i9_1kzOGxqc4sy-EKLqCgrdAoFFLs2rm32hypmoDfAp8pyfPWh";				
 									}
-
-	
-								});
-
-								document.getElementById("Cantidad").addEventListener("keyup",function(){
-
-									cantidad=document.getElementById("Cantidad").value;
-
-									document.getElementById("Total").value=cantidad*precio;
-
-								});
-
-								
-							})
-							.catch(error => console.error('Error status:', error));	
+=======
+						})
+						.catch(error => console.error('Error status:', error));	
+>>>>>>> Iker
 
 
-
-						});
 
 					});
 
-					document.getElementById("btnPedido").addEventListener("click",function(){
+				});
 
-						cuenta=document.getElementById("SelectCuentas2").value;
-						proveedor=document.getElementById("SelectProveedor").value;
-						producto=document.getElementById("SelectProducto").value;
-						precio=document.getElementById("Precio").value;
-						cantidad=document.getElementById("Cantidad").value;
-						total=document.getElementById("Total").value;
-						img=document.getElementById("modalImg").src;
-						nombreproducto=document.getElementById("SelectProducto");
-						selected = nombreproducto.options[nombreproducto.selectedIndex].text;
+				document.getElementById("btnPedido").addEventListener("click",function(){
 
-						//console.log(selected);
+					var añadirfondos=0;
+					var realizarpedido=1;
 
-						if (cuenta==-1) {
-							alert("Introduce una cuenta");
-						}
-						else{
+					cuenta=document.getElementById("SelectCuentas2").value;
+					proveedor=document.getElementById("SelectProveedor").value;
+					producto=document.getElementById("SelectProducto").value;
+					precio=document.getElementById("Precio").value;
+					cantidad=document.getElementById("Cantidad").value;
+					total=document.getElementById("Total").value;
+					img=document.getElementById("modalImg").src;
+					nombreproducto=document.getElementById("SelectProducto");
+					selected = nombreproducto.options[nombreproducto.selectedIndex].text;
 
-							var url = "controller/controller_insert.php";
+					//console.log(selected);
 
-							var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total, 'img':img, 'selected':selected };
-			
-							fetch(url, {
-							method: 'POST', // or 'POST'
-							body: JSON.stringify(data),
-								headers:{'Content-Type': 'application/json'}  //input data
-							})
-							.then(res => res.json()).then(result => {
+					if (cuenta==-1) {
+						alert("Introduce una cuenta");
+					}
+					else{
 
-								//alert(result.insertFactura);
-								
-								Swal.fire(
-								'Pedido realizado correctamente',
-								'Gracias por confiar en nosotros',
-								'success'
-								)
+						var url = "controller/controller_insert.php";
 
-							})
-							.catch(error => console.error('Error status:', error));	
+						var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total, 'img':img, 'selected':selected, 'añadirfondos':añadirfondos, 'realizarpedido':realizarpedido };
+		
+						fetch(url, {
+						method: 'POST', // or 'POST'
+						body: JSON.stringify(data),
+							headers:{'Content-Type': 'application/json'}  //input data
+						})
+						.then(res => res.json()).then(result => {
+
+							//alert(result.insertFactura);
 							
-						}
+							Swal.fire(
+							'Pedido realizado correctamente',
+							'Gracias por confiar en nosotros',
+							'success'
+							)
 
-					});
+						})
+						.catch(error => console.error('Error status:', error));	
+						
+					}
+
+				});
 
 
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	function MiStockload(stock){
+		var newRow ="";
+		newRow +="<table> ";
+		newRow +="<tr><th>Producto</th><th>Precio/u</th><th>Stock</th></tr>";
+		
+		for (let i = 0; i < stock.length; i++) {
+				
+			newRow += "<tr>" +"<td>"+stock[i].producto+"</td>"
+								+"<td>"+stock[i].precio+"</td>"
+								+"<td>"+stock[i].stock+"</td>"
+							+"</tr>";	
 		}
+		newRow +="</table>";   
+		document.getElementById("tabla").innerHTML = newRow;
+		document.getElementById("tabla").style.display="block";
+		document.getElementById("btnRealizarPedido").style.display="none";
 		
-		//////////////////////////////////////////////////////////////////////////////////
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+
+	function BancaOnlineload(cuentas){
+
+		console.log(cuentas);
+			
+		/*document.getElementById("AñadirFondos").addEventListener("click",function(){
+			AñadirFondos();
+		});*/
+
+		document.getElementById("tabla").style.display="none";
 		
+		var newRow ="";
+		newRow += "<option value=-1>Selecciona una cuenta</option>";
+		
+<<<<<<< HEAD
 		function MiStockload(){
 			var newRow ="";
 			newRow +="<table> ";
@@ -349,17 +532,39 @@ function loadExtracto(){
 			document.getElementById("tabla").style.display="block";
 			document.getElementById("btnRealizarPedido").style.display="none";
 			document.getElementById("Transferencia").style.display = "none";
+=======
+		for (let i = 0; i < cuentas.length; i++) {
+				
+			newRow += "<option value='"+cuentas[i].idCuentas+"'>Cuenta "+cuentas[i].tipo+" ---> "+cuentas[i].numcuenta+"</option>";
+>>>>>>> Iker
 		}
+		   
+		document.getElementById("SelectCuentas").innerHTML = newRow;
+		document.getElementById("btnRealizarPedido").style.display="none";
+
 		
-		//////////////////////////////////////////////////////////////////////////////////
+		document.getElementById("SelectCuentas").addEventListener("change", function(){
+
+			valor=document.getElementById("SelectCuentas").value;
+			console.log(valor);
 		
-		function BancaOnlineload(){
+
+			var url = "controller/controller_ExtractoCuenta.php";
+
+			var data = { 'numcuenta':valor};
+
+			fetch(url, {
+			  method: 'POST', // or 'POST'
+			  body: JSON.stringify(data),
+				headers:{'Content-Type': 'application/json'}  //input data
+			})
+			.then(res => res.json()).then(result => {
 			
-			document.getElementById("tabla").style.display="none";
+				//console.log("hola");
 			
-			var newRow ="";
-			newRow += "<option value=-1>Selecciona una cuenta</option>";
+				var extracto = result.listExtracto;
 			
+<<<<<<< HEAD
 			for (let i = 0; i < cuentas.length; i++) {
 					
 				newRow += "<option value='"+cuentas[i].idCuentas+"'>Cuenta "+cuentas[i].tipo+" ---> "+cuentas[i].numcuenta+"</option>";
@@ -368,48 +573,76 @@ function loadExtracto(){
 			document.getElementById("SelectCuentas").innerHTML = newRow;
 			document.getElementById("btnRealizarPedido").style.display="none";
 			document.getElementById("Transferencia").style.display = "block";	
+=======
+				var newRow ="";
+				newRow +="<table> ";
+				newRow +="<tr><th>Fecha</th><th>Concepto</th><th>Importe</th><th>Saldo</th></tr>";
+>>>>>>> Iker
 
+				for (let i = 0; i < extracto.length; i++) {
+						
+					newRow += "<tr>" +"<td>"+extracto[i].fecha+"</td>";
+					newRow += "<td>"+extracto[i].concepto+"</td>";
+
+					if (extracto[i].importe>0) {
+						newRow += "<td>+"+extracto[i].importe+"</td>";
+					}else if(extracto[i].importe<0){
+						newRow += "<td>"+extracto[i].importe+"</td>";
+					}
+
+					newRow += "<td>"+extracto[i].saldo+"</td></tr>";
+	
+				}
+				newRow +="</table>";   
+				document.getElementById("tabla").innerHTML = newRow;
+				document.getElementById("tabla").style.display="block";
 			
-			document.getElementById("SelectCuentas").addEventListener("change", function(){
+				
+			})
+			.catch(error => console.error('Error status:', error));	
+		
+		});
+					
+	}
 
-				valor=document.getElementById("SelectCuentas").value;
-				console.log(valor);
-			
+	function AñadirFondos(){
 
-			    var url = "controller/controller_ExtractoCuenta.php";
+		var añadirfondos=1;
+		var realizarpedido=0;
 
-				var data = { 'numcuenta':valor};
+		document.getElementById("btnAñadirFondos").addEventListener("click",function(){
+
+			fondos=document.getElementById("AñadirFondos").value;
+			cuenta=document.getElementById("SelectCuentas").value;
+
+			if (cuenta==-1) {
+				alert("Selecciona una cuenta");
+			}else{
+
+				var url = "controller/controller_insert.php";
+
+				var data = { 'total':fondos,'selected':'Ingreso','cuenta':cuenta, 'añadirfondos':añadirfondos, 'realizarpedido':realizarpedido };
 
 				fetch(url, {
-				  method: 'POST', // or 'POST'
-				  body: JSON.stringify(data),
-			  	  headers:{'Content-Type': 'application/json'}  //input data
+				method: 'POST', // or 'POST'
+				body: JSON.stringify(data),
+					headers:{'Content-Type': 'application/json'}  //input data
 				})
 				.then(res => res.json()).then(result => {
-				
-					//console.log("hola");
-				
-					var extracto = result.listExtracto;
-				
-					var newRow ="";
-					newRow +="<table> ";
-					newRow +="<tr><th>Fecha</th><th>Concepto</th><th>Importe</th><th>Saldo</th></tr>";
 
-					for (let i = 0; i < extracto.length; i++) {
-							
-						newRow += "<tr>" +"<td>"+extracto[i].fecha+"</td>"
-											+"<td>"+extracto[i].concepto+"</td>"
-											+"<td>"+extracto[i].importe+"</td>"
-											+"<td>"+extracto[i].saldo+"</td>"
-										+"</tr>";	
-					}
-					newRow +="</table>";   
-					document.getElementById("tabla").innerHTML = newRow;
-					document.getElementById("tabla").style.display="block";
-				
+					//alert(result.insertFactura);
+
+					Swal.fire(
+					'Fondos añadidos correctamente',
+					'',
+					'success'
+					)
+
 					
+
 				})
 				.catch(error => console.error('Error status:', error));	
+<<<<<<< HEAD
 			
 			});
 			var newRow3="";
@@ -487,10 +720,14 @@ function loadExtracto(){
 			  
 		}
 		
+=======
+>>>>>>> Iker
 
+			}
 
-	})
-	.catch(error => console.error('Error status:', error));	
+		});
+
+	}
 
 
 	function Compra(){
@@ -533,7 +770,8 @@ function loadExtracto(){
 		Swal.fire(
 			'Pedido realizado correctamente',
 			'Gracias por confiar en nosotros',
-			'success'
+			'success',
+			
 		)
 		
 	}
@@ -562,6 +800,7 @@ function loadExtracto(){
 		
 	}
 
+<<<<<<< HEAD
 }
 function onlyNumberKey(evt) {
           
@@ -571,3 +810,5 @@ function onlyNumberKey(evt) {
       return false;
   return true;
 }
+=======
+>>>>>>> Iker
