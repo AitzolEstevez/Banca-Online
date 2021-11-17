@@ -5,18 +5,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
 });
 
 function loadExtracto(){
+	document.getElementById("AñadirFondos").disabled = "true";
 
     var url = "controller/controller_Extractos.php";
 
 	fetch(url, {
-	  method: 'GET', // or 'POST'
+	  method: 'GET', 
 	})
 	.then(res => res.json()).then(result => {
+		
 
 		var clientes = result.listClientes;
 		var proveedores = result.listProveedores;
 		var stock = result.listStock;
 		var cuentas = result.listCuentas;
+
 
 		BancaOnlineload(cuentas);
 		
@@ -70,7 +73,7 @@ function loadExtracto(){
 			document.getElementById("Transferencia").style.display="block";
 
 			var newRow4 ="";
-		newRow4 += "<option>Selecciona una cuenta</option>";
+		newRow4 += "<option value=-1>Selecciona una cuenta</option>";
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
@@ -80,7 +83,7 @@ function loadExtracto(){
 		document.getElementById("Trans1").innerHTML = newRow4;
 
 		var newRow5 ="";
-		newRow5 += "<option>Selecciona una cuenta</option>";
+		newRow5 += "<option value=-1>Selecciona una cuenta</option>";
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
@@ -458,7 +461,7 @@ function loadExtracto(){
 
 		console.log(cuentas);
 		document.getElementById("Transferencia").style.display = "block";
-	
+		
 		/*document.getElementById("AñadirFondos").addEventListener("click",function(){
 			AñadirFondos();
 		});*/
@@ -478,10 +481,10 @@ function loadExtracto(){
 
 		
 		document.getElementById("SelectCuentas").addEventListener("change", function(){
-
+			
 			valor=document.getElementById("SelectCuentas").value;
 			console.log(valor);
-		
+			
 
 			var url = "controller/controller_ExtractoCuenta.php";
 
@@ -493,11 +496,19 @@ function loadExtracto(){
 				headers:{'Content-Type': 'application/json'}  //input data
 			})
 			.then(res => res.json()).then(result => {
-			
-				//console.log("hola");
+				
 
-				if (valor=-1) {
+				//console.log("hola");
+				
+				
+
+				if (valor==-1) {
 					document.getElementById("tabla").style.display="none";
+					document.getElementById("AñadirFondos").disabled = true;
+				}else{
+					document.getElementById("tabla").style.display="block";
+
+					document.getElementById("AñadirFondos").disabled = false;
 				}
 			
 				var extracto = result.listExtracto;
@@ -529,7 +540,7 @@ function loadExtracto(){
 				}
 				newRow +="</table>";   
 				document.getElementById("tabla").innerHTML = newRow;
-				document.getElementById("tabla").style.display="block";
+				//document.getElementById("tabla").style.display="block";
 			
 				
 			})
