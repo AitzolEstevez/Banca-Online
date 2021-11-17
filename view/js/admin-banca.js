@@ -66,9 +66,41 @@ function loadExtracto(){
 					+"</div>"
 				+"</div>"
 			+"</div>"	
-			document.getElementById("Transferencia").innerHTML=newRow3;
+			document.getElementById("Transferencia").innerHTML=newRow3;	
+			document.getElementById("Transferencia").style.display="block";
 
-			document.getElementById("Transferencia").style.display = "block";
+			var newRow4 ="";
+		newRow4 += "<option>Selecciona una cuenta</option>";
+		
+		for (let i = 0; i < cuentas.length; i++) {
+				
+			newRow4 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+		}
+		
+		document.getElementById("Trans1").innerHTML = newRow4;
+
+		var newRow5 ="";
+		newRow5 += "<option>Selecciona una cuenta</option>";
+		
+		for (let i = 0; i < cuentas.length; i++) {
+				
+			newRow5 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+		}
+		
+		document.getElementById("Trans2").innerHTML = newRow5;
+
+			document.getElementById("btnCancelar").addEventListener("click",function(){
+				CancelTrans();
+				document.getElementById("Trans1").value="";
+				document.getElementById("Trans2").value="";
+				document.getElementById("importe").value="";
+			  });
+			  document.getElementById("btnPedido").addEventListener("click",function(){
+				  Transferencia();
+				  	document.getElementById("Trans1").value="";
+					document.getElementById("Trans2").value="";
+					document.getElementById("importe").value="";
+			  });
 
 
 
