@@ -27,9 +27,9 @@ function loadExtracto(){
 			  +"Transferencia"
 			+"</button>"
 
-			+"<button  type='button' class='btn btn-primary ms-3' onclick='window.location.href='prestamo.html''>Prestamo</button>"
+			+"<a href='prestamo.html' class='button btn btn-primary ms-3'>Prestamo</a>"
 
-
+			+"<a href='leasing.html' class='button btn btn-primary ms-3'>Leasing</a>"
 
 			+"<!-- Modal -->"
 			+"<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
