@@ -460,6 +460,82 @@ function loadExtracto(){
 			})
 			.catch(error => console.error('Error status:', error));	
 		
+			var newRow3="";
+			newRow3 +="<!-- Button trigger modal -->"
+			+"<button type='button' class='btn btn-primary' id='btnTransferencia' data-bs-toggle='modal' data-bs-target='#exampleModal'>"
+			  +"Transferencia"
+			+"</button>"
+
+			+"<!-- Modal -->"
+			+"<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
+			  +"<div class='modal-dialog modal-lg'>"
+				+"<div class='modal-content'>"
+				  +"<div class='modal-header'>"
+						+"<h1 class='modal-title' id='exampleModalLabel'>Transferencia</h1>"
+						+"<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>"
+					+"</div>"
+					+"<div class='modal-body'>"
+						+"<div id='modalCuentas'>"
+						+"<div id='transferenciaFlex'>"
+						+"<div id='cuenta1'>"
+						+"<h3>Cuenta1</h3>"
+						+"<select id='Trans1'></select>"
+						+"</div>"
+						+"<svg xmlns='http://www.w3.org/2000/svg' id='flechita' width='50' height='50' fill='currentColor' class='bi bi-arrow-right' viewBox='0 0 16 16'>"
+						+"<path fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z'/>"
+					  	+"</svg>"
+						+"<div>"
+						+"<h3>Cuenta2</h3>"
+						+"<select id='Trans2'></select>"
+						+"</div>"
+						+"</div>"
+						+"<div>"
+						+"<h3>Importe</h3>"
+						+"<input type='text' id='importe' onkeypress='return onlyNumberKey(event)'></input>"
+						+"</div>"
+						+"</div>"
+						+"<div class='modal-footer'>"
+						+"<button type='button' id='btnCancelar' class='btn btn-danger' data-bs-dismiss='modal'>Cancelar</button>"
+						+"<button type='button' id='btnPedido' class='btn btn-primary' data-bs-dismiss='modal'>Hacer pedido</button>"
+						+"</div>"
+					+"</div>"
+				+"</div>"
+			+"</div>"	
+			document.getElementById("Transferencia").innerHTML=newRow3;	
+			document.getElementById("Transferencia").style.display="block";
+
+			var newRow4 ="";
+		newRow4 += "<option>Selecciona una cuenta</option>";
+		
+		for (let i = 0; i < cuentas.length; i++) {
+				
+			newRow4 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+		}
+		
+		document.getElementById("Trans1").innerHTML = newRow4;
+
+		var newRow5 ="";
+		newRow5 += "<option>Selecciona una cuenta</option>";
+		
+		for (let i = 0; i < cuentas.length; i++) {
+				
+			newRow5 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+		}
+		
+		document.getElementById("Trans2").innerHTML = newRow5;
+
+			document.getElementById("btnCancelar").addEventListener("click",function(){
+				CancelTrans();
+				document.getElementById("Trans1").value="";
+				document.getElementById("Trans2").value="";
+				document.getElementById("importe").value="";
+			  });
+			  document.getElementById("btnPedido").addEventListener("click",function(){
+				  Transferencia();
+				  	document.getElementById("Trans1").value="";
+					document.getElementById("Trans2").value="";
+					document.getElementById("importe").value="";
+			  });
 		});
 					
 	}
