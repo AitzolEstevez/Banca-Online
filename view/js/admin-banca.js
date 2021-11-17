@@ -647,11 +647,11 @@ function loadExtracto(){
 			});
 			var newRow3="";
 			newRow3 +="<!-- Button trigger modal -->"
-			+"<button type='button' class='btn btn-primary ms-3' id='btnTransferencia' data-bs-toggle='modal' data-bs-target='#exampleModal'>"
+			+"<button type='button' class='btn btn-primary' id='btnTransferencia' data-bs-toggle='modal' data-bs-target='#exampleModal'>"
 			  +"Transferencia"
 			+"</button>"
 
-			+"<a href='prestamo.html' class='btn btn-primary ms-3'>Prestamo</a>"
+			+"<a href='prestamo.html' class='btn btn-primary'>Prestamo</a>"
 
 			+"<!-- Modal -->"
 			+"<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
