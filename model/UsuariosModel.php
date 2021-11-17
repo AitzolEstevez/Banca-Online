@@ -17,11 +17,22 @@ class UsuariosModel extends UsuariosClass
     public $link;
 
     public function OpenConnect()
-    {}
+    {
+        $konDat = new connect_data();
+        try {
+            $this->link = new mysqli($konDat->host, $konDat->userbbdd, $konDat->passbbdd, $konDat->ddbbname);
+            // mysqli klaseko link objetua sortzen da dagokion konexio datuekin
+            // se crea un nuevo objeto llamado link de la clase mysqli con los datos de conexiÃ³n.
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        $this->link->set_charset("utf8"); // honek behartu egiten du aplikazio eta
+                                          // //databasearen artean UTF -8 erabiltzera datuak trukatzeko
+    }
 
     public function CloseConnect()
     {
-        // mysqli_close ($this->link);
+        mysqli_close ($this->link);
     }
 
     public function finduser(){
@@ -30,7 +41,7 @@ class UsuariosModel extends UsuariosClass
         $nombre=$this->nombre;
         $contrasena=$this->contrasena;
 
-        $sql="select * from usuarios where nombre='$nombre' && contrasena='$contrasena'";
+        $sql="select * from usuarios where nombre='$nombre' && contraseña='$contrasena'";
         $result= $this->link->query($sql);
 
         $userExists=false;
@@ -56,7 +67,7 @@ class UsuariosModel extends UsuariosClass
         $nombre=$this->nombre;
         $contrasena=$this->contrasena;
 
-        $sql="select * from usuarios where nombre='$nombre' && contrasena='$contrasena' && tipo = 1;";
+        $sql="select * from usuarios where nombre='$nombre' && contraseña='$contrasena' && tipo = 1;";
         $result= $this->link->query($sql);
 
         $userAdmin = false;
