@@ -34,6 +34,7 @@ if($realizarpedido==1){
 
     ////////////FACTURA//////////////
     $factura->numerofactura=$numfactura;
+    $factura->idcuenta=$cuenta;
     $factura->nombre=$proveedor;
     $factura->idproducto=$producto;
     $factura->precio=$precio;

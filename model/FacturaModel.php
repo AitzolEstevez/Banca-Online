@@ -88,6 +88,7 @@ class FacturaModel extends FacturaClass
 
             $newFactura->id = $row['id'];
             $newFactura->numerofactura = $row['numerofactura'];
+            $newFactura->idcuenta = $row['numcuenta'];
             $newFactura->nombre = $row['proveedor'];
             $newFactura->idproducto = $row['producto'];
             $newFactura->precio = $row['precio'];
@@ -108,6 +109,7 @@ class FacturaModel extends FacturaClass
         $this->OpenConnect(); // konexio zabaldu - abrir conexiÃ³n
 
         $numerofactura = $this->numerofactura;
+        $idcuenta=$this->idcuenta;
         $proveedor = $this->nombre;
         $idproducto = $this->idproducto;
         $precio = $this->precio;
@@ -115,7 +117,7 @@ class FacturaModel extends FacturaClass
         $cantidad = $this->cantidad;
         $importe = $this->importe;
 
-        $sql = "CALL insertFactura($numerofactura,$proveedor,$idproducto,$precio,'$fecha',$cantidad,$importe)";
+        $sql = "CALL insertFactura($numerofactura,$idcuenta,$proveedor,$idproducto,$precio,'$fecha',$cantidad,$importe)";
 
         if ($this->link->query($sql)) // true if success
             // $this->link->affected_rows; number of inserted rows

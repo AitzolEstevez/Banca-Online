@@ -103,12 +103,13 @@ function loadExtracto(){
 	function Proveedorload(proveedores, cuentas){
 		var newRow ="";
 		newRow +="<table id='proveedortabla'> ";
-		newRow +="<tr><th>Fecha</th><th>Numero Factura</th><th>Proveedor</th><th>Producto</th><th>Precio/u</th><th>Cantidad</th><th>Importe</th></tr>";
+		newRow +="<tr><th>Fecha</th><th>Numero Factura</th><th>Numero Cuenta</th><th>Proveedor</th><th>Producto</th><th>Precio/u</th><th>Cantidad</th><th>Importe</th></tr>";
 		
 		for (let i = 0; i < proveedores.length; i++) {
 				
 			newRow += "<tr>" +"<td>"+proveedores[i].fecha+"</td>"
 								+"<td>"+proveedores[i].numerofactura+"</td>"
+								+"<td>"+proveedores[i].idcuenta+"</td>"
 								+"<td>"+proveedores[i].nombre+"</td>"
 								+"<td>"+proveedores[i].idproducto+"</td>"
 								+"<td>"+proveedores[i].precio+"</td>"
@@ -453,7 +454,14 @@ function loadExtracto(){
 						newRow += "<td style='color:red;'>"+extracto[i].importe+"</td>";
 					}
 
-					newRow += "<td>"+extracto[i].saldo+"</td></tr>";
+					if (extracto[i].saldo>0) {
+						newRow += "<td>"+extracto[i].saldo+"</td></tr>";
+					}else if(extracto[i].saldo<0){
+						newRow += "<td style='color:red;'>"+extracto[i].saldo+"</td></tr>";
+					}else{
+						newRow += "<td>"+extracto[i].saldo+"</td></tr>";
+					}
+					
 	
 				}
 				newRow +="</table>";   
