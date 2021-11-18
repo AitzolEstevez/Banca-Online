@@ -2,6 +2,21 @@ document.addEventListener("DOMContentLoaded", function(){
 
     document.getElementById("entrar").addEventListener("click", login);
 
+    document.getElementById("user").addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("entrar").click();
+    }
+    });
+    
+    document.getElementById("password").addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("entrar").click();
+    }
+    });
+
+
     document.getElementById("loginbutton").addEventListener("click", abrirocerrar);
 
     
@@ -16,6 +31,7 @@ function abrirocerrar(){
         document.getElementById("iniciosesion").style.display = "block";
         document.getElementById("logindiv").classList.remove("cerrado");
         document.getElementById("logindiv").classList.add("abierto");
+        
 }else{
         document.getElementById("imagengrande").classList.remove("col-lg-7");
         document.getElementById("imagengrande").classList.add("col-lg-12");
@@ -32,7 +48,7 @@ function abrirocerrar(){
 function login(){
     var nombre = document.getElementById("user").value;
     var contrasena = document.getElementById("password").value;
-
+    console.log("entra al login");
     var url = "controller/cLogin.php";
 	var data = {'nombre':nombre, 'contrasena':contrasena};
 
@@ -42,48 +58,24 @@ function login(){
         headers:{'Content-Type': 'application/json'}
         })
   .then(res => res.json()).then(result => {
-    
+    console.log("Entra a dentro");
     if(result.error == "no error"){
 
         if(result.tipo == "admin"){
             location.href = "admin-banca.html";
         }else if(result.tipo == "cliente"){
             abrirocerrar();
-            document.getElementById("logindiv").innerHTML = "<h1 class='mt-3 me-1'>" + result.nombre + "</h1><a id='cerrarsesion' class='ms-1' href='#'>Cerrar Sesión</a>";
+            document.getElementById("logindiv").innerHTML = "<h1 class='mt-3 me-1'>" + result.nombre + "</h1><a id='cerrarsesion' class='ms-1' href='index.html'>Cerrar Sesion</a>";
         }
 
         
     }else if (result.error == "incorrect user"){
-        alert("Nombre o contraseña incorrectas");
+        alert("Nombre o contrasena incorrectas");
     }else{
         alert("No se admite los campos vacios");
     }
     
-    document.getElementById("cerrarsesion").addEventListener("click", function(){
-        location.reload();
-        alert("Serró sesión wey");
-    });
-    
-
-
-
   })
   .catch(error => console.error('Error status:', error));
 
 }
-
-    /*if(user == "paul" && password== "123"){
-        document.getElementById("iniciosesion").style.display = "none";        
-        document.getElementById("imagengrande").style.width = "100%";
-        document.getElementById("imagengrande").style.transition = "0.5s";
-        document.getElementById("imggrande").style.width = "94%";
-        document.getElementById("imggrande").style.height = "100%";
-        entra = true;
-    }*/
-
-    
-    
-    
-    
-
-    

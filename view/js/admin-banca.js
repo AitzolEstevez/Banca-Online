@@ -4,8 +4,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
+
 function loadExtracto(){
-	document.getElementById("AñadirFondos").disabled = "true";
+    
+	document.getElementById("AñadirFondos").disabled = true;
 
     var url = "controller/controller_Extractos.php";
 
@@ -14,7 +16,6 @@ function loadExtracto(){
 	})
 	.then(res => res.json()).then(result => {
 		
-
 		var clientes = result.listClientes;
 		var proveedores = result.listProveedores;
 		var stock = result.listStock;
@@ -163,6 +164,7 @@ function loadExtracto(){
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	function Proveedorload(proveedores, cuentas){
+	    
 		var newRow ="";
 		newRow +="<table id='proveedortabla'> ";
 		newRow +="<tr><th>Fecha</th><th>Numero Factura</th><th>Numero Cuenta</th><th>Proveedor</th><th>Producto</th><th>Precio/u</th><th>Cantidad</th><th>Importe</th></tr>";
@@ -417,6 +419,7 @@ function loadExtracto(){
 
 							//alert(result.insertFactura);
 							
+							
 							Swal.fire(
 							'Pedido realizado correctamente',
 							'Gracias por confiar en nosotros',
@@ -458,6 +461,8 @@ function loadExtracto(){
 	//////////////////////////////////////////////////////////////////////////////////
 
 	function BancaOnlineload(cuentas){
+	    
+        document.getElementById("AñadirFondos").disabled = true;
 
 		console.log(cuentas);
 		document.getElementById("Transferencia").style.display = "block";
