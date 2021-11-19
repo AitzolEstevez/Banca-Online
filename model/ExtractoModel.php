@@ -103,6 +103,17 @@ class ExtractoModel extends ExtractoClass
 
         $this->CloseConnect();
     }
+
+    /*   public function insertExtractoNum($importe, $origen, $destino, $concepto){
+        $this->OpenConnect();
+        
+        $fecha = $this->fecha;
+
+        $sql = "CALL updateCuentas($importe,$idcuenta)";
+        $this->link->query($sql);
+
+    }*/
+
 }
 
 ?>

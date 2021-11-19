@@ -65,11 +65,16 @@ function loadExtracto(){
 						+"</div>"
 						+"<div class='modal-footer'>"
 						+"<button type='button' id='btnCancelar' class='btn btn-danger' data-bs-dismiss='modal'>Cancelar</button>"
-						+"<button type='button' id='btnPedido' class='btn btn-primary' data-bs-dismiss='modal'>Hacer pedido</button>"
+						+"<button type='button' id='btnrealizartrans' class='btn btn-primary' data-bs-dismiss='modal'>Hacer pedido</button>"
 						+"</div>"
 					+"</div>"
 				+"</div>"
-			+"</div>"	
+			+"</div>"
+
+
+
+			
+
 			document.getElementById("Transferencia").innerHTML=newRow3;	
 			document.getElementById("Transferencia").style.display="block";
 
@@ -99,12 +104,51 @@ function loadExtracto(){
 				document.getElementById("Trans2").value="";
 				document.getElementById("importe").value="";
 			  });
-			  document.getElementById("btnPedido").addEventListener("click",function(){
-				  Transferencia();
-				  	document.getElementById("Trans1").value="";
-					document.getElementById("Trans2").value="";
-					document.getElementById("importe").value="";
-			  });
+			  
+			 
+			 ////////////////////////     HACER TRANSFERENCIA    //////////////////////////////
+			 
+			  document.getElementById("btnrealizartrans").addEventListener("click",function(){
+				  
+				var importe = document.getElementById("importe").value;
+				var origen = document.getElementById("Trans1").value;
+				var destino = document.getElementById("Trans2").value;
+				var concepto = "Transferencia a " + destino;
+				/*
+				alert(importe);
+				alert(origen);
+				alert(destino);
+				alert(concepto);
+				*/
+				var url = "controller/cTransferencia.php";
+
+				var data = {'importe':importe, 'origen': origen,'destino':destino, 'concepto':concepto};
+
+				fetch(url, {
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers:{'Content-Type': 'application/json'}
+				})
+
+				.then(res => res.json()).then(result => {
+
+					alert(result.error);
+					alert(result.error2);
+					if(result.error == "no error" && result.error2 == "no error"){
+						
+						/*Transferencia();
+						document.getElementById("Trans1").value="";
+						document.getElementById("Trans2").value="";
+						document.getElementById("importe").value="";
+						*/
+						alert(result.error);
+						alert(result.error2);
+					}
+				})
+
+				.catch(error => console.error('Error status:', error));
+				
+				});
 
 
 
@@ -118,6 +162,12 @@ function loadExtracto(){
 		
 		document.getElementById("SelectCuentas").innerHTML = newRow;
 		
+
+		
+
+
+
+
 		//document.getElementById("SelectCuentas").addEventListener("change", BancaOnlineload(cuentas));
 			
 		document.getElementById("AñadirFondos").addEventListener("click",function(){
@@ -265,7 +315,7 @@ function loadExtracto(){
 
 					newRow +="</select>";
 
-					console.log(newRow);
+					
 
 					document.getElementById("Cuentas2").innerHTML=newRow;
 
@@ -577,12 +627,13 @@ function loadExtracto(){
 				document.getElementById("Trans2").value="";
 				document.getElementById("importe").value="";
 			  });
-			  document.getElementById("btnPedido").addEventListener("click",function(){
+			  
+			 /* document.getElementById("btnPedido").addEventListener("click",function(){
 				  Transferencia();
 				  	document.getElementById("Trans1").value="";
 					document.getElementById("Trans2").value="";
 					document.getElementById("importe").value="";
-			  });
+			  });*/
 		});
 					
 	}
@@ -603,7 +654,7 @@ function loadExtracto(){
 
 				var url = "controller/controller_insert.php";
 
-				var data = { 'total':fondos,'selected':'Ingreso','cuenta':cuenta, 'añadirfondos':añadirfondos, 'realizarpedido':realizarpedido };
+				var data = { 'total':fondos, 'selected':'Ingreso','cuenta':cuenta, 'añadirfondos':añadirfondos, 'realizarpedido':realizarpedido };
 
 				fetch(url, {
 				method: 'POST', // or 'POST'
