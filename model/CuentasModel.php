@@ -13,7 +13,6 @@ class CuentasModel extends CuentasClass
 
     public $link;
 
-    public $objDirector;
 
     // save director data in the object
     public function OpenConnect()
@@ -21,8 +20,7 @@ class CuentasModel extends CuentasClass
         $konDat = new connect_data();
         try {
             $this->link = new mysqli($konDat->host, $konDat->userbbdd, $konDat->passbbdd, $konDat->ddbbname);
-            // mysqli klaseko link objetua sortzen da dagokion konexio datuekin
-            // se crea un nuevo objeto llamado link de la clase mysqli con los datos de conexiÃ³n.
+           
         } catch (Exception $e) {
             echo $e->getMessage();
         }
@@ -88,21 +86,18 @@ class CuentasModel extends CuentasClass
     }
 
 
-    public function aumentarSaldo($importe,$destino){
+    public function aumentarSaldo($importe, $destino){
 
         $this->OpenConnect();
+        
         $update = false;
 
-        $sql = "update cuentas set cuentas.saldo=cuentas.saldo+$importe WHERE cuentas.numcuenta='$destino'";
+        $sql = "update cuentas set saldo=saldo+$importe where id=$destino";
 
-        $result = $this->link->query($sql);
-    
-        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            
-            $update = true;
-            
+        if ($this->link->query($sql)){
+            $update = true;   
         }
-        
+
         return $update;
         mysqli_free_result($result);
         $this->CloseConnect();
@@ -110,26 +105,25 @@ class CuentasModel extends CuentasClass
     }
 
 
-
-    public function reducirSaldo($importe,$origen){
+    public function reducirSaldo($importe, $destino){
 
         $this->OpenConnect();
-        $update2 = false;
-
-        $sql = "UPDATE cuentas SET cuentas.saldo=cuentas.saldo-$importe WHERE cuentas.numcuenta=$origen";
-
-        $result = $this->link->query($sql);
-    
-        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            
-            $update2 = true;
-            
-        }
         
-        return $update2;
+        $update = false;
+
+        $sql = "update cuentas set saldo=saldo-$importe where id=$destino and saldo>0";
+
+        if ($this->link->query($sql)){
+            
+            if($this->link->affected_rows){
+                $update = true;
+            } 
+        }
+
+        return $update;
         mysqli_free_result($result);
         $this->CloseConnect();
-    }
 
+    }
 
 }

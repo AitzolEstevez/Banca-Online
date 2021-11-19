@@ -76,6 +76,9 @@ class UsuariosModel extends UsuariosClass
 
         if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){ 
             $userAdmin = true;
+
+            
+
         }
 
         return $userAdmin;

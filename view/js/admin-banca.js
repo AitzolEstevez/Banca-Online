@@ -83,7 +83,7 @@ function loadExtracto(){
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
-			newRow4 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+			newRow4 += "<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
 		}
 		
 		document.getElementById("Trans1").innerHTML = newRow4;
@@ -93,7 +93,7 @@ function loadExtracto(){
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
-			newRow5 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+			newRow5 += "<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
 		}
 		
 		document.getElementById("Trans2").innerHTML = newRow5;
@@ -132,18 +132,21 @@ function loadExtracto(){
 
 				.then(res => res.json()).then(result => {
 
-					alert(result.error);
-					alert(result.error2);
+					console.log(result.error);
+
+		
+					/*
 					if(result.error == "no error" && result.error2 == "no error"){
 						
-						/*Transferencia();
+						Transferencia();
 						document.getElementById("Trans1").value="";
 						document.getElementById("Trans2").value="";
 						document.getElementById("importe").value="";
-						*/
+						
 						alert(result.error);
 						alert(result.error2);
-					}
+
+					}*/
 				})
 
 				.catch(error => console.error('Error status:', error));
