@@ -126,4 +126,24 @@ class CuentasModel extends CuentasClass
 
     }
 
+
+    public function findsaldobyid($origen){
+        $this->OpenConnect();
+
+        $sql="select saldo from cuentas where id=$origen";
+
+        $result = $this->link->query($sql);
+
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $cuenta = new CuentasModel();
+            $cuenta->saldo=$row['saldo'];
+        
+        }
+
+        $this->CloseConnect();
+        return $cuenta;
+
+    }
+
 }

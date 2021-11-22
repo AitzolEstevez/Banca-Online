@@ -104,15 +104,36 @@ class ExtractoModel extends ExtractoClass
         $this->CloseConnect();
     }
 
-    /*   public function insertExtractoNum($importe, $origen, $destino, $concepto){
+    public function insertExtractoTrans($fechaActual, $conceptogasto, $importe, $origen){
         $this->OpenConnect();
         
-        $fecha = $this->fecha;
+        $insert = false;
 
-        $sql = "CALL updateCuentas($importe,$idcuenta)";
-        $this->link->query($sql);
+        $sql = "CALL insertExtracto('$fechaActual', '$conceptogasto', $importe, $origen)";
+        if($this->link->query($sql)){
+            $insert = true;
+        }
 
-    }*/
+        return $insert;
+        mysqli_free_result($result);
+        $this->CloseConnect();
+
+    }
+
+    public function insertExtractoTrans2($fechaActual, $conceptogasto, $importe, $origen){
+        $this->OpenConnect();
+        $insert = false;
+
+        $sql = "CALL insertExtractoFondos('$fechaActual', '$conceptogasto', $importe, $origen)";
+        if($this->link->query($sql)){
+            $insert = true;
+        }
+
+        return $insert;
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        
+    }
 
 }
 

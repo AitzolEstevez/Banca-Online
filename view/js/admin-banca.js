@@ -83,7 +83,7 @@ function loadExtracto(){
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
-			newRow4 += "<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+			newRow4 += "<option value='"+cuentas[i].idCuentas+"'>Cuenta "+cuentas[i].tipo+" "+cuentas[i].numcuenta+"</option>";
 		}
 		
 		document.getElementById("Trans1").innerHTML = newRow4;
@@ -93,7 +93,7 @@ function loadExtracto(){
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
-			newRow5 += "<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+			newRow5 += "<option value='"+cuentas[i].idCuentas+"'>Cuenta "+cuentas[i].tipo+" "+cuentas[i].numcuenta+"</option>";
 		}
 		
 		document.getElementById("Trans2").innerHTML = newRow5;
@@ -109,20 +109,24 @@ function loadExtracto(){
 			 ////////////////////////     HACER TRANSFERENCIA    //////////////////////////////
 			 
 			  document.getElementById("btnrealizartrans").addEventListener("click",function(){
-				  
+
+				var combo = document.getElementById("Trans1");
+				var selected = combo.options[combo.selectedIndex].text;
+
+				var combo2 = document.getElementById("Trans2");
+				var selected2 = combo2.options[combo2.selectedIndex].text;
+
 				var importe = document.getElementById("importe").value;
 				var origen = document.getElementById("Trans1").value;
 				var destino = document.getElementById("Trans2").value;
-				var concepto = "Transferencia a " + destino;
-				/*
-				alert(importe);
-				alert(origen);
-				alert(destino);
-				alert(concepto);
-				*/
+				var conceptogasto = "Transferencia a Cuenta " + selected2;
+				var conceptoingreso = "Transferencia de Cuenta " + selected;
+				
+				
+
 				var url = "controller/cTransferencia.php";
 
-				var data = {'importe':importe, 'origen': origen,'destino':destino, 'concepto':concepto};
+				var data = {'importe':importe, 'origen': origen,'destino':destino, 'conceptogasto':conceptogasto, 'conceptoingreso':conceptoingreso};
 
 				fetch(url, {
 					method: 'POST',
@@ -131,10 +135,11 @@ function loadExtracto(){
 				})
 
 				.then(res => res.json()).then(result => {
-
+					
 					console.log(result.error);
-
-		
+					/*alert(result.error);
+					console.log(result.insertado);
+					*/
 					/*
 					if(result.error == "no error" && result.error2 == "no error"){
 						
@@ -160,7 +165,7 @@ function loadExtracto(){
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
-			newRow += "<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+			newRow += "<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+", Cuenta "+cuentas[i].tipo+"</option>";
 		}
 		
 		document.getElementById("SelectCuentas").innerHTML = newRow;
@@ -517,7 +522,6 @@ function loadExtracto(){
 	    
         document.getElementById("AñadirFondos").disabled = true;
 
-		console.log(cuentas);
 		document.getElementById("Transferencia").style.display = "block";
 		
 		/*document.getElementById("AñadirFondos").addEventListener("click",function(){
@@ -541,7 +545,6 @@ function loadExtracto(){
 		document.getElementById("SelectCuentas").addEventListener("change", function(){
 			
 			valor=document.getElementById("SelectCuentas").value;
-			console.log(valor);
 			
 
 			var url = "controller/controller_ExtractoCuenta.php";
@@ -609,7 +612,7 @@ function loadExtracto(){
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
-			newRow4 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+			newRow4 += "<option value='"+cuentas[i].idCuentas+"'>Cuenta "+cuentas[i].tipo+" "+cuentas[i].numcuenta+"</option>";
 		}
 		
 		document.getElementById("Trans1").innerHTML = newRow4;
@@ -619,7 +622,7 @@ function loadExtracto(){
 		
 		for (let i = 0; i < cuentas.length; i++) {
 				
-			newRow5 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
+			newRow5 += "<option value='"+cuentas[i].idCuentas+"'>Cuenta "+cuentas[i].tipo+" "+cuentas[i].numcuenta+"</option>";
 		}
 		
 		document.getElementById("Trans2").innerHTML = newRow5;

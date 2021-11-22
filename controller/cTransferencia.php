@@ -8,14 +8,26 @@ $data=json_decode(file_get_contents("php://input"),true);
 $importe=$data['importe'];
 $origen=$data['origen'];
 $destino=$data['destino'];
-$concepto=$data['concepto'];
+$conceptogasto=$data['conceptogasto'];
+$conceptoingreso=$data['conceptoingreso'];
 
-//$fechaActual = date('Y-m-d');
+
+$fechaActual = date('Y-m-d');
 $respuesta = ""; 
 
 $response = array();
 
 $cuenta = new CuentasModel();
+$extracto=new ExtractoModel();
+$cuenta->idCuentas=$origen;
+
+$response['saldo'] = $cuenta->findsaldobyid($origen);
+
+if($importe>$response['saldo']->saldo){
+    $response['error'] = "No puedes transferir más de lo que tienes";
+}else{
+
+
 
 if($origen != $destino){
 
@@ -35,11 +47,27 @@ if($origen != $destino){
         $response['cambio2']="error";
         $respuesta = "No hecho";
     }
-
     }
 
     if($respuesta == "Hecho"){
         $response['error'] = "Transferencia realizada";
+        
+        
+        if($extracto->insertExtractoTrans($fechaActual, $conceptogasto, $importe, $origen)){
+            $insert1 = "insertado";
+        }
+
+        if($extracto->insertExtractoTrans2($fechaActual, $conceptoingreso, $importe, $destino)){
+            $insert2 = "insertado";
+        }
+
+
+        if($insert1 == "insertado" && $insert2 = "insertado"){
+            $response['insertado'] = "insertado";
+        }else{
+            $response['insertado'] = "no insertado";
+        }
+        
     }else{
         $response['error'] = "Error en la transferencia";
     }
@@ -52,7 +80,7 @@ if($origen != $destino){
 }
 
 
-
+}
 
 /*
 $extracto = new ExtractoModel();
