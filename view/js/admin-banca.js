@@ -65,7 +65,7 @@ function loadExtracto(){
 						+"</div>"
 						+"<div class='modal-footer'>"
 						+"<button type='button' id='btnCancelar' class='btn btn-danger' data-bs-dismiss='modal'>Cancelar</button>"
-						+"<button type='button' id='btnrealizartrans' class='btn btn-primary' data-bs-dismiss='modal'>Hacer pedido</button>"
+						+"<button type='button' id='btnrealizartrans' class='btn btn-primary' data-bs-dismiss='modal'>Realizar transferencia</button>"
 						+"</div>"
 					+"</div>"
 				+"</div>"
@@ -119,8 +119,8 @@ function loadExtracto(){
 				var importe = document.getElementById("importe").value;
 				var origen = document.getElementById("Trans1").value;
 				var destino = document.getElementById("Trans2").value;
-				var conceptogasto = "Transferencia a Cuenta " + selected2;
-				var conceptoingreso = "Transferencia de Cuenta " + selected;
+				var conceptogasto = "Transferencia a " + selected2;
+				var conceptoingreso = "Transferencia de " + selected;
 				
 				
 
@@ -136,22 +136,18 @@ function loadExtracto(){
 
 				.then(res => res.json()).then(result => {
 					
-					console.log(result.error);
-					/*alert(result.error);
-					console.log(result.insertado);
-					*/
-					/*
-					if(result.error == "no error" && result.error2 == "no error"){
-						
+					if(result.error == "Transferencia realizada" && result.insertado == "insertado"){
 						Transferencia();
 						document.getElementById("Trans1").value="";
 						document.getElementById("Trans2").value="";
 						document.getElementById("importe").value="";
-						
-						alert(result.error);
-						alert(result.error2);
-
-					}*/
+					}else if(result.error == "No puedes transferir más de lo que tienes"){
+						masmoney();
+					}else if(result.error == "No puede ser la misma cuenta"){
+						mismacuenta();
+					}else if(result.cero == "No puede ser 0"){
+						cero();
+					}
 				})
 
 				.catch(error => console.error('Error status:', error));
@@ -766,3 +762,27 @@ function loadExtracto(){
 			return false;
 		return true;
 	  }
+
+	function masmoney(){
+		Swal.fire(
+			'Error',
+			'No puedes transferir más dinero de lo que tienes en la cuenta',
+			'error'
+		)
+	}
+
+	function mismacuenta(){
+		Swal.fire(
+			'Error',
+			'La cuenta origen y el destinatario es el mismo',
+			'error'
+		)
+	}
+
+	function cero(){
+		Swal.fire(
+			'Error',
+			'No puedes poner 0',
+			'error'
+		)
+	}

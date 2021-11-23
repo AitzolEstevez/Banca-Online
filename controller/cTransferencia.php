@@ -27,6 +27,11 @@ if($importe>$response['saldo']->saldo){
     $response['error'] = "No puedes transferir más de lo que tienes";
 }else{
 
+if($importe == 0){
+    $response['cero'] = "No puede ser 0";
+}else{
+    $response['cero'] = "";
+}
 
 
 if($origen != $destino){
