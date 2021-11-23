@@ -8583,12 +8583,6 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
 .card .card-block .row h6{
     margin-bottom: 0;
 }
-/*
-.card-block .row button{
-    margin-bottom: 0;
-    margin-right: 0;
-}
-*/
 
 .card-block h5{
     margin: 0;
@@ -8618,4 +8612,22 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
 
 .simuladores input::placeholder{
     color: grey;
+}
+
+@media screen and (min-width: 1200px) {
+    .inputFecha{
+        flex-wrap: wrap;
+    }
+    .inputFecha input{
+        width: 49%;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .inputFecha{
+        flex-direction: column;
+    }
+    .inputFecha input{
+        width: 100%;
+    }
 }
