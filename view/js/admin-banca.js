@@ -1,8 +1,35 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 
-    loadExtracto();
+
+	loggedVerify();
+
+    
 
 });
+
+function loggedVerify()
+{
+    var url = "controller/cLoggedVerify.php";
+
+	fetch(url, {
+	  method: 'GET',  
+	})
+	.then(res => res.json()).then(result => {
+		
+	    if (result.error !== "Sesión iniciada")
+	    {
+	    	alert(result.error);
+	        window.location.href="index.html";
+	   
+	    } else {
+	        	loadExtracto();
+				document.getElementById("salir").addEventListener("click",logout);
+	    }
+	})
+	.catch(error => console.error('Error status:', error));	   
+}
+
+
 
 
 function loadExtracto(){
@@ -785,4 +812,17 @@ function loadExtracto(){
 			'No puedes poner 0',
 			'error'
 		)
+	}
+
+	function logout(){
+		var url = "controller/cLogout.php";
+
+		fetch(url, {
+		method: 'GET',  
+		})
+		.then(res => res.text()).then(result => {
+		
+			location.href="index.html";
+		})
+		.catch(error => console.error('Error status:', error));	
 	}
