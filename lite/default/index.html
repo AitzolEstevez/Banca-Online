@@ -160,7 +160,7 @@
 									<div class="media">
 										<img class="img-radius" src="../assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
 										<div class="media-body">
-											<p><strong>John Doe</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>5 min</span></p>
+											<p><strong>Admin</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>5 min</span></p>
 											<p>New ticket Added</p>
 										</div>
 									</div>
@@ -227,8 +227,8 @@
 						</a>
 						<div class="dropdown-menu dropdown-menu-right profile-notification">
 							<div class="pro-head">
-								<img src="../assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-								<span>John Doe</span>
+								<img src="../assets/images/user/Profile.png" class="img-radius" alt="User-Profile-Image">
+								<span>Admin</span>
 								<a href="auth-signin.html" class="dud-logout" title="Logout">
 									<i class="feather icon-log-out"></i>
 								</a>
@@ -281,13 +281,13 @@
 											<div class="row align-items-center m-b-25">
 												<div class="col">
 													<h6 class="m-b-5 text-white">Saldo</h6>
-													<h3 class="m-b-0 text-white">$1,783</h3>
+													<h3 class="m-b-0 text-white">$-</h3>
 												</div>
 												<div class="col-auto">
 													<i class="fas fa-money-bill-alt text-c-red f-18"></i>
 												</div>
 											</div>
-											<p class="m-b-0 text-white"><span class="label label-danger m-r-10">+11%</span>From Previous Month</p>
+											<p class="m-b-0 text-white"><br></p>
 										</div>
 									</div>
 								</div>
@@ -353,19 +353,10 @@
 												</div>
 											</div>
 										</div>
-										<div class="card-block">
-											<div class="row align-items-center justify-content-center card-active">
-												<div class="col-6">
-													<h6 class="text-center m-b-10"><span class="text-muted m-r-5">Target:</span>35,098</h6>
-													<div class="progress">
-														<div class="progress-bar progress-c-blue" role="progressbar" style="width:60%;height:6px;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-													</div>
-												</div>
-												<div class="col-6">
-													<h6 class="text-center  m-b-10"><span class="text-muted m-r-5">Duration:</span>350</h6>
-													<div class="progress">
-														<div class="progress-bar progress-c-green" role="progressbar" style="width:45%;height:6px;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-													</div>
+										<div class="card-block p-0">
+											<div class="row align-items-center justify-content-center card-active w-100 m-0">
+												<div class=" w-100">
+													<button class="btn btn-primary btnBanca"><h6 class="m-b-5 text-white">Banca online</h6></button>
 												</div>
 											</div>
 										</div>
@@ -384,16 +375,13 @@
 												</div>
 											</div>
 										</div>
-										<div class="card-block">
-											<div  class="row align-items-center justify-content-center card-active">
-												<div class="col-6">
-													<a class="btn btn-primary" href=""></a>
+										<div class="card-block p-0">
+											<div  class="row align-items-center justify-content-center card-active w-100 m-0">
+												<div class="w-50">
+													<button class="btn btn-primary btnFactura" href=""><h6 class="m-b-5 text-white">Facturas</h6></button>
 												</div>
-												<div class="col-6">
-													<h6 class="text-center  m-b-10"><span class="text-muted m-r-5">Duration:</span>800</h6>
-													<div class="progress">
-														<div class="progress-bar progress-c-green" role="progressbar" style="width:70%;height:6px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-													</div>
+												<div class="w-50">
+													<button class="btn btn-primary btnStock" href=""><h6 class="m-b-5 text-white">Inventario</h6></button>
 												</div>
 											</div>
 										</div>
@@ -412,19 +400,13 @@
 												</div>
 											</div>
 										</div>
-										<div class="card-block">
-											<div class="row align-items-center justify-content-center card-active">
-												<div class="col-6">
-													<h6 class="text-center m-b-10"><span class="text-muted m-r-5">Target:</span>25,998</h6>
-													<div class="progress">
-														<div class="progress-bar progress-c-blue" role="progressbar" style="width:80%;height:6px;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-													</div>
+										<div class="card-block p-0">
+											<div class="row align-items-center justify-content-center card-active w-100 m-0">
+												<div class="w-50">
+													<button class="btn btn-primary" href=""><h6 class="m-b-5 text-white">Préstamo</h6></button>
 												</div>
-												<div class="col-6">
-													<h6 class="text-center  m-b-10"><span class="text-muted m-r-5">Duration:</span>900</h6>
-													<div class="progress">
-														<div class="progress-bar progress-c-green" role="progressbar" style="width:50%;height:6px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-													</div>
+												<div class="w-50">
+													<button class="btn btn-primary" href=""><h6 class="m-b-5 text-white">Leasing</h6></button>
 												</div>
 											</div>
 										</div>
@@ -434,43 +416,45 @@
 								<div class="col-xl-8 col-md-6">
 									<div class="card table-card">
 										
-
+										<div class="card-block itfDefault" id="btnDefault">
+											<h5>Tabla</h5>
+										</div>
 
 										<!-- EN CASO DE BANCA -->
-										<div class="card-block">
+										<div class="card-block itfBanca" style="display: none;">
 											<div class="row align-items-center justify-content-center card-active">
 												<div class="col-3">
-													<h6 class="m-b-10"><span class="text-muted m-r-5">Cuentas:</span>2</h6>
+													<h6 class="m-b-10"><span class="text-muted m-r-5">Cuenta:</span>-</h6>
 												</div>
 												<div class="col-4">
-													<h6 class="m-b-10"><span class="text-muted m-r-5">Cuenta:</span>Corriente</h6>
+													<h6 class="m-b-10"><span class="text-muted m-r-5">Número Cuenta:</span><br>-</h6>
 												</div>
 												<div class="col-5">
-													<select class="w-100 form-select" aria-label="Default select example">
-														<option selected>Selecciona una cuenta</option>
-														<option value="1">Cuenta Corriente</option>
-														<option value="2">Cuenta Crédito</option>
+													<select class="w-100 form-select" id="SelectCuentas" aria-label="Default select example">
+														<!--<option selected>Selecciona una cuenta</option>
+														<option value="1">2058 0000 12 1234567890</option>
+														<option value="2">1234 5678 9012 3456</option>-->
 													</select>
 												</div>
 											</div>
 										</div>
 
-										<!--EN CASO DE PROVEEDOR
-										<div class="card-block">
+										<!--EN CASO DE PROVEEDOR-->
+										<div class="card-block itfFactura" style="display: none;">
 											<div class="row align-items-center justify-content-center card-active">
 												<div class="col-6">
 													<h5>Recibos</h5>	
 												</div>
-												<div class="col-6 paco">
-													<button type="button" class="btn btn-primary">Realizar Pedido</button>
+												<div class="col-6 btnPedir">
+													<button type="button" class="btn btn-primary"><h6 class="m-b-5 text-white">Realizar Pedido</h6></button>
 												</div>												
 											</div>
-										</div>-->
+										</div>
 
-										<!--EN CASO DE STOCK
-										<div class="card-header">
+										<!--EN CASO DE STOCK-->
+										<div class="card-header itfStock" style="display: none;">
 											<h5>Inventario</h5>
-										</div>-->
+										</div>
 
 										<div class="card-body px-0 py-0">
 											<div class="table-responsive">
@@ -919,6 +903,7 @@
 	<script src="../assets/js/vendor-all.min.js"></script>
 	<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../assets/js/pcoded.min.js"></script>
+	<script src="../../view/js/admin-banca-definitivo.js"></script>
 
 </body>
 

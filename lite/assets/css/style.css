@@ -8583,16 +8583,35 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
 .card .card-block .row h6{
     margin-bottom: 0;
 }
-
+/*
 .card-block .row button{
     margin-bottom: 0;
     margin-right: 0;
+}
+*/
+
+.card-block h5{
+    margin: 0;
 }
 
 .card-block .row h5{
     margin-bottom: 0;
 }
 
-.card-block .row .paco{
+.card-block .row .btnPedir{
     text-align: end;
+}
+
+.card-block .row div button{
+    border-radius: 0; 
+    padding: 20px 25px; 
+    margin: 0; 
+    width: 100%; 
+    background-color: #3949AB; 
+    border: none; 
+    color: black;
+}
+
+.card-block .row div button:hover {
+    background-color: #303D8D;
 }

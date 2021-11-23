@@ -8,7 +8,7 @@ var cuentas;
 
 function loadExtracto(){
 
-    var url = "controller/controller_Extractos.php";
+    var url = "../../controller/controller_Extractos.php";
 
 	fetch(url, {
 	  method: 'GET', // or 'POST'
@@ -20,7 +20,7 @@ function loadExtracto(){
 		var stock = result.listStock;
 		var cuentas = result.listCuentas;
 
-		BancaOnlineload(cuentas);
+		//BancaOnlineload(cuentas);
 		
 
 		var newRow3="";
@@ -68,8 +68,8 @@ function loadExtracto(){
 					+"</div>"
 				+"</div>"
 			+"</div>"	
-			document.getElementById("Transferencia").innerHTML=newRow3;	
-			document.getElementById("Transferencia").style.display="block";
+			//document.getElementById("Transferencia").innerHTML=newRow3;	
+			//document.getElementById("Transferencia").style.display="block";
 
 			var newRow4 ="";
 		newRow4 += "<option>Selecciona una cuenta</option>";
@@ -79,7 +79,7 @@ function loadExtracto(){
 			newRow4 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
 		}
 		
-		document.getElementById("Trans1").innerHTML = newRow4;
+		//document.getElementById("Trans1").innerHTML = newRow4;
 
 		var newRow5 ="";
 		newRow5 += "<option>Selecciona una cuenta</option>";
@@ -89,8 +89,8 @@ function loadExtracto(){
 			newRow5 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
 		}
 		
-		document.getElementById("Trans2").innerHTML = newRow5;
-
+		//document.getElementById("Trans2").innerHTML = newRow5;
+/*
 			document.getElementById("btnCancelar").addEventListener("click",function(){
 				CancelTrans();
 				document.getElementById("Trans1").value="";
@@ -104,7 +104,7 @@ function loadExtracto(){
 					document.getElementById("importe").value="";
 			  });
 
-
+			  */
 
 		var newRow ="";
 		newRow += "<option value=-1>Selecciona una cuenta</option>";
@@ -118,9 +118,9 @@ function loadExtracto(){
 		
 		//document.getElementById("SelectCuentas").addEventListener("change", BancaOnlineload(cuentas));
 			
-		document.getElementById("AñadirFondos").addEventListener("click",function(){
+		/*document.getElementById("AñadirFondos").addEventListener("click",function(){
 			AñadirFondos();
-		});
+		});*/
 		
 		console.log('Success:', clientes);
 
@@ -128,6 +128,8 @@ function loadExtracto(){
 
 		tabs=document.querySelectorAll("#myTab li button");
 
+		document.querySelector(".btnBanca").addEventListener("click",BancaOnlineload);
+		/*
 		for (let i = 0; i < tabs.length; i++) {
 			tabs[i].addEventListener("click", function(){
 
@@ -156,7 +158,7 @@ function loadExtracto(){
 
 			});
 			
-		}
+		}*/
 
 	})
 	.catch(error => console.error('Error status:', error));	
@@ -517,6 +519,9 @@ function loadExtracto(){
 	//////////////////////////////////////////////////////////////////////////////////
 
 	function BancaOnlineload(cuentas){
+
+		document.getElementById("btnDefault").style.display="none";
+		document.querySelector(".itfBanca").style.display="block";
 
 		document.getElementById("FlexBancaOnline").style.display="flex";
 
