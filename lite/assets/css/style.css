@@ -8610,8 +8610,12 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     background-color: #303D8D;
 }
 
-.simuladores input::placeholder{
+.simulador input::placeholder{
     color: grey;
+}
+
+.inputCantidad input:disabled{
+    background: none;
 }
 
 @media screen and (min-width: 1200px) {
