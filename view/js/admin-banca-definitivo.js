@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
+/*Variable Global
+-------------*/
+cuenta="";
+
+/*LoadPagina
+------------------------------------------------------------------------------------------------*/
 function loadPagina(){
 
     var url = "../../controller/controller_Extractos.php";
@@ -17,6 +23,8 @@ function loadPagina(){
 		var proveedores = result.listProveedores;
 		var stock = result.listStock;
 		var cuentas = result.listCuentas;
+
+        cuenta=cuentas;
 
         console.log(result);
 
@@ -40,7 +48,6 @@ function loadPagina(){
 
 /*BancaOnlineload
 ------------------------------------------------------------------------------------------------*/
-
 function BancaOnlineload(cuentas){
 
     document.querySelector(".table").innerHTML="";
@@ -71,7 +78,7 @@ function BancaOnlineload(cuentas){
     document.querySelector(".prestamo").style.display="none";
 
 
-    /*ExtractoCuentas
+    /*ComboCuentas
     -----------------------------------------------------------------------*/
     var newRow ="";
     newRow += "<option value=-1>Selecciona una cuenta</option>";
@@ -83,132 +90,126 @@ function BancaOnlineload(cuentas){
     
     document.getElementById("SelectCuentas").innerHTML = newRow;
 
+}
 
-    /*ExtractoCuentasById
-    -----------------------------------------------------------------------*/
-    document.getElementById("SelectCuentas").addEventListener("change",function(){
+/*ExtractoCuentasById
+-----------------------------------------------------------------------*/
+document.getElementById("SelectCuentas").addEventListener("change",function(){
 
-        var combo = document.getElementById("SelectCuentas");
-        var selected = combo.options[combo.selectedIndex].value;
-        selected=selected-1;
+    var combo = document.getElementById("SelectCuentas");
+    var selected = combo.options[combo.selectedIndex].value;
+    selected=selected-1;
 
-        console.log(selected);
+    valor=document.getElementById("SelectCuentas").value;
 
-        valor=document.getElementById("SelectCuentas").value;
+    /*Datos
+    ----------------------------------------------------------------------------------------------------------------*/
+    if (selected==-2) {
+        document.querySelector(".itfBanca2").style.display="none";
+        document.querySelector(".numCuenta").innerHTML="<span class='text-muted m-r-5'>Número Cuenta:</span><br>-";
+        document.querySelector(".tipoCuenta").innerHTML="<span class='text-muted m-r-5'>Cuenta:</span>-";
+        document.querySelector(".numeroCuenta").innerHTML="<br>";
+        document.querySelector(".saldo").innerHTML="€-";
 
-        console.log(valor);
+    } else {
+        document.querySelector(".itfBanca2").style.display="flex";
+        document.querySelector(".numCuenta").innerHTML="<span class='text-muted m-r-5'>Número Cuenta:</span><br>"+cuenta[selected].numcuenta;
+        document.querySelector(".tipoCuenta").innerHTML="<span class='text-muted m-r-5'>Cuenta:</span>"+cuenta[selected].tipo;
+        document.querySelector(".numeroCuenta").innerHTML=cuenta[selected].numcuenta;
+        document.querySelector(".saldo").innerHTML="€"+cuenta[selected].saldo;
+    }
 
+    var url = "../../controller/controller_ExtractoCuenta.php";
 
-        /*Condicion para no mostrar datos
-        ----------------------------------------------------------------------------------------------------------------*/
-        if (selected==-2) {
-            document.querySelector(".itfBanca2").style.display="flex";
-            document.querySelector(".numCuenta").innerHTML="<span class='text-muted m-r-5'>Número Cuenta:</span><br>-";
-            document.querySelector(".tipoCuenta").innerHTML="<span class='text-muted m-r-5'>Cuenta:</span>-";
-            document.querySelector(".numeroCuenta").innerHTML="<br>";
-            document.querySelector(".saldo").innerHTML="€-";
-            document.querySelector(".itfBanca2").style.display="none";
+    var data = {'numcuenta':valor};
 
-        } else {
-            document.querySelector(".itfBanca2").style.display="flex";
-            document.querySelector(".numCuenta").innerHTML="<span class='text-muted m-r-5'>Número Cuenta:</span><br>"+cuentas[selected].numcuenta;
-            document.querySelector(".tipoCuenta").innerHTML="<span class='text-muted m-r-5'>Cuenta:</span>"+cuentas[selected].tipo;
-            document.querySelector(".numeroCuenta").innerHTML=cuentas[selected].numcuenta;
-            document.querySelector(".saldo").innerHTML="€"+cuentas[selected].saldo;
+    fetch(url, {
+        method: 'POST', // or 'POST'
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'}  //input data
+    })
+    .then(res => res.json()).then(result => {
+
+        var extracto = result.listExtracto;
+
+        var newRow ="";
+        newRow += "<thead>";
+            newRow += "<tr>";
+                newRow += "<th><span>FECHA</span></th>";
+                newRow += "<th><span>CONCEPTO</span></th>";
+                newRow += "<th><span>IMPORTE</span></th>";
+                newRow += "<th><span>SALDO</span></th>";
+            newRow += "</tr>";
+        newRow += "</thead>";
+        newRow += "<tbody>";
+        
+        for (let i = 0; i < extracto.length; i++) {
+                
+            newRow += "<tr>" +"<td>"+extracto[i].fecha+"</td>";
+            newRow += "<td>"+extracto[i].concepto+"</td>";
+
+            if (extracto[i].importe>0) {
+                newRow += "<td style='color:#15D800;'>+"+extracto[i].importe+"</td>";
+            }else if(extracto[i].importe<0){
+                newRow += "<td style='color:red;'>"+extracto[i].importe+"</td>";
+            }
+
+            if (extracto[i].saldo>0) {
+                newRow += "<td>"+extracto[i].saldo+"</td></tr>";
+            }else if(extracto[i].saldo<0){
+                newRow += "<td style='color:red;'>"+extracto[i].saldo+"</td></tr>";
+            }else{
+                newRow += "<td>"+extracto[i].saldo+"</td></tr>";
+            }
+
         }
+    
+        newRow += "</tbody>";
+        
+        document.querySelector(".table").innerHTML = newRow;
 
-        var url = "../../controller/controller_ExtractoCuenta.php";
+    })
+    .catch(error => console.error('Error status:', error));	
+});
 
-        var data = {'numcuenta':valor};
+/*Añadir Fondos
+-----------------------------------------------------------------------*/
+document.querySelector(".inputCantidad input").addEventListener("keyup",function(){
+
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        var añadirfondos=1;
+        var realizarpedido=0;
+
+        var fondos=document.querySelector(".inputCantidad input").value;
+        var cuenta=document.getElementById("SelectCuentas").value;
+
+        var url = "../../controller/controller_insert.php";
+
+        var data = {'total':fondos,'cuenta':cuenta, 'selected':'Ingreso','añadirfondos':añadirfondos, 'realizarpedido':realizarpedido};
 
         fetch(url, {
             method: 'POST', // or 'POST'
             body: JSON.stringify(data),
             headers:{'Content-Type': 'application/json'}  //input data
-        })
-        .then(res => res.json()).then(result => {
+        }).then(res => res.json()).then(result => {
 
-            var extracto = result.listExtracto;
+            console.log("hola");
 
-            var newRow ="";
-            newRow += "<thead>";
-                newRow += "<tr>";
-                    newRow += "<th><span>FECHA</span></th>";
-                    newRow += "<th><span>CONCEPTO</span></th>";
-                    newRow += "<th><span>IMPORTE</span></th>";
-                    newRow += "<th><span>SALDO</span></th>";
-                newRow += "</tr>";
-            newRow += "</thead>";
-            newRow += "<tbody>";
-            
-            for (let i = 0; i < extracto.length; i++) {
-                    
-                newRow += "<tr>" +"<td>"+extracto[i].fecha+"</td>";
-                newRow += "<td>"+extracto[i].concepto+"</td>";
-
-                if (extracto[i].importe>0) {
-                    newRow += "<td style='color:#15D800;'>+"+extracto[i].importe+"</td>";
-                }else if(extracto[i].importe<0){
-                    newRow += "<td style='color:red;'>"+extracto[i].importe+"</td>";
-                }
-
-                if (extracto[i].saldo>0) {
-                    newRow += "<td>"+extracto[i].saldo+"</td></tr>";
-                }else if(extracto[i].saldo<0){
-                    newRow += "<td style='color:red;'>"+extracto[i].saldo+"</td></tr>";
-                }else{
-                    newRow += "<td>"+extracto[i].saldo+"</td></tr>";
-                }
+            Swal.fire(
+                'Fondos añadidos correctamente',
+                '',
+                'success'
+            )
     
-            }
-        
-            newRow += "</tbody>";
-            
-            document.querySelector(".table").innerHTML = newRow;
-
+    
         })
         .catch(error => console.error('Error status:', error));	
-    });
-
-    document.querySelector(".inputCantidad input").addEventListener("keyup",function(){
-
-        event.preventDefault();
-        if (event.keyCode === 13) {
-            var añadirfondos=1;
-            var realizarpedido=0;
-
-            var fondos=document.querySelector(".inputCantidad input").value;
-            var cuenta=document.getElementById("SelectCuentas").value;
-
-            var url = "../../controller/controller_insert.php";
-
-            var data = {'total':fondos,'cuenta':cuenta, 'selected':'Ingreso','añadirfondos':añadirfondos, 'realizarpedido':realizarpedido};
-
-            fetch(url, {
-                method: 'POST', // or 'POST'
-                body: JSON.stringify(data),
-                headers:{'Content-Type': 'application/json'}  //input data
-            }).then(res => res.json()).then(result => {
-
-                Swal.fire(
-                    'Fondos añadidos correctamente',
-                    '',
-                    'success'
-                )
-        
-        
-            })
-            .catch(error => console.error('Error status:', error));	
-        }
-    });
-
-
-
-}
+    }
+});
 
 /*Proveedorload
 ------------------------------------------------------------------------------------------------*/
-
 function Proveedorload(proveedores, cuentas){
     document.querySelector(".itfDefault").style.display="none";
     document.querySelector(".itfStock").style.display="none";
@@ -262,7 +263,6 @@ function Proveedorload(proveedores, cuentas){
 
 /*MiStockload
 ------------------------------------------------------------------------------------------------*/
-
 function MiStockload(stock){
     document.querySelector(".itfDefault").style.display="none";
     document.querySelector(".itfBanca").style.display="none";
@@ -306,7 +306,6 @@ function MiStockload(stock){
 
 /*loadPrestamo
 ------------------------------------------------------------------------------------------------*/
-
 function loadPrestamo(){
 
     /*Tabla
@@ -321,7 +320,6 @@ function loadPrestamo(){
 
 /*loadLeasing
 ------------------------------------------------------------------------------------------------*/
-
 function loadLeasing(){
     
     /*Tabla
