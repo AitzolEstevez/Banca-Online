@@ -8626,7 +8626,8 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
         width: 46%;
     }
     #flecharight{
-        display: block;
+        color: black;
+        display: inline-block;
     }
     #flechadown{
         display: none;
@@ -8641,6 +8642,7 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
         width: 100%;
     }
     #flechadown{
+        color: black;
         display: block;
     }
     #flecharight{
