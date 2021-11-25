@@ -268,12 +268,15 @@ function Proveedorload(proveedores, cuentas) {
         + "<div class='modal-content'>"
         + "<div class='modal-header'>"
         + "<h1 class='modal-title' id='exampleModalLabel'>Pedido</h1>"
-        + "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>"
+        + "<button type='button' id='btn-close' data-bs-dismiss='modal' aria-label='Close'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-x-lg' viewBox='0 0 16 16'>"
+        + "<path fill-rule='evenodd' d='M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z'/>"
+        + "<path fill-rule='evenodd' d='M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z'/>"
+        + "</svg></button>"
         + "</div>"
-        + "<div class='modal-body'>"
+        + "<div class='modal-body' style='padding-bottom:0;'>"
         + "<div style='display:flex;'>"
         + "<div style='width:40%; padding:10px;'>"
-        + "<img id='modalImg' width='100%' height='100%' src=''>"
+        + "<img id='modalImg' width='100%' height='100%' src='https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png'>"
         + "</div>"
         + "<div style='width:60%; padding:10px;'>"
         + "<h3>Cuenta</h3>"
@@ -284,11 +287,13 @@ function Proveedorload(proveedores, cuentas) {
         + "<div id='Productos'></div>"
         + "</div>"
         + "</div>"
-        + "<div id='modalFlex'><div>"
+        + "<div id='contenedorModal' style='padding:10px;'>"
+        + "<div class='d-flex' style='justify-content:space-between;'>"
+        + "<div style='flex-direction:column; width:49%;'>"
         + "<h3>Precio/Ud</h3>"
         + "<input id='Precio' type='text' disabled class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm'>"
         + "</div>"
-        + "<div>"
+        + "<div id='modalinputCantidad' style='flex-direction:column; width:49%;'>"
         + "<h3>Cantidad</h3>"
         + "<input type='text' id='Cantidad' class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm' onkeypress='return onlyNumberKey(event)'>"
         + "</div>"
@@ -296,15 +301,211 @@ function Proveedorload(proveedores, cuentas) {
         + "<h3>Total</h3>"
         + "<input type='text' id='Total' disabled class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm'>"
         + "</div>"
-        + "<div class='modal-footer'>"
-        + "<button type='button' id='btnCancelar' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>"
-        + "<button type='button' id='btnPedido' class='btn btn-primary' data-bs-dismiss='modal'>Hacer pedido</button>"
+        + "</div>"
+        + "<div class='modal-footer' style='padding:1rem;'>"
+        + "<div class='m-0' style='padding:10px; padding-top:0; padding-bottom:10px;'>"
+        + "<button type='button' id='btnCancelar' class='btn btn-secondary btnModal' data-bs-dismiss='modal'>Cancelar</button>"
+        + "<button type='button' id='btnPedido' class='btn btn-primary btnModal' data-bs-dismiss='modal'>Hacer pedido</button>"
+        + "</div>"
         + "</div>"
         + "</div>"
         + "</div>"
         + "</div>"
 
     document.querySelector(".btnPedir").innerHTML = newRow2;
+
+    document.getElementById("btnCancelar").addEventListener("click",function(){
+        Cancelar();
+    });
+
+    document.getElementById("btn-close").addEventListener("click",function(){
+        Cancelar();
+    });
+
+    /*ModalComboload
+    ------------------------------------------------------------------------------------------------*/
+    document.getElementById("btnProveedor").addEventListener("click",function(){
+                    
+        var newRow ="";
+        newRow += "<select class='modalCombo form-control' id='SelectCuentas2' style='width:100%;' class='form-select' aria-label='Default select example'>";
+        newRow +="<option selected value=-1>Selecciona una cuenta</option>";
+
+        for (let i = 0; i < cuenta.length; i++) {
+                
+            newRow +="<option value='"+cuenta[i].idCuentas+"'>"+cuenta[i].numcuenta+"</option>";
+        }
+
+        newRow +="</select>";
+
+        document.getElementById("Cuentas2").innerHTML=newRow;
+
+        document.getElementById("Cantidad").value="";
+        document.getElementById("Total").value="";
+        document.getElementById("Precio").value="";
+        document.getElementById("modalImg").src="https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png";
+
+        var url = "../../controller/controller_Proveedores.php";
+
+        fetch(url, {
+            method: 'GET', // or 'POST'
+        })
+        .then(res => res.json()).then(result => {
+
+
+            var proveedor = result.listProveedores;
+
+            var newRow ="";
+            newRow += "<select class='modalCombo form-control' id='SelectProveedor' style='width:100%;' class='form-select' aria-label='Default select example'>";
+            newRow +="<option selected value=-1>Selecciona un proveedor</option>";
+
+            
+            for (let i = 0; i < proveedor.length; i++) {
+                    
+                newRow +="<option value='"+proveedor[i].id+"'>"+proveedor[i].nombre+"</option>";
+            }
+
+            newRow +="</select>";
+
+            document.getElementById("Proveedores2").innerHTML = newRow;
+        
+            
+        })
+        .catch(error => console.error('Error status:', error));	
+
+            var newRow ="";
+            newRow += "<select class='modalCombo form-control' id='SelectProducto' style='width:100%;' class='form-select' aria-label='Default select example'>";
+            newRow +="<option selected value=-1>Selecciona un producto</option>";
+
+            newRow +="</select>";
+
+            document.getElementById("Productos").innerHTML = newRow;
+
+
+        document.getElementById("Proveedores2").addEventListener("change",function(){
+
+            if (document.getElementById("Proveedores2").value=-1) {
+                document.getElementById("Total").value="";
+                document.getElementById("Cantidad").value="";
+                document.getElementById("Precio").value="";
+                document.getElementById("modalImg").src="https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png";		
+            }
+
+            valor=document.getElementById("SelectProveedor").value;
+
+            console.log(valor);
+
+            var url = "../../controller/controller_Productos.php";
+
+            var data = { 'proveedor':valor};
+
+            fetch(url, {
+                method: 'POST', // or 'POST'
+                body: JSON.stringify(data),
+                headers:{'Content-Type': 'application/json'}  //input data
+            })
+            .then(res => res.json()).then(result => {
+                                        
+                var productos = result.listProductos;
+            
+                var newRow ="";
+                newRow += "<select class='modalCombo form-control' id='SelectProducto' style='width:100%;' class='form-select' aria-label='Default select example'>";
+                newRow +="<option selected value=-1>Selecciona un producto</option>";
+
+                
+                for (let i = 0; i < productos.length; i++) {
+                        
+                    newRow +="<option value='"+productos[i].id+"'>"+productos[i].nombre+"</option>";
+                    index=i;
+                }
+
+                newRow +="</select>";
+
+                document.getElementById("Productos").innerHTML = newRow;
+            
+                document.getElementById("SelectProducto").addEventListener("change",function(){
+
+                    document.getElementById("modalImg").src=productos[index].img;
+                    precio=document.getElementById("Precio").value=productos[index].precio;
+
+                    if (document.getElementById("SelectProducto").value==-1) {
+                        document.getElementById("Total").value="";
+                        document.getElementById("Cantidad").value="";
+                        document.getElementById("Precio").value="";
+                        document.getElementById("modalImg").src="https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png";				
+                    }
+
+
+                });
+
+                document.getElementById("Cantidad").addEventListener("keyup",function(){
+
+                    cantidad=document.getElementById("Cantidad").value;
+
+                    document.getElementById("Total").value=cantidad*precio;
+
+                });
+
+                
+            })
+            .catch(error => console.error('Error status:', error));	
+
+        });
+
+        document.getElementById("btnPedido").addEventListener("click",function(){
+
+
+            console.log("btnPedido");
+            var añadirfondos=0;
+            var realizarpedido=1;
+
+            cuenta=document.getElementById("SelectCuentas2").value;
+            proveedor=document.getElementById("SelectProveedor").value;
+            producto=document.getElementById("SelectProducto").value;
+            precio=document.getElementById("Precio").value;
+            cantidad=document.getElementById("Cantidad").value;
+            total=document.getElementById("Total").value;
+            img=document.getElementById("modalImg").src;
+            nombreproducto=document.getElementById("SelectProducto");
+            selected = nombreproducto.options[nombreproducto.selectedIndex].text;
+
+            //console.log(selected);
+
+            if (cuenta==-1) {
+                alert("Introduce una cuenta");
+            }
+            else{
+                var url = "../../controller/controller_insert.php";
+
+                var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total, 'img':img, 'selected':selected, 'añadirfondos':añadirfondos, 'realizarpedido':realizarpedido };
+
+                fetch(url, {
+                method: 'POST', // or 'POST'
+                body: JSON.stringify(data),
+                    headers:{'Content-Type': 'application/json'}  //input data
+                })
+                .then(res => res.json()).then(result => {
+
+                    //alert(result.insertFactura);
+                    
+
+
+                    Swal.fire(
+                    'Pedido realizado correctamente',
+                    'Gracias por confiar en nosotros',
+                    'success'
+                    )
+
+                    console.log("cuentas");
+                    console.log(cuentas);
+                    BancaOnlineload(cuentas);
+
+                })
+                .catch(error => console.error('Error status:', error));	
+            }
+
+        });
+
+    });
 
 }
 
@@ -388,4 +589,12 @@ function onlyNumberKey(evt) {
     if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
         return false;
     return true;
+}
+function Cancelar(){
+    Swal.fire(
+        'Cancelado',
+        'Has cancelado tu compra',
+        'error'
+    )
+    
 }

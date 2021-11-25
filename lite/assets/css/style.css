@@ -8618,6 +8618,58 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     background: none;
 }
 
+#modalinputCantidad .form-control{
+    background: none;
+}
+
+#Cuentas2 .form-control{
+    background: none;
+    margin-bottom: 8px;
+}
+
+#Proveedores2 .form-control{
+    background: none;
+    margin-bottom: 8px;
+}
+
+#Productos .form-control{
+    background: none;
+    margin-bottom: 8px;
+}
+
+#btn-close {
+    border-radius: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 20px;
+    background-color: transparent;
+    border: none;
+    color: black;
+}
+
+#btn-close:focus{
+    outline: none;
+}
+
+.card-block .row div .btnModal {
+    border-radius: 5px; 
+    padding: 10px; 
+    margin-left: 10px;
+    width: 100px; 
+    background-color: none;
+    border: none;
+    color: white;
+}
+
+.card-block .row h3 {
+    text-align: start;
+}
+
+#contenedorModal input{
+    margin-bottom: 8px;
+}
+
 @media screen and (min-width: 1200px) {
     .inputFecha{
         flex-wrap: wrap;
