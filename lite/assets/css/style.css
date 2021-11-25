@@ -8623,7 +8623,13 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
         flex-wrap: wrap;
     }
     .inputFecha input{
-        width: 49%;
+        width: 46%;
+    }
+    #flecharight{
+        display: block;
+    }
+    #flechadown{
+        display: none;
     }
 }
 
@@ -8633,5 +8639,11 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     }
     .inputFecha input{
         width: 100%;
+    }
+    #flechadown{
+        display: block;
+    }
+    #flecharight{
+        display: none;
     }
 }
