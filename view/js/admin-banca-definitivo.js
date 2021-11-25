@@ -194,8 +194,6 @@ document.querySelector(".inputCantidad input").addEventListener("keyup",function
             headers:{'Content-Type': 'application/json'}  //input data
         }).then(res => res.json()).then(result => {
 
-            console.log("hola");
-
             Swal.fire(
                 'Fondos añadidos correctamente',
                 '',
