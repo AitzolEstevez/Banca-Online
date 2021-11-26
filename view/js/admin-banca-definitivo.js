@@ -380,14 +380,31 @@ function Proveedorload(proveedores, cuentas) {
 
             document.getElementById("Productos").innerHTML = newRow;
 
-
         document.getElementById("Proveedores2").addEventListener("change",function(){
+
+            var valorcantidad=document.getElementById("Cantidad");
+            document.getElementById("SelectProducto").value=-1;
+            document.getElementById("Total").value="";
+            document.getElementById("Cantidad").value="";
+            document.getElementById("Precio").value="";
+            document.getElementById("modalImg").src="https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png";	
 
             if (document.getElementById("SelectProveedor").value==-1) {
                 document.getElementById("Total").value="";
                 document.getElementById("Cantidad").value="";
                 document.getElementById("Precio").value="";
                 document.getElementById("modalImg").src="https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png";		
+                document.getElementById("Cantidad").disabled=true;
+                valorcantidad.classList.add("modalinputCantidad");
+                valorcantidad.classList.add("form-control");
+                valorcantidad.classList.remove("modalinputCantidad");
+                valorcantidad.classList.remove("form-control2");
+            }
+            if(document.getElementById("SelectProducto").value==-1){
+                valorcantidad.classList.add("modalinputCantidad");
+                valorcantidad.classList.add("form-control");
+                valorcantidad.classList.remove("modalinputCantidad");
+                valorcantidad.classList.remove("form-control2");
             }
 
             valor=document.getElementById("SelectProveedor").value;
@@ -421,19 +438,6 @@ function Proveedorload(proveedores, cuentas) {
                 newRow +="</select>";
 
                 document.getElementById("Productos").innerHTML = newRow;
-            
-                document.getElementById("SelectProducto").addEventListener("change",function(){
-
-                    document.getElementById("modalImg").src=productos[index].img;
-                    precio=document.getElementById("Precio").value=productos[index].precio;
-
-                    if (document.getElementById("SelectProducto").value==-1) {
-                        document.getElementById("Total").value="";
-                        document.getElementById("Cantidad").value="";
-                        document.getElementById("Precio").value="";
-                        document.getElementById("modalImg").src="https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png";				
-                    }
-                });
 
                 document.getElementById("Cantidad").addEventListener("keyup",function(){
 
@@ -444,65 +448,80 @@ function Proveedorload(proveedores, cuentas) {
                 });
 
                 document.getElementById("SelectProducto").addEventListener("change",function(){
-                    valorproducto=document.getElementById("SelectProducto").value;
-                    valorproveedor=document.getElementById("SelectProveedor").value;
+                    var valorproducto=document.getElementById("SelectProducto").value;
                     var valorcantidad=document.getElementById("Cantidad");
-
+        
+                    document.getElementById("modalImg").src=productos[index].img;
+                    precio=document.getElementById("Precio").value=productos[index].precio;
+        
                     if (valorproducto==-1) {
+                        document.getElementById("Total").value="";
+                        document.getElementById("Cantidad").value="";
+                        document.getElementById("Precio").value="";
+                        document.getElementById("modalImg").src="https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png";				
+        
                         document.getElementById("Cantidad").disabled=true;
-                        valorcantidad.classList.add("#modalinputCantidad .form-control{background:grey;}")
+                        valorcantidad.classList.add("modalinputCantidad");
+                        valorcantidad.classList.add("form-control");
+                        valorcantidad.classList.remove("modalinputCantidad");
+                        valorcantidad.classList.remove("form-control2");
                     }else{
                         document.getElementById("Cantidad").disabled=false;
+                        valorcantidad.classList.remove("form-control");
+                        valorcantidad.classList.remove("modalinputCantidad");
+                        valorcantidad.classList.add("modalinputCantidad");
+                        valorcantidad.classList.add("form-control2");
                     }
-                });
-
-                document.getElementById("btnPedido").addEventListener("click",function(){
-
-                    console.log("btnPedido");
-                    var añadirfondos=0;
-                    var realizarpedido=1;
-        
-                    cuenta=document.getElementById("SelectCuentas2").value;
-                    proveedor=document.getElementById("SelectProveedor").value;
-                    producto=document.getElementById("SelectProducto").value;
-                    precio=document.getElementById("Precio").value;
-                    cantidad=document.getElementById("Cantidad").value;
-                    total=document.getElementById("Total").value;
-                    img=document.getElementById("modalImg").src;
-                    nombreproducto=document.getElementById("SelectProducto");
-                    selected = nombreproducto.options[nombreproducto.selectedIndex].text;
-
-                    if (cuenta==-1) {
-                        alert("introduce una cuenta");
-                    }else{
-                        if (producto==-1) {
-                            alert("introduce un producto");
-                        }else{
-                            
-                            var url = "../../controller/controller_insert.php";
-
-                            var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total, 'img':img, 'selected':selected, 'añadirfondos':añadirfondos, 'realizarpedido':realizarpedido };
-
-                            fetch(url, {
-                            method: 'POST', // or 'POST'
-                            body: JSON.stringify(data),
-                                headers:{'Content-Type': 'application/json'}  //input data
-                            })
-                            .then(res => res.json()).then(result => {
-
-                                //alert(result.insertFactura);
-                                
-                                Pedido();
-
-                            })
-                            .catch(error => console.error('Error status:', error));
-                        }
-                    }
-        
                 });
                 
             })
             .catch(error => console.error('Error status:', error));	
+        });
+
+        document.getElementById("btnPedido").addEventListener("click",function(){
+
+            console.log("btnPedido");
+            var añadirfondos=0;
+            var realizarpedido=1;
+
+            cuenta=document.getElementById("SelectCuentas2").value;
+            proveedor=document.getElementById("SelectProveedor").value;
+            producto=document.getElementById("SelectProducto").value;
+            precio=document.getElementById("Precio").value;
+            cantidad=document.getElementById("Cantidad").value;
+            total=document.getElementById("Total").value;
+            img=document.getElementById("modalImg").src;
+            nombreproducto=document.getElementById("SelectProducto");
+            selected = nombreproducto.options[nombreproducto.selectedIndex].text;
+
+            if (cuenta==-1) {
+                alert("introduce una cuenta");
+                location.reload();
+            }else{
+                if (producto==-1) {
+                    alert("Introduce un producto");
+                    location.reload();
+                }else{
+                    
+                    var url = "../../controller/controller_insert.php";
+
+                    var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total, 'img':img, 'selected':selected, 'añadirfondos':añadirfondos, 'realizarpedido':realizarpedido };
+
+                    fetch(url, {
+                    method: 'POST', // or 'POST'
+                    body: JSON.stringify(data),
+                        headers:{'Content-Type': 'application/json'}  //input data
+                    })
+                    .then(res => res.json()).then(result => {
+
+                        //alert(result.insertFactura);
+                        
+                        Pedido();
+
+                    })
+                    .catch(error => console.error('Error status:', error));
+                }
+            }
 
         });
 
@@ -604,6 +623,22 @@ function Pedido(){
         'Pedido realizado correctamente',
         'Gracias por confiar en nosotros',
         'success'
+    )
+
+}
+function introducecuenta(){
+    Swal.fire(
+        'Cancelado',
+        'Introduce una cuenta',
+        'error'
+    )
+
+}
+function introduceproducto(){
+    Swal.fire(
+        'Cancelado',
+        'Introduce un producto',
+        'error'
     )
 
 }

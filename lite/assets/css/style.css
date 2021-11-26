@@ -8618,8 +8618,8 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     background: none;
 }
 
-#modalinputCantidad .form-control{
-    background: none;
+.modalinputCantidad .form-control{
+    background: grey;
 }
 
 #Cuentas2 .form-control{
