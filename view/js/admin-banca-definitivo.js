@@ -279,11 +279,11 @@ function Proveedorload(proveedores, cuentas) {
         + "<img id='modalImg' width='100%' height='100%' src='https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png'>"
         + "</div>"
         + "<div style='width:60%; padding:10px;'>"
-        + "<h3>Cuenta</h3>"
+        + "<div style='display:flex;'><h3>Cuenta</h3><p class='m-0' style='color:red; font-size:20px; padding-left:5px;'>*</p></div>"
         + "<div id='Cuentas2'></div>"
-        + "<h3>Proveedor</h3>"
+        + "<div style='display:flex;'><h3>Proveedor</h3><p class='m-0' style='color:red; font-size:20px; padding-left:5px;'>*</p></div>"
         + "<div id='Proveedores2'></div>"
-        + "<h3>Producto</h3>"
+        + "<div style='display:flex;'><h3>Producto</h3><p class='m-0' style='color:red; font-size:20px; padding-left:5px;'>*</p></div>"
         + "<div id='Productos'></div>"
         + "</div>"
         + "</div>"
@@ -294,8 +294,8 @@ function Proveedorload(proveedores, cuentas) {
         + "<input id='Precio' type='text' disabled class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm'>"
         + "</div>"
         + "<div id='modalinputCantidad' style='flex-direction:column; width:49%;'>"
-        + "<h3>Cantidad</h3>"
-        + "<input type='text' id='Cantidad' class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm' onkeypress='return onlyNumberKey(event)'>"
+        + "<div style='display:flex;'><h3>Cantidad</h3><p class='m-0' style='color:red; font-size:20px; padding-left:5px;'>*</p></div>"
+        + "<input disabled type='text' id='Cantidad' class='form-control' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm' onkeypress='return onlyNumberKey(event)'>"
         + "</div>"
         + "</div>"
         + "<h3>Total</h3>"
@@ -383,7 +383,7 @@ function Proveedorload(proveedores, cuentas) {
 
         document.getElementById("Proveedores2").addEventListener("change",function(){
 
-            if (document.getElementById("Proveedores2").value=-1) {
+            if (document.getElementById("SelectProveedor").value==-1) {
                 document.getElementById("Total").value="";
                 document.getElementById("Cantidad").value="";
                 document.getElementById("Precio").value="";
@@ -433,8 +433,6 @@ function Proveedorload(proveedores, cuentas) {
                         document.getElementById("Precio").value="";
                         document.getElementById("modalImg").src="https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png";				
                     }
-
-
                 });
 
                 document.getElementById("Cantidad").addEventListener("keyup",function(){
@@ -445,63 +443,66 @@ function Proveedorload(proveedores, cuentas) {
 
                 });
 
+                document.getElementById("SelectProducto").addEventListener("change",function(){
+                    valorproducto=document.getElementById("SelectProducto").value;
+                    valorproveedor=document.getElementById("SelectProveedor").value;
+                    var valorcantidad=document.getElementById("Cantidad");
+
+                    if (valorproducto==-1) {
+                        document.getElementById("Cantidad").disabled=true;
+                        valorcantidad.classList.add("#modalinputCantidad .form-control{background:grey;}")
+                    }else{
+                        document.getElementById("Cantidad").disabled=false;
+                    }
+                });
+
+                document.getElementById("btnPedido").addEventListener("click",function(){
+
+                    console.log("btnPedido");
+                    var añadirfondos=0;
+                    var realizarpedido=1;
+        
+                    cuenta=document.getElementById("SelectCuentas2").value;
+                    proveedor=document.getElementById("SelectProveedor").value;
+                    producto=document.getElementById("SelectProducto").value;
+                    precio=document.getElementById("Precio").value;
+                    cantidad=document.getElementById("Cantidad").value;
+                    total=document.getElementById("Total").value;
+                    img=document.getElementById("modalImg").src;
+                    nombreproducto=document.getElementById("SelectProducto");
+                    selected = nombreproducto.options[nombreproducto.selectedIndex].text;
+
+                    if (cuenta==-1) {
+                        alert("introduce una cuenta");
+                    }else{
+                        if (producto==-1) {
+                            alert("introduce un producto");
+                        }else{
+                            
+                            var url = "../../controller/controller_insert.php";
+
+                            var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total, 'img':img, 'selected':selected, 'añadirfondos':añadirfondos, 'realizarpedido':realizarpedido };
+
+                            fetch(url, {
+                            method: 'POST', // or 'POST'
+                            body: JSON.stringify(data),
+                                headers:{'Content-Type': 'application/json'}  //input data
+                            })
+                            .then(res => res.json()).then(result => {
+
+                                //alert(result.insertFactura);
+                                
+                                Pedido();
+
+                            })
+                            .catch(error => console.error('Error status:', error));
+                        }
+                    }
+        
+                });
                 
             })
             .catch(error => console.error('Error status:', error));	
-
-        });
-
-        document.getElementById("btnPedido").addEventListener("click",function(){
-
-
-            console.log("btnPedido");
-            var añadirfondos=0;
-            var realizarpedido=1;
-
-            cuenta=document.getElementById("SelectCuentas2").value;
-            proveedor=document.getElementById("SelectProveedor").value;
-            producto=document.getElementById("SelectProducto").value;
-            precio=document.getElementById("Precio").value;
-            cantidad=document.getElementById("Cantidad").value;
-            total=document.getElementById("Total").value;
-            img=document.getElementById("modalImg").src;
-            nombreproducto=document.getElementById("SelectProducto");
-            selected = nombreproducto.options[nombreproducto.selectedIndex].text;
-
-            //console.log(selected);
-
-            if (cuenta==-1) {
-                alert("Introduce una cuenta");
-            }
-            else{
-                var url = "../../controller/controller_insert.php";
-
-                var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total, 'img':img, 'selected':selected, 'añadirfondos':añadirfondos, 'realizarpedido':realizarpedido };
-
-                fetch(url, {
-                method: 'POST', // or 'POST'
-                body: JSON.stringify(data),
-                    headers:{'Content-Type': 'application/json'}  //input data
-                })
-                .then(res => res.json()).then(result => {
-
-                    //alert(result.insertFactura);
-                    
-
-
-                    Swal.fire(
-                    'Pedido realizado correctamente',
-                    'Gracias por confiar en nosotros',
-                    'success'
-                    )
-
-                    console.log("cuentas");
-                    console.log(cuentas);
-                    BancaOnlineload(cuentas);
-
-                })
-                .catch(error => console.error('Error status:', error));	
-            }
 
         });
 
@@ -597,4 +598,12 @@ function Cancelar(){
         'error'
     )
     
+}
+function Pedido(){
+    Swal.fire(
+        'Pedido realizado correctamente',
+        'Gracias por confiar en nosotros',
+        'success'
+    )
+
 }
