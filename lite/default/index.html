@@ -26,14 +26,13 @@
 	<link rel='stylesheet' href='../assets/fonts/fontawesome/css/fontawesome-all.min.css'>
 	<!-- animation css -->
 	<link rel='stylesheet' href='../assets/plugins/animation/css/animate.min.css'>
-	<!-- form-select -->
+	<!-- forms -->
 	<link rel='stylesheet' href='../assets/css/form-select.css'>
 	<link rel='stylesheet' href='../assets/css/form-control2.css'>
 	<!-- modal -->
 	<link rel="stylesheet" href="../assets/css/modal.css">
 	<!-- script sweetmodal 
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
-
 	<script src="../assets/plugins/bootstrap/js/sweetalert.js"></script>
 
 	<!-- vendor css -->
@@ -407,7 +406,7 @@
 												class='row align-items-center justify-content-center card-active w-100 m-0'>
 												<div class=' w-100'>
 													<button class='btn btn-primary btnBanca'>
-														<h6 class='m-b-5 text-white'>Banca online</h6>
+														<h6 class='m-b-5 text-white'>Movimientos</h6>
 													</button>
 												</div>
 											</div>
@@ -552,6 +551,11 @@
 										<!--EN CASO DE STOCK-->
 										<div class='card-header itfStock' style='display: none;'>
 											<h5>Inventario</h5>
+										</div>
+
+										<!--EN CASO DE PRÉSTAMO-->
+										<div class='card-header itfPrestamo' style='display: none;'>
+											<h5>Préstamo</h5>
 										</div>
 
 
@@ -915,20 +919,23 @@
 											</div>
 											<h6 class='f-w-600 m-t-25 m-b-10'>Préstamo</h6>
 											<hr>
-											<p>Valor de la Cuota</p>
-											<p>
-											<h6 class='m-0'>€22,151.70</h6>
-											</p>
-											<p>Usted pagará $22,151.70, anualmente por un periodo de 6 años</p>
+
+											<div id='resultado'>
+												<div>Valor de la cuota</div>
+												<div id="div-valor-cuota" style="font-weight: bold"></div>
+												<br>
+												<div id="div-comentario"></div>											
+											</div>
 											<hr>
+											
 											<div>
 												<div class='row w-100 m-0'>
 													<div class='col-6' style='padding-right:5px; padding-left: 0px;'>
-														<input type='text' class='form-control' placeholder='Monto'
+														<input id='input_monto' type='text' class='form-control' placeholder='Monto'
 															aria-label='Monto' aria-describedby='basic-addon1'>
 													</div>
 													<div class='col-6 p-0'>
-														<input type='text' class='form-control'
+														<input id='input_cuotas' type='text' class='form-control'
 															placeholder='Numero de Cuotas' aria-label='Numero de Cuotas'
 															aria-describedby='basic-addon1'>
 													</div>
@@ -936,35 +943,35 @@
 												<div class='m-t-5'></div>
 												<div class='row w-100 m-0'>
 													<div class='col-6' style='padding-right:5px; padding-left: 0px;'>
-														<input type='text' class='form-control'
+														<input id='input_tasa' type='text' class='form-control'
 															placeholder='Tasa de Interés' aria-label='Tasa de Interés'
 															aria-describedby='basic-addon1'>
 													</div>
 													<div class='col-6 p-0'>
-														<select class='form-control' aria-label='Default select example'
+														<select id='select_tasa_tipo' class='form-control' aria-label='Default select example'
 															aria-describedby='basic-addon1'>
-															<option selected>Tipo de Tasa</option>
-															<option value='1'>Mensual</option>
-															<option value='2'>Anual</option>
+															<option value="-1" selected>Tipo de Tasa</option>
+															<option value='mensual'>Mensual</option>
+															<option value='anual'>Anual</option>
 														</select>
 													</div>
 												</div>
 												<div class='m-t-5'></div>
-												<select class='form-control' aria-label='Default select example'
+												<select id='select_periodo' class='form-control' aria-label='Default select example'
 													aria-describedby='basic-addon1'>
-													<option selected>Periodo de Pago</option>
-													<option value='1'>Diario</option>
-													<option value='2'>Semanal</option>
-													<option value='1'>Quincenal</option>
-													<option value='2'>Mensual</option>
-													<option value='1'>Bimestral</option>
-													<option value='2'>Trimestral</option>
-													<option value='2'>Cuatrimestral</option>
-													<option value='2'>Semestral</option>
-													<option value='2'>Anual</option>
+													<option value="-1" selected>Periodo de Pago</option>
+													<option value='diario'>Diario</option>
+													<option value='semanal'>Semanal</option>
+													<option value='quincenal'>Quincenal</option>
+													<option value='mensual' selected="">Mensual</option>
+													<option value='bimestral'>Bimestral</option>
+													<option value='trimestral'>Trimestral</option>
+													<option value='cuatrimestral'>Cuatrimestral</option>
+													<option value='semestral'>Semestral</option>
+													<option value='anual'>Anual</option>
 												</select>
 												<hr>
-												<button class='btn btn-primary w-100 m-0'>
+												<button id='boton' class='btn btn-primary w-100 m-0' onclick="calcular();">
 													<h6 class='m-10' style='color: white;'>Calcular</h6>
 												</button>
 											</div>
@@ -1059,6 +1066,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src='../assets/js/pcoded.min.js'></script>
 	<script src='../../view/js/admin-banca-definitivo.js'></script>
+	<script src="/view/js/prestamo.js"></script>
 
 </body>
 
