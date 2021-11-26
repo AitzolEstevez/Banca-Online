@@ -94,9 +94,9 @@ function BancaOnlineload(cuentas) {
     -----------------------------------------------------------------------*/
     var newRow3 = "";
     newRow3 += "<!-- Button trigger modal -->"
-        + "<button id='btnTransferencia' data-bs-toggle='modal' data-bs-target='#exampleModal' type='button' class='btn btn-primary m-0 w-100 h-100'style='border-radius: 0;'><h6 class='text-white m-0'>Transferencia</h6></button>"
+        + "<button id='btnTransferencia' data-bs-toggle='modal' data-bs-target='#TransferenciaModal' type='button' class='btn btn-primary m-0 w-100 h-100'style='border-radius: 0;'><h6 class='text-white m-0'>Transferencia</h6></button>"
         + "<!-- Modal -->"
-        + "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
+        + "<div class='modal fade' id='TransferenciaModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
         + "<div class='modal-dialog modal-lg'>"
         + "<div class='modal-content'>"
         + "<div class='modal-header'>"
@@ -301,12 +301,12 @@ function Proveedorload(proveedores, cuentas) {
 
     var newRow2 = "";
     newRow2 += "<!-- Button trigger modal -->"
-        + "<button type='button' class='btn btn-primary' id='btnProveedor' data-bs-toggle='modal' data-bs-target='#exampleModal'>"
+        + "<button type='button' class='btn btn-primary' id='btnProveedor' data-bs-toggle='modal' data-bs-target='#PedidoModal'>"
         + "<h6 class='m-b-5 text-white'>Realizar Pedido</h6>"
         + "</button>"
 
         + "<!-- Modal -->"
-        + "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
+        + "<div class='modal fade' id='PedidoModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
         + "<div class='modal-dialog modal-lg'>"
         + "<div class='modal-content'>"
         + "<div class='modal-header'>"
@@ -545,16 +545,20 @@ function Proveedorload(proveedores, cuentas) {
                     alert("Introduce un producto");
                     location.reload();
                 } else {
+                    if (cantidad == "") {
+                        alert("Cantidad no válida");
+                        location.reload();
+                    } else {
 
-                    var url = "../../controller/controller_insert.php";
+                        var url = "../../controller/controller_insert.php";
 
-                    var data = { 'cuenta': cuenta, 'proveedor': proveedor, 'producto': producto, 'precio': precio, 'cantidad': cantidad, 'total': total, 'img': img, 'selected': selected, 'añadirfondos': añadirfondos, 'realizarpedido': realizarpedido };
+                        var data = { 'cuenta': cuenta, 'proveedor': proveedor, 'producto': producto, 'precio': precio, 'cantidad': cantidad, 'total': total, 'img': img, 'selected': selected, 'añadirfondos': añadirfondos, 'realizarpedido': realizarpedido };
 
-                    fetch(url, {
-                        method: 'POST', // or 'POST'
-                        body: JSON.stringify(data),
-                        headers: { 'Content-Type': 'application/json' }  //input data
-                    })
+                        fetch(url, {
+                            method: 'POST', // or 'POST'
+                            body: JSON.stringify(data),
+                            headers: { 'Content-Type': 'application/json' }  //input data
+                        })
                         .then(res => res.json()).then(result => {
 
                             //alert(result.insertFactura);
@@ -563,6 +567,7 @@ function Proveedorload(proveedores, cuentas) {
 
                         })
                         .catch(error => console.error('Error status:', error));
+                    }
                 }
             }
 
