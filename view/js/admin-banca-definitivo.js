@@ -19,12 +19,32 @@ function loadPagina() {
     })
         .then(res => res.json()).then(result => {
 
+            var stockcant=0;
+            var patrimonio=0;
+            var cont=0;
+
             var clientes = result.listClientes;
             var proveedores = result.listProveedores;
             var stock = result.listStock;
             var cuentas = result.listCuentas;
-
             cuenta = cuentas;
+
+            for (let i = 0; i < proveedores.length; i++) {
+                cont += 1;
+            }
+
+            for (let i = 0; i < stock.length; i++) {
+                stockcant += parseInt(stock[i].stock);
+                patrimonio += parseInt(stock[i].precio*stock[i].stock);
+            }
+
+            cont=Intl.NumberFormat("ja-JP").format(cont);
+            stockcant=Intl.NumberFormat("ja-JP").format(stockcant);
+            patrimonio=Intl.NumberFormat("ja-JP").format(patrimonio);
+
+            document.querySelector(".facturascant").innerHTML=cont;
+            document.querySelector(".stockcant").innerHTML=stockcant;
+            document.querySelector(".patrimonio").innerHTML=patrimonio;
 
             console.log(result);
 
@@ -148,6 +168,8 @@ function loadMovimientos(){
     var selected = combo.options[combo.selectedIndex].value;
     selected = selected - 1;
 
+    console.log(cuenta);
+
     valor = document.getElementById("SelectCuentas").value;
     //alert(selected);
     /*Datos
@@ -157,7 +179,7 @@ function loadMovimientos(){
         document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>-";
         document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>-";
         document.querySelector(".numeroCuenta").innerHTML = "<br>";
-        document.querySelector(".saldo").innerHTML = "€-";
+        document.querySelector(".saldo").innerHTML = "-";
         document.querySelector(".table tbody").innerHTML="";
 
     } else {
@@ -165,7 +187,7 @@ function loadMovimientos(){
         document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>" + cuenta[selected].numcuenta;
         document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>" + cuenta[selected].tipo;
         document.querySelector(".numeroCuenta").innerHTML = cuenta[selected].numcuenta;
-        document.querySelector(".saldo").innerHTML = "€" + cuenta[selected].saldo;
+        document.querySelector(".saldo").innerHTML =  cuenta[selected].saldo;
 
         var url = "../../controller/controller_ExtractoCuenta.php";
     
@@ -191,6 +213,7 @@ function loadMovimientos(){
             newRow += "</thead>";
             newRow += "<tbody>";
 
+            var cont2 =0;
             for (let i = 0; i < extracto.length; i++) {
 
                 newRow += "<tr>" + "<td>" + extracto[i].fecha + "</td>";
@@ -211,6 +234,8 @@ function loadMovimientos(){
                 }
 
             }
+
+            document.querySelector(".saldo").innerHTML=extracto[0].saldo;
 
             newRow += "</tbody>";
 
@@ -261,6 +286,8 @@ document.querySelector(".inputCantidad input").addEventListener("keyup", functio
         var añadirfondos = 1;
         var realizarpedido = 0;
 
+        suma=0;
+
         var fondos = document.querySelector(".inputCantidad input").value;
         var cuenta = document.getElementById("SelectCuentas").value;
 
@@ -279,8 +306,9 @@ document.querySelector(".inputCantidad input").addEventListener("keyup", functio
                 '',
                 'success'
             )
-
+            
             loadMovimientos();
+            loadPagina();
 
 
         }).catch(error => console.error('Error status:', error));
@@ -608,7 +636,7 @@ function Proveedorload(proveedores) {
                         //alert(result.insertFactura);
 
                         Pedido();
-                        Proveedorload();
+                        loadPagina();
 
                     })
                     .catch(error => console.error('Error status:', error));
@@ -623,6 +651,8 @@ function Proveedorload(proveedores) {
 /*MiStockload
 ------------------------------------------------------------------------------------------------*/
 function MiStockload(stock) {
+    var stockcant = 0;
+
     document.querySelector(".itfDefault").style.display = "none";
     document.querySelector(".itfBanca").style.display = "none";
     document.querySelector(".itfBanca2").style.display = "none";
@@ -656,6 +686,7 @@ function MiStockload(stock) {
         newRow += "<td>" + stock[i].precio + "</td>";
         newRow += "<td>" + stock[i].stock + "</td>";
         newRow += "</tr>";
+
     }
 
     newRow += "</tbody>";
