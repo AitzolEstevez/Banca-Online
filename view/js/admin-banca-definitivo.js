@@ -153,14 +153,18 @@ function BancaOnlineload(cuentas) {
         + "</div>"
 
     document.getElementById("Transferencia").innerHTML=newRow3;
+
+
+
     document.getElementById("SelectCuentas").addEventListener("change", loadMovimientos); 
-    
 
 }
 
 /*ExtractoCuentasById
 -----------------------------------------------------------------------*/
 function loadMovimientos(){
+
+    alert("Movimientos");
 
     document.querySelector(".inputCantidad input").value="";
 
@@ -171,7 +175,7 @@ function loadMovimientos(){
     console.log(cuenta);
 
     valor = document.getElementById("SelectCuentas").value;
-    //alert(selected);
+
     /*Datos
     ----------------------------------------------------------------------------------------------------------------*/
     if (selected == -2) {
@@ -244,58 +248,60 @@ function loadMovimientos(){
         })
         .catch(error => console.error('Error status:', error));
     
-    
-        /*Activar Transferencia
-        -----------------------------------------------------------------------*/
-        var combo1 = document.getElementById("SelectCuentas");
-        var selectedText1 = combo1.options[combo1.selectedIndex].text;
-        var selectedValue1 = combo1.options[combo1.selectedIndex].value;
-        
-        var newRow4="";
-        newRow4 += "<option value=-1>Selecciona una cuenta</option>";
-        for (let i = 0; i < cuenta.length; i++) {
-            newRow4 += "<option value='"+cuenta[i].idCuentas+"'>Cuenta "+cuenta[i].tipo+" "+cuenta[i].numcuenta+"</option>";
-        }
-        document.getElementById("Trans1").innerHTML="<option value='"+selectedValue1+"'>"+selectedText1+"</option>";
-        document.getElementById("Trans2").innerHTML=newRow4;
-    
-        var combo2 = document.getElementById("Trans2");
-        var selectedText2 = combo2.options[combo2.selectedIndex].text;
-    
-        document.getElementById("btnrealizartrans").addEventListener("click",function (){
-    
-            var importe = document.getElementById("importe").value;
-            var origen = document.getElementById("Trans1").value;
-            var destino = document.getElementById("Trans2").value;
-            var conceptogasto = "Transferencia a " + selectedText2;
-            var conceptoingreso = "Transferencia de " + selectedText1;
-    
-            var url = "../../controller/cTransferencia.php";
-
-            var data = {'importe':importe,'origen':origen,'destino':destino,'conceptogasto':conceptogasto,'conceptoingreso':conceptoingreso};
-
-            fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers:{'Content-Type': 'application/json'}
-            })
-            .then(res => res.json()).then(result => {
-                if (result.error=='Transferencia realizada' && result.insertado=='insertado') {
-                    Transferencia();
-                    document.getElementById("Trans2").value="";
-
-                }else if (result.error=='No puedes transferir más de lo que tienes') {
-                    masmoney();
-                }else if (result.error=='No puede ser la misma cuenta') {
-                    mismacuenta();
-                }else if (result.cero=='No puede ser 0') {
-                    cero();
-                }
-            })
-    
-        });
     }
-    
+
+    /*Activar Transferencia
+    -----------------------------------------------------------------------*/
+    var combo1 = document.getElementById("SelectCuentas");
+    var selectedText1 = combo1.options[combo1.selectedIndex].text;
+    var selectedValue1 = combo1.options[combo1.selectedIndex].value;
+
+    var newRow4="";
+    newRow4 += "<option value=-1>Selecciona una cuenta</option>";
+    for (let i = 0; i < cuenta.length; i++) {
+        newRow4 += "<option value='"+cuenta[i].idCuentas+"'>Cuenta "+cuenta[i].tipo+" "+cuenta[i].numcuenta+"</option>";
+    }
+    document.getElementById("Trans1").innerHTML="<option value='"+selectedValue1+"'>"+selectedText1+"</option>";
+    document.getElementById("Trans2").innerHTML=newRow4;
+
+    var combo2 = document.getElementById("Trans2");
+    var selectedText2 = combo2.options[combo2.selectedIndex].text;
+
+    document.getElementById("btnrealizartrans").addEventListener("click",function(){
+        var importe = document.getElementById("importe").value;
+        var origen = document.getElementById("Trans1").value;
+        var destino = document.getElementById("Trans2").value;
+        var conceptogasto = "Transferencia a " + selectedText2;
+        var conceptoingreso = "Transferencia de " + selectedText1;
+
+        console.log(selectedText1);
+        console.log(selectedValue1);
+        console.log(origen);
+
+        var url = "../../controller/cTransferencia.php";
+
+        var data = {'importe':importe,'origen':origen,'destino':destino,'conceptogasto':conceptogasto,'conceptoingreso':conceptoingreso};
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        })
+        .then(res => res.json()).then(result => {
+            if (result.error=='Transferencia realizada' && result.insertado=='insertado') {
+                Transferencia();
+                document.getElementById("Trans2").value="";
+
+            }else if (result.error=='No puedes transferir más de lo que tienes') {
+                masmoney();
+            }else if (result.error=='No puede ser la misma cuenta') {
+                mismacuenta();
+            }else if (result.cero=='No puede ser 0') {
+                cero();
+            }
+        })        
+    });
+
 }
 
 /*Añadir Fondos

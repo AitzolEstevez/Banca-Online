@@ -138,6 +138,7 @@ class CuentasModel extends CuentasClass
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $cuenta = new CuentasModel();
             $cuenta->saldo=$row['saldo'];
+
         
         }
 
