@@ -270,7 +270,28 @@ function loadMovimientos(){
             var conceptogasto = "Transferencia a " + selectedText2;
             var conceptoingreso = "Transferencia de " + selectedText1;
     
-            
+            var url = "../../controller/cTransferencia.php";
+
+            var data = {'importe':importe,'origen':origen,'destino':destino,'conceptogasto':conceptogasto,'conceptoingreso':conceptoingreso};
+
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{'Content-Type': 'application/json'}
+            })
+            .then(res => res.json()).then(result => {
+                if (result.error=='Transferencia realizada' && result.insertado=='insertado') {
+                    Transferencia();
+                    document.getElementById("Trans2").value="";
+
+                }else if (result.error=='No puedes transferir más de lo que tienes') {
+                    masmoney();
+                }else if (result.error=='No puede ser la misma cuenta') {
+                    mismacuenta();
+                }else if (result.cero=='No puede ser 0') {
+                    cero();
+                }
+            })
     
         });
     }
@@ -798,4 +819,32 @@ function introduceproducto() {
         'error'
     )
 
+}
+function Transferencia(){
+    Swal.fire(
+        'Has realizado la transferencia',
+        '',
+        'success'
+    )
+}
+function cero(){
+    Swal.fire(
+        'Error',
+        'No puedes poner cero',
+        'error'
+    )
+}
+function mismacuenta(){
+    Swal.fire(
+        'Error',
+        'La cuenta origen y destinatario es el mismo',
+        'error'
+    )
+}
+function masmoney(){
+    Swal.fire(
+        'Error',
+        'No puedes transferir más dinero de lo que tienes en la cuenta',
+        'error'
+    )
 }
