@@ -109,7 +109,7 @@ function BancaOnlineload(cuentas) {
         + "<div id='transferenciaFlex'>"
         + "<div id='cuenta1'>"
         + "<h3>Cuenta1</h3>"
-        + "<select id='Trans1'></select>"
+        + "<select disabled id='Trans1'></select>"
         + "</div>"
         + "<svg xmlns='http://www.w3.org/2000/svg' id='flechita' width='50' height='50' fill='currentColor' class='bi bi-arrow-right' viewBox='0 0 16 16'>"
         + "<path fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z'/>"
@@ -133,19 +133,23 @@ function BancaOnlineload(cuentas) {
         + "</div>"
 
     document.getElementById("Transferencia").innerHTML=newRow3;
+    document.getElementById("SelectCuentas").addEventListener("change", loadMovimientos); 
+    
 
 }
 
 /*ExtractoCuentasById
 -----------------------------------------------------------------------*/
-document.getElementById("SelectCuentas").addEventListener("change", function () {
+function loadMovimientos(){
+
+    document.querySelector(".inputCantidad input").value="";
 
     var combo = document.getElementById("SelectCuentas");
     var selected = combo.options[combo.selectedIndex].value;
     selected = selected - 1;
 
     valor = document.getElementById("SelectCuentas").value;
-
+    //alert(selected);
     /*Datos
     ----------------------------------------------------------------------------------------------------------------*/
     if (selected == -2) {
@@ -154,6 +158,7 @@ document.getElementById("SelectCuentas").addEventListener("change", function () 
         document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>-";
         document.querySelector(".numeroCuenta").innerHTML = "<br>";
         document.querySelector(".saldo").innerHTML = "€-";
+        document.querySelector(".table tbody").innerHTML="";
 
     } else {
         document.querySelector(".itfBanca2").style.display = "flex";
@@ -161,17 +166,16 @@ document.getElementById("SelectCuentas").addEventListener("change", function () 
         document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>" + cuenta[selected].tipo;
         document.querySelector(".numeroCuenta").innerHTML = cuenta[selected].numcuenta;
         document.querySelector(".saldo").innerHTML = "€" + cuenta[selected].saldo;
-    }
 
-    var url = "../../controller/controller_ExtractoCuenta.php";
-
-    var data = { 'numcuenta': valor };
-
-    fetch(url, {
-        method: 'POST', // or 'POST'
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' }  //input data
-    })
+        var url = "../../controller/controller_ExtractoCuenta.php";
+    
+        var data = { 'numcuenta': valor };
+    
+        fetch(url, {
+            method: 'POST', // or 'POST'
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }  //input data
+        })
         .then(res => res.json()).then(result => {
 
             var extracto = result.listExtracto;
@@ -214,7 +218,39 @@ document.getElementById("SelectCuentas").addEventListener("change", function () 
 
         })
         .catch(error => console.error('Error status:', error));
-});
+    
+    
+        /*Activar Transferencia
+        -----------------------------------------------------------------------*/
+        var combo1 = document.getElementById("SelectCuentas");
+        var selectedText1 = combo1.options[combo1.selectedIndex].text;
+        var selectedValue1 = combo1.options[combo1.selectedIndex].value;
+        
+        var newRow4="";
+        newRow4 += "<option value=-1>Selecciona una cuenta</option>";
+        for (let i = 0; i < cuenta.length; i++) {
+            newRow4 += "<option value='"+cuenta[i].idCuentas+"'>Cuenta "+cuenta[i].tipo+" "+cuenta[i].numcuenta+"</option>";
+        }
+        document.getElementById("Trans1").innerHTML="<option value='"+selectedValue1+"'>"+selectedText1+"</option>";
+        document.getElementById("Trans2").innerHTML=newRow4;
+    
+        var combo2 = document.getElementById("Trans2");
+        var selectedText2 = combo2.options[combo2.selectedIndex].text;
+    
+        document.getElementById("btnrealizartrans").addEventListener("click",function (){
+    
+            var importe = document.getElementById("importe").value;
+            var origen = document.getElementById("Trans1").value;
+            var destino = document.getElementById("Trans2").value;
+            var conceptogasto = "Transferencia a " + selectedText2;
+            var conceptoingreso = "Transferencia de " + selectedText1;
+    
+            
+    
+        });
+    }
+    
+}
 
 /*Añadir Fondos
 -----------------------------------------------------------------------*/
@@ -243,6 +279,8 @@ document.querySelector(".inputCantidad input").addEventListener("keyup", functio
                 '',
                 'success'
             )
+
+            loadMovimientos();
 
 
         }).catch(error => console.error('Error status:', error));
@@ -570,6 +608,7 @@ function Proveedorload(proveedores) {
                         //alert(result.insertFactura);
 
                         Pedido();
+                        Proveedorload();
 
                     })
                     .catch(error => console.error('Error status:', error));
