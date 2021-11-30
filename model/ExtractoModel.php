@@ -134,7 +134,6 @@ class ExtractoModel extends ExtractoClass
         $this->CloseConnect();
         
     }
-
 }
 
 ?>
