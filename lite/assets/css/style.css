@@ -8670,6 +8670,18 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     margin-bottom: 8px;
 }
 
+#transferenciaFlex div .form-control{
+    background: none;
+}
+
+#transferenciaFlex div .form-control:disabled{
+    background: #e9ecef;
+}
+
+#importeinput .form-control{
+    background: none;
+}
+
 @media screen and (min-width: 1200px) {
     .inputFecha{
         flex-wrap: wrap;

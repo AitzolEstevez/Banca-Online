@@ -6,8 +6,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 /*Variable Global
 -------------*/
-cuenta = "";
+cuentas = "";
+stock="";
 selectedValue1=0;
+stockcant=0;
+patrimonio=0;
+cont=0;
+proveedores="";
 
 /*LoadPagina
 ------------------------------------------------------------------------------------------------*/
@@ -20,15 +25,14 @@ function loadPagina() {
     })
         .then(res => res.json()).then(result => {
 
-            var stockcant=0;
-            var patrimonio=0;
-            var cont=0;
+            cont=0;
+            stockcant=0;
+            patrimonio=0;
 
             var clientes = result.listClientes;
-            var proveedores = result.listProveedores;
-            var stock = result.listStock;
-            var cuentas = result.listCuentas;
-            cuenta = cuentas;
+            proveedores = result.listProveedores;
+            stock = result.listStock;
+            cuentas = result.listCuentas;
 
             for (let i = 0; i < proveedores.length; i++) {
                 cont += 1;
@@ -122,31 +126,36 @@ function BancaOnlineload(cuentas) {
         + "<div class='modal-content'>"
         + "<div class='modal-header'>"
         + "<h1 class='modal-title' id='exampleModalLabel'>Transferencia</h1>"
-        + "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>"
+        + "<button type='button' id='btn-close' data-bs-dismiss='modal' aria-label='Close'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-x-lg' viewBox='0 0 16 16'>"
+        + "<path fill-rule='evenodd' d='M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z'/>"
+        + "<path fill-rule='evenodd' d='M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z'/>"
+        + "</svg></button>"
         + "</div>"
-        + "<div class='modal-body'>"
-        + "<div id='modalCuentas'>"
-        + "<div id='transferenciaFlex'>"
-        + "<div id='cuenta1'>"
+        + "<div style='padding-bottom:0;' class='modal-body'>"
+        + "<div style='padding:10px;' id='modalCuentas'>"
+        + "<div style='display:flex; justify-content:space-between; margin-bottom:10px;' id='transferenciaFlex'>"
+        + "<div style='flex-direction:column; width:45%;' id='cuenta1'>"
         + "<h3>Cuenta1</h3>"
-        + "<select disabled id='Trans1'></select>"
+        + "<select class='form-control' disabled id='Trans1'></select>"
         + "</div>"
-        + "<svg xmlns='http://www.w3.org/2000/svg' id='flechita' width='50' height='50' fill='currentColor' class='bi bi-arrow-right' viewBox='0 0 16 16'>"
+        + "<svg style='margin-top:35px;' xmlns='http://www.w3.org/2000/svg' id='flechita' width='35' height='35' fill='black' class='bi bi-arrow-right' viewBox='0 0 16 16'>"
         + "<path fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z'/>"
         + "</svg>"
-        + "<div>"
+        + "<div  style='flex-direction:column; width:45%;'>"
         + "<h3>Cuenta2</h3>"
-        + "<select id='Trans2'></select>"
+        + "<select class='form-control' id='Trans2'></select>"
         + "</div>"
         + "</div>"
-        + "<div>"
+        + "<div id='importeinput'>"
         + "<h3>Importe</h3>"
-        + "<input type='text' id='importe' onkeypress='return onlyNumberKey(event)'></input>"
+        + "<input style='margin-bottom:10px;' class='form-control' type='text' id='importe' onkeypress='return onlyNumberKey(event)'>"
         + "</div>"
         + "</div>"
-        + "<div class='modal-footer'>"
-        + "<button type='button' id='btnCancelar' class='btn btn-danger' data-bs-dismiss='modal'>Cancelar</button>"
-        + "<button type='button' id='btnrealizartrans' class='btn btn-primary' data-bs-dismiss='modal'>Realizar transferencia</button>"
+        + "</div>"
+        + "<div style='padding:1 rem;' class='modal-footer'>"
+        + "<div class='d-flex m-0' style='padding:10px; padding-top:0;'>"
+        + "<button style='margin-left:10px; margin-top:0; margin-right:0;' type='button' id='btnCancelar' class='btn btn-primary' data-bs-dismiss='modal'>Cancelar</button>"
+        + "<button style='margin-left:10px; margin-top:0; margin-right:0;' type='button' id='btnrealizartrans' class='btn btn-primary' data-bs-dismiss='modal'>Realizar transferencia</button>"
         + "</div>"
         + "</div>"
         + "</div>"
@@ -159,6 +168,7 @@ function BancaOnlineload(cuentas) {
     textoorigen="";
     document.getElementById("btnTransferencia").addEventListener("click", function(){
 
+        document.getElementById("importe").value="";
         /*Activar Transferencia
         -----------------------------------------------------------------------*/
         var combo1 = document.getElementById("SelectCuentas");
@@ -168,8 +178,8 @@ function BancaOnlineload(cuentas) {
 
         var newRow4="";
         newRow4 += "<option value=-1>Selecciona una cuenta</option>";
-        for (let i = 0; i < cuenta.length; i++) {
-            newRow4 += "<option value='"+cuenta[i].idCuentas+"'>"+cuenta[i].numcuenta+"</option>";
+        for (let i = 0; i < cuentas.length; i++) {
+            newRow4 += "<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+"</option>";
         }
         document.getElementById("Trans1").innerHTML="<option value='"+selectedValue1+"'>"+selectedText1+"</option>";
         document.getElementById("Trans2").innerHTML=newRow4;
@@ -190,7 +200,7 @@ function BancaOnlineload(cuentas) {
         var conceptogasto = "Transferencia a "+selectedText2;
         var conceptoingreso = "Transferencia de "+textoorigen;
         
-        console.log(origen);
+        console.log(importe);
 
         var url = "../../controller/cTransferencia.php";
 
@@ -233,8 +243,6 @@ function loadMovimientos(){
     var selected = combo.options[combo.selectedIndex].value;
     selected = selected - 1;
 
-    console.log(cuenta);
-
     valor = document.getElementById("SelectCuentas").value;
 
     /*Datos
@@ -249,10 +257,10 @@ function loadMovimientos(){
 
     } else {
         document.querySelector(".itfBanca2").style.display = "flex";
-        document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>" + cuenta[selected].numcuenta;
-        document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>" + cuenta[selected].tipo;
-        document.querySelector(".numeroCuenta").innerHTML = cuenta[selected].numcuenta;
-        document.querySelector(".saldo").innerHTML =  cuenta[selected].saldo;
+        document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>" + cuentas[selected].numcuenta;
+        document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>" + cuentas[selected].tipo;
+        document.querySelector(".numeroCuenta").innerHTML = cuentas[selected].numcuenta;
+        document.querySelector(".saldo").innerHTML =  cuentas[selected].saldo;
 
         var url = "../../controller/controller_ExtractoCuenta.php";
     
@@ -477,9 +485,9 @@ function Proveedorload(proveedores) {
         newRow += "<select class='modalCombo form-control' id='SelectCuentas2' style='width:100%;' class='form-select' aria-label='Default select example'>";
         newRow += "<option selected value=-1>Selecciona una cuenta</option>";
 
-        for (let i = 0; i < cuenta.length; i++) {
+        for (let i = 0; i < cuentas.length; i++) {
 
-            newRow += "<option value='" + cuenta[i].idCuentas + "'>" + cuenta[i].numcuenta + "</option>";
+            newRow += "<option value='" + cuentas[i].idCuentas + "'>" + cuentas[i].numcuenta + "</option>";
         }
 
         newRow += "</select>";
@@ -647,15 +655,15 @@ function Proveedorload(proveedores) {
 
         if (cuenta == -1) {
             alert("introduce una cuenta");
-            location.reload();
+            Proveedorload();
         } else {
             if (producto == -1) {
                 alert("Introduce un producto");
-                location.reload();
+                Proveedorload();
             } else {
                 if (cantidad == "") {
                     alert("Cantidad no válida");
-                    location.reload();
+                    Proveedorload();
                 } else {
 
                     var url = "../../controller/controller_insert.php";
@@ -672,7 +680,7 @@ function Proveedorload(proveedores) {
                         //alert(result.insertFactura);
 
                         Pedido();
-                        Proveedorload();
+                        ActualizarFacturas();
 
                     })
                     .catch(error => console.error('Error status:', error));
@@ -681,6 +689,82 @@ function Proveedorload(proveedores) {
         }
 
     });
+
+}
+
+/*ActualizarFacturas
+---------------------------------------------------------------------------------*/
+function ActualizarFacturas(){
+    
+    var url = "../../controller/controller_Extractos.php";
+
+    fetch(url, {
+        method: 'GET', // or 'POST'
+    })
+        .then(res => res.json()).then(result => {
+
+            cont=0;
+            stockcant=0;
+            patrimonio=0;
+
+            proveedores = result.listProveedores;
+            stock = result.listStock;
+
+            for (let i = 0; i < proveedores.length; i++) {
+                cont += 1;
+            }
+
+            for (let i = 0; i < stock.length; i++) {
+                stockcant += parseInt(stock[i].stock);
+                patrimonio += parseInt(stock[i].precio*stock[i].stock);
+            }
+
+            cont=Intl.NumberFormat("ja-JP").format(cont);
+            stockcant=Intl.NumberFormat("ja-JP").format(stockcant);
+            patrimonio=Intl.NumberFormat("ja-JP").format(patrimonio);
+
+            document.querySelector(".facturascant").innerHTML=cont;
+            document.querySelector(".stockcant").innerHTML=stockcant;
+            document.querySelector(".patrimonio").innerHTML=patrimonio;
+
+            /*ExtractoFacturas
+            -----------------------------------------------------------------------*/
+            var newRow = "";
+            newRow += "<thead>";
+            newRow += "<tr>";
+            newRow += "<th><span>FECHA</span></th>";
+            newRow += "<th><span>NUMERO FACTURA</span></th>";
+            newRow += "<th><span>NUMERO CUENTA</span></th>";
+            newRow += "<th><span>PROVEEDOR</span></th>";
+            newRow += "<th><span>PRODUCTO</span></th>";
+            newRow += "<th><span>PRECIO/UD</span></th>";
+            newRow += "<th><span>CANTIDAD</span></th>";
+            newRow += "<th><span>IMPORTE</span></th>";
+            newRow += "</tr>";
+            newRow += "</thead>";
+            newRow += "<tbody>";
+
+            for (let i = 0; i < proveedores.length; i++) {
+
+                newRow += "<tr>";
+                newRow += "<td>" + proveedores[i].fecha + "</td>";
+                newRow += "<td>" + proveedores[i].numerofactura + "</td>";
+                newRow += "<td>" + proveedores[i].idcuenta + "</td>";
+                newRow += "<td>" + proveedores[i].nombre + "</td>";
+                newRow += "<td>" + proveedores[i].idproducto + "</td>";
+                newRow += "<td>" + proveedores[i].precio + "</td>";
+                newRow += "<td>" + proveedores[i].cantidad + "</td>";
+                newRow += "<td>" + proveedores[i].importe + "</td>";
+                newRow += "</tr>";
+            }
+
+            newRow += "</tbody>";
+
+            document.querySelector(".table").innerHTML = newRow;
+            
+
+        })
+        .catch(error => console.error('Error status:', error));
 
 }
 
