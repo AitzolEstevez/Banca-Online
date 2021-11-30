@@ -164,8 +164,6 @@ function BancaOnlineload(cuentas) {
 -----------------------------------------------------------------------*/
 function loadMovimientos(){
 
-    alert("Movimientos");
-
     document.querySelector(".inputCantidad input").value="";
 
     var combo = document.getElementById("SelectCuentas");
