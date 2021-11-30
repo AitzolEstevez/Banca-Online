@@ -175,50 +175,50 @@ function BancaOnlineload(cuentas) {
 
         var combo2 = document.getElementById("Trans2");
         var selectedText2 = combo2.options[combo2.selectedIndex].text;
-        //alert("antes");
-
-        //$("#btnrealizartrans").click(function(){
-
-        document.getElementById("btnrealizartrans").addEventListener("click",function(){
-            alert("hola");
-            var importe = document.getElementById("importe").value;
-            //var origen = document.getElementById("Trans1").value;
-            var destino = document.getElementById("Trans2").value;
-            var conceptogasto = "Transferencia a " + selectedText2;
-            var conceptoingreso = "Transferencia de " + selectedText1;
-            origen=selectedValue1;
-            
-            console.log(origen);
-
-            var url = "../../controller/cTransferencia.php";
-
-            var data = {'importe':importe,'origen':origen,'destino':destino,'conceptogasto':conceptogasto,'conceptoingreso':conceptoingreso};
-
-            fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers:{'Content-Type': 'application/json'}
-            })
-            .then(res => res.json()).then(result => {
-                if (result.error=='Transferencia realizada' && result.insertado=='insertado') {
-                    Transferencia();
-                    document.getElementById("Trans2").value="";
-
-                }else if (result.error=='No puedes transferir más de lo que tienes') {
-                    masmoney();
-                }else if (result.error=='No puede ser la misma cuenta') {
-                    mismacuenta();
-                }else if (result.cero=='No puede ser 0') {
-                    cero();
-                }
-            })    
-            .catch(error => console.error('Error status:', error));    
-        });
+        
     });
 
-    
+    document.getElementById("btnrealizartrans").addEventListener("click",function(){
+        alert("hola");
+        var importe = document.getElementById("importe").value;
+        var origen = document.getElementById("Trans1").value;
+        var destino = document.getElementById("Trans2").value;
+        /*var conceptogasto = "Transferencia a " + selectedText2;
+        var conceptoingreso = "Transferencia de " + selectedText1;*/
+        var conceptogasto = "Transferencia a destino";
+        var conceptoingreso = "Transferencia de origen";
+        //origen=selectedValue1;
+        
+        console.log(origen);
+
+        var url = "../../controller/cTransferencia.php";
+
+        var data = {'importe':importe,'origen':origen,'destino':destino,'conceptogasto':conceptogasto,'conceptoingreso':conceptoingreso};
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        })
+        .then(res => res.json()).then(result => {
+            if (result.error=='Transferencia realizada' && result.insertado=='insertado') {
+                Transferencia();
+                document.getElementById("Trans2").value="";
+
+            }else if (result.error=='No puedes transferir más de lo que tienes') {
+                masmoney();
+            }else if (result.error=='No puede ser la misma cuenta') {
+                mismacuenta();
+            }else if (result.cero=='No puede ser 0') {
+                cero();
+            }
+        })    
+        .catch(error => console.error('Error status:', error));    
+    });
 
 }
+
+
 
 /*ExtractoCuentasById
 -----------------------------------------------------------------------*/
