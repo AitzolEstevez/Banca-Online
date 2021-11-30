@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 
     loadPagina();
-
+    
 });
 
 /*Variable Global
@@ -59,7 +59,6 @@ function loadPagina() {
             });
             document.querySelector(".btnPrestamo").addEventListener("click", loadPrestamo);
             document.querySelector(".btnLeasing").addEventListener("click", loadLeasing);
-
 
         })
         .catch(error => console.error('Error status:', error));
@@ -153,8 +152,7 @@ function BancaOnlineload(cuentas) {
         + "</div>"
 
     document.getElementById("Transferencia").innerHTML=newRow3;
-
-
+    document.getElementById("btnTransferencia").addEventListener("click", loadTransferencia);
 
     document.getElementById("SelectCuentas").addEventListener("change", loadMovimientos); 
 
@@ -248,6 +246,12 @@ function loadMovimientos(){
     
     }
 
+}
+
+/*load Transferencia
+-----------------------------------------------------------------------*/
+function loadTransferencia(){
+
     /*Activar Transferencia
     -----------------------------------------------------------------------*/
     var combo1 = document.getElementById("SelectCuentas");
@@ -272,8 +276,7 @@ function loadMovimientos(){
         var conceptogasto = "Transferencia a " + selectedText2;
         var conceptoingreso = "Transferencia de " + selectedText1;
 
-        console.log(selectedText1);
-        console.log(selectedValue1);
+        
         console.log(origen);
 
         var url = "../../controller/cTransferencia.php";
@@ -299,8 +302,8 @@ function loadMovimientos(){
             }
         })        
     });
-
 }
+
 
 /*Añadir Fondos
 -----------------------------------------------------------------------*/
