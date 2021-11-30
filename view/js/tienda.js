@@ -41,7 +41,7 @@ function loggedVerify(){
 
             if(result.nombre == "admin"){
                 alert("Tu login es de " + result.nombre);
-	    	    window.location.href = "admin-banca.html";
+	    	    window.location.href = "banca.html";
             }else{
                 document.getElementById("logindiv").innerHTML = "<h1 class='mt-3 me-1'>" + result.nombre + "</h1><a id='cerrarsesion' class='ms-1' href='index.html'>Cerrar Sesion</a>";
                 document.getElementById("cerrarsesion").addEventListener("click", logout);
@@ -70,7 +70,7 @@ function login(){
     if(result.error == "no error"){
 
         if(result.tipo == "admin"){
-            location.href = "admin-banca.html";
+            location.href = "banca.html";
         }else if(result.tipo == "cliente"){
             abrirocerrar();
             document.getElementById("logindiv").innerHTML = "<h1 class='mt-3 me-1'>" + result.nombre + "</h1><a id='cerrarsesion' class='ms-1' href='index.html'>Cerrar Sesion</a>";

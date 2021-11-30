@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 
     loadPagina();
-
+    document.getElementById("logout").addEventListener("click", logout);
 });
 
 /*Variable Global
@@ -12,7 +12,7 @@ cuenta = "";
 ------------------------------------------------------------------------------------------------*/
 function loadPagina() {
 
-    var url = "../../controller/controller_Extractos.php";
+    var url = "controller/controller_Extractos.php";
 
     fetch(url, {
         method: 'GET', // or 'POST'
@@ -189,7 +189,7 @@ function loadMovimientos(){
         document.querySelector(".numeroCuenta").innerHTML = cuenta[selected].numcuenta;
         document.querySelector(".saldo").innerHTML =  cuenta[selected].saldo;
 
-        var url = "../../controller/controller_ExtractoCuenta.php";
+        var url = "controller/controller_ExtractoCuenta.php";
     
         var data = { 'numcuenta': valor };
     
@@ -270,7 +270,7 @@ function loadMovimientos(){
             var conceptogasto = "Transferencia a " + selectedText2;
             var conceptoingreso = "Transferencia de " + selectedText1;
     
-            var url = "../../controller/cTransferencia.php";
+            var url = "controller/cTransferencia.php";
 
             var data = {'importe':importe,'origen':origen,'destino':destino,'conceptogasto':conceptogasto,'conceptoingreso':conceptoingreso};
 
@@ -312,7 +312,7 @@ document.querySelector(".inputCantidad input").addEventListener("keyup", functio
         var fondos = document.querySelector(".inputCantidad input").value;
         var cuenta = document.getElementById("SelectCuentas").value;
 
-        var url = "../../controller/controller_insert.php";
+        var url = "controller/controller_insert.php";
 
         var data = { 'total': fondos, 'cuenta': cuenta, 'selected': 'Ingreso', 'añadirfondos': añadirfondos, 'realizarpedido': realizarpedido };
 
@@ -476,7 +476,7 @@ function Proveedorload(proveedores) {
         document.getElementById("Precio").value = "";
         document.getElementById("modalImg").src = "https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png";
 
-        var url = "../../controller/controller_Proveedores.php";
+        var url = "controller/controller_Proveedores.php";
 
         fetch(url, {
             method: 'GET', // or 'POST'
@@ -543,7 +543,7 @@ function Proveedorload(proveedores) {
 
             console.log(valor);
 
-            var url = "../../controller/controller_Productos.php";
+            var url = "controller/controller_Productos.php";
 
             var data = { 'proveedor': valor };
 
@@ -643,7 +643,7 @@ function Proveedorload(proveedores) {
                     location.reload();
                 } else {
 
-                    var url = "../../controller/controller_insert.php";
+                    var url = "controller/controller_insert.php";
 
                     var data = { 'cuenta': cuenta, 'proveedor': proveedor, 'producto': producto, 'precio': precio, 'cantidad': cantidad, 'total': total, 'img': img, 'selected': selected, 'añadirfondos': añadirfondos, 'realizarpedido': realizarpedido };
 
@@ -847,4 +847,18 @@ function masmoney(){
         'No puedes transferir más dinero de lo que tienes en la cuenta',
         'error'
     )
+}
+
+
+function logout(){
+    var url = "controller/cLogout.php";
+
+    fetch(url, {
+    method: 'GET',  
+    })
+    .then(res => res.text()).then(result => {
+    
+        location.href="index.html";
+    })
+    .catch(error => console.error('Error status:', error));	
 }
