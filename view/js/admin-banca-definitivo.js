@@ -156,6 +156,7 @@ function BancaOnlineload(cuentas) {
 
     document.getElementById("SelectCuentas").addEventListener("change", loadMovimientos); 
 
+    textoorigen="";
     document.getElementById("btnTransferencia").addEventListener("click", function(){
 
         /*Activar Transferencia
@@ -168,26 +169,26 @@ function BancaOnlineload(cuentas) {
         var newRow4="";
         newRow4 += "<option value=-1>Selecciona una cuenta</option>";
         for (let i = 0; i < cuenta.length; i++) {
-            newRow4 += "<option value='"+cuenta[i].idCuentas+"'>Cuenta "+cuenta[i].tipo+" "+cuenta[i].numcuenta+"</option>";
+            newRow4 += "<option value='"+cuenta[i].idCuentas+"'>"+cuenta[i].numcuenta+"</option>";
         }
         document.getElementById("Trans1").innerHTML="<option value='"+selectedValue1+"'>"+selectedText1+"</option>";
         document.getElementById("Trans2").innerHTML=newRow4;
 
-        var combo2 = document.getElementById("Trans2");
-        var selectedText2 = combo2.options[combo2.selectedIndex].text;
-        
+        textoorigen=selectedText1;
     });
 
     document.getElementById("btnrealizartrans").addEventListener("click",function(){
-        alert("hola");
+
+        var combo2 = document.getElementById("Trans2");
+        var selectedText2 = combo2.options[combo2.selectedIndex].text;
+        
         var importe = document.getElementById("importe").value;
         var origen = document.getElementById("Trans1").value;
         var destino = document.getElementById("Trans2").value;
         /*var conceptogasto = "Transferencia a " + selectedText2;
         var conceptoingreso = "Transferencia de " + selectedText1;*/
-        var conceptogasto = "Transferencia a destino";
-        var conceptoingreso = "Transferencia de origen";
-        //origen=selectedValue1;
+        var conceptogasto = "Transferencia a "+selectedText2;
+        var conceptoingreso = "Transferencia de "+textoorigen;
         
         console.log(origen);
 
@@ -212,13 +213,12 @@ function BancaOnlineload(cuentas) {
             }else if (result.cero=='No puede ser 0') {
                 cero();
             }
+            loadMovimientos();
         })    
         .catch(error => console.error('Error status:', error));    
     });
 
 }
-
-
 
 /*ExtractoCuentasById
 -----------------------------------------------------------------------*/
@@ -312,9 +312,6 @@ function loadMovimientos(){
     }
 
 }
-
-
-
 
 /*Añadir Fondos
 -----------------------------------------------------------------------*/
@@ -675,7 +672,7 @@ function Proveedorload(proveedores) {
                         //alert(result.insertFactura);
 
                         Pedido();
-                        loadPagina();
+                        Proveedorload();
 
                     })
                     .catch(error => console.error('Error status:', error));
