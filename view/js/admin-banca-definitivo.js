@@ -299,7 +299,7 @@ function loadMovimientos(){
 
     /*Datos
     ----------------------------------------------------------------------------------------------------------------*/
-    if (selected == -2) {
+    if (selected == -1) {
         document.querySelector(".itfBanca2").style.display = "none";
         document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>-";
         document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>-";
