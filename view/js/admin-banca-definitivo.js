@@ -283,14 +283,16 @@ function loadMovimientos(){
     document.getElementById("fecha1").value="";
     document.getElementById("fecha2").value="";
 
-    var combo1 = document.getElementById("SelectCuentas");
-    selectedValue1=combo1.options[combo1.selectedIndex].text;
-    console.log(selectedValue1);
+    // var combo1 = document.getElementById("SelectCuentas");
+    // selectedValue1=combo1.options[combo1.selectedIndex].text;
+    // console.log(selectedValue1);
+
+
 
     document.querySelector(".inputCantidad input").value="";
 
     var combo = document.getElementById("SelectCuentas");
-    var selected = combo.options[combo.selectedIndex].value;
+    var selected = combo.options.selectedIndex;
     selected = selected - 1;
 
     valor = document.getElementById("SelectCuentas").value;

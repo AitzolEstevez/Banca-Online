@@ -28,9 +28,9 @@ function crear(){
         .then(res => res.json()).then(result => {
 
             if(result.existe == "si"){
-               alert(result.existe);
-            }else{
-                alert(result.creado);
+               alert("Ya existe una cuenta con ese numero de cuenta");
+            }else if(result.existe == "no"){
+               alert(result.creado);
                 location.reload();
             }
         })
@@ -50,7 +50,7 @@ function crear(){
         .then(res => res.json()).then(result => {
 
             if(result.existe == "si"){
-                alert(result.existe);
+                alert("Ya existe una cuenta con ese numero de cuenta");
             }else{
                  alert(result.creado);
                  location.reload();
@@ -60,7 +60,7 @@ function crear(){
         .catch(error => console.error('Error status:', error));
 
     }  else{
-        alert("no entra");
+        alert("Número de dígitos y tipo de cuenta no compatibles");
     }
 
 
