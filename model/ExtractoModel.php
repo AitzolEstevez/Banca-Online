@@ -135,6 +135,33 @@ class ExtractoModel extends ExtractoClass
         
     }
 
+    public function extractoByFecha($fecha1,$fecha2){
+        $this->OpenConnect(); // konexio zabaldu - abrir conexiÃ³n
+
+        $sql = "select * from extracto where fecha between '$fecha1' and '$fecha2' order by id desc"; // SQL sententzia - sentencia SQL
+
+        $result = $this->link->query($sql);
+
+        // $this->link->num_rows; num rows of result
+
+        $list = array();
+
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { // each row
+
+            $newextracto = new ExtractoModel();
+
+            $newextracto->fecha = $row['fecha'];
+            $newextracto->concepto = $row['concepto'];
+            $newextracto->importe = $row['importe'];
+            $newextracto->saldo = $row['saldo'];
+
+            array_push($list, $newextracto);
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $list;
+    }
+
 }
 
 ?>

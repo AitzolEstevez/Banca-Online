@@ -18,7 +18,7 @@ proveedores="";
 ------------------------------------------------------------------------------------------------*/
 function loadPagina() {
 
-    var url = "../../controller/controller_Extractos.php";
+    var url = "controller/controller_Extractos.php";
 
     fetch(url, {
         method: 'GET', // or 'POST'
@@ -202,7 +202,7 @@ function BancaOnlineload(cuentas) {
         
         console.log(importe);
 
-        var url = "../../controller/cTransferencia.php";
+        var url = "controller/cTransferencia.php";
 
         var data = {'importe':importe,'origen':origen,'destino':destino,'conceptogasto':conceptogasto,'conceptoingreso':conceptoingreso};
 
@@ -228,11 +228,61 @@ function BancaOnlineload(cuentas) {
         .catch(error => console.error('Error status:', error));    
     });
 
+    document.getElementById("fecha1").addEventListener("change",function(){
+        document.getElementById("fecha2").addEventListener("change",function(){
+            fecha1=document.getElementById("fecha1").value;
+            fecha2=document.getElementById("fecha2").value;
+
+            var url = "controller/cFecha.php";
+    
+            var data = { 'fecha1': fecha1,'fecha2':fecha2 };
+        
+            fetch(url, {
+                method: 'POST', // or 'POST'
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }  //input data
+            })
+            .then(res => res.json()).then(result => {
+
+                var extractofecha = result.extractofecha;
+
+                var newRow = "";
+                newRow += "<thead>";
+                newRow += "<tr>";
+                newRow += "<th><span>FECHA</span></th>";
+                newRow += "<th><span>CONCEPTO</span></th>";
+                newRow += "<th><span>IMPORTE</span></th>";
+                newRow += "<th><span>SALDO</span></th>";
+                newRow += "</tr>";
+                newRow += "</thead>";
+                newRow += "<tbody>";
+    
+                for (let i = 0; i < extractofecha.length; i++) {
+    
+                    newRow += "<tr>" + "<td>" + extractofecha[i].fecha + "</td>";
+                    newRow += "<td>" + extractofecha[i].concepto + "</td>";
+                    newRow += "<td>" + extractofecha[i].importe + "</td>";
+                    newRow += "<td>" + extractofecha[i].saldo + "</td></tr>";
+                
+                }
+    
+                newRow += "</tbody>";
+    
+                document.querySelector(".table").innerHTML = newRow;
+
+            })
+            .catch(error => console.error('Error status:', error));
+        });
+    });
+
 }
 
 /*ExtractoCuentasById
 -----------------------------------------------------------------------*/
 function loadMovimientos(){
+    document.getElementById("fecha1").value="";
+    document.getElementById("fecha2").value="";
+
     var combo1 = document.getElementById("SelectCuentas");
     selectedValue1=combo1.options[combo1.selectedIndex].text;
     console.log(selectedValue1);
@@ -262,7 +312,7 @@ function loadMovimientos(){
         document.querySelector(".numeroCuenta").innerHTML = cuentas[selected].numcuenta;
         document.querySelector(".saldo").innerHTML =  cuentas[selected].saldo;
 
-        var url = "../../controller/controller_ExtractoCuenta.php";
+        var url = "controller/controller_ExtractoCuenta.php";
     
         var data = { 'numcuenta': valor };
     
@@ -335,7 +385,7 @@ document.querySelector(".inputCantidad input").addEventListener("keyup", functio
         var fondos = document.querySelector(".inputCantidad input").value;
         var cuenta = document.getElementById("SelectCuentas").value;
 
-        var url = "../../controller/controller_insert.php";
+        var url = "controller/controller_insert.php";
 
         var data = { 'total': fondos, 'cuenta': cuenta, 'selected': 'Ingreso', 'añadirfondos': añadirfondos, 'realizarpedido': realizarpedido };
 
@@ -499,7 +549,7 @@ function Proveedorload(proveedores) {
         document.getElementById("Precio").value = "";
         document.getElementById("modalImg").src = "https://paperetsdecolorets.es/wp-content/uploads/2019/10/placeholder.png";
 
-        var url = "../../controller/controller_Proveedores.php";
+        var url = "controller/controller_Proveedores.php";
 
         fetch(url, {
             method: 'GET', // or 'POST'
@@ -566,7 +616,7 @@ function Proveedorload(proveedores) {
 
             console.log(valor);
 
-            var url = "../../controller/controller_Productos.php";
+            var url = "controller/controller_Productos.php";
 
             var data = { 'proveedor': valor };
 
@@ -666,7 +716,7 @@ function Proveedorload(proveedores) {
                     Proveedorload();
                 } else {
 
-                    var url = "../../controller/controller_insert.php";
+                    var url = "controller/controller_insert.php";
 
                     var data = { 'cuenta': cuenta, 'proveedor': proveedor, 'producto': producto, 'precio': precio, 'cantidad': cantidad, 'total': total, 'img': img, 'selected': selected, 'añadirfondos': añadirfondos, 'realizarpedido': realizarpedido };
 
@@ -696,7 +746,7 @@ function Proveedorload(proveedores) {
 ---------------------------------------------------------------------------------*/
 function ActualizarFacturas(){
     
-    var url = "../../controller/controller_Extractos.php";
+    var url = "controller/controller_Extractos.php";
 
     fetch(url, {
         method: 'GET', // or 'POST'
