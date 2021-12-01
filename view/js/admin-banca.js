@@ -4,10 +4,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
+var cuentas;
+
 function loadExtracto(){
 	document.getElementById("AñadirFondos").disabled = "true";
 
-    var url = "controller/controller_Extractos.php";
+    var url = "../../controller/controller_Extractos.php";
 
 	fetch(url, {
 	  method: 'GET', 
@@ -20,8 +22,12 @@ function loadExtracto(){
 		var stock = result.listStock;
 		var cuentas = result.listCuentas;
 
+<<<<<<< HEAD
 
 		BancaOnlineload(cuentas);
+=======
+		//BancaOnlineload(cuentas);
+>>>>>>> prueba
 		
 
 		var newRow3="";
@@ -69,8 +75,8 @@ function loadExtracto(){
 					+"</div>"
 				+"</div>"
 			+"</div>"	
-			document.getElementById("Transferencia").innerHTML=newRow3;	
-			document.getElementById("Transferencia").style.display="block";
+			//document.getElementById("Transferencia").innerHTML=newRow3;	
+			//document.getElementById("Transferencia").style.display="block";
 
 			var newRow4 ="";
 		newRow4 += "<option value=-1>Selecciona una cuenta</option>";
@@ -80,7 +86,7 @@ function loadExtracto(){
 			newRow4 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
 		}
 		
-		document.getElementById("Trans1").innerHTML = newRow4;
+		//document.getElementById("Trans1").innerHTML = newRow4;
 
 		var newRow5 ="";
 		newRow5 += "<option value=-1>Selecciona una cuenta</option>";
@@ -90,8 +96,8 @@ function loadExtracto(){
 			newRow5 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
 		}
 		
-		document.getElementById("Trans2").innerHTML = newRow5;
-
+		//document.getElementById("Trans2").innerHTML = newRow5;
+/*
 			document.getElementById("btnCancelar").addEventListener("click",function(){
 				CancelTrans();
 				document.getElementById("Trans1").value="";
@@ -105,7 +111,7 @@ function loadExtracto(){
 					document.getElementById("importe").value="";
 			  });
 
-
+			  */
 
 		var newRow ="";
 		newRow += "<option value=-1>Selecciona una cuenta</option>";
@@ -119,9 +125,9 @@ function loadExtracto(){
 		
 		//document.getElementById("SelectCuentas").addEventListener("change", BancaOnlineload(cuentas));
 			
-		document.getElementById("AñadirFondos").addEventListener("click",function(){
+		/*document.getElementById("AñadirFondos").addEventListener("click",function(){
 			AñadirFondos();
-		});
+		});*/
 		
 		console.log('Success:', clientes);
 
@@ -129,19 +135,25 @@ function loadExtracto(){
 
 		tabs=document.querySelectorAll("#myTab li button");
 
+		document.querySelector(".btnBanca").addEventListener("click",BancaOnlineload);
+		/*
 		for (let i = 0; i < tabs.length; i++) {
 			tabs[i].addEventListener("click", function(){
 
 				valor=tabs[i].id;
 
-				console.log(valor);
+				//console.log(valor);
 				if(valor=="Clientes"){
+					console.log("clientes");
 					Clienteload();
 				}else if(valor=="Proveedores"){
+					console.log("proveedores");
 					Proveedorload(proveedores,cuentas);
 				}else if(valor=="MiStock"){
+					console.log("mistock");
 					MiStockload(stock);
 				}else{
+					console.log("bancaonline");
 					BancaOnlineload(cuentas);
 				}
 				
@@ -153,7 +165,7 @@ function loadExtracto(){
 
 			});
 			
-		}
+		}*/
 
 	})
 	.catch(error => console.error('Error status:', error));	
@@ -163,6 +175,9 @@ function loadExtracto(){
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	function Proveedorload(proveedores, cuentas){
+
+		console.log(proveedores);
+		console.log(cuentas);
 		var newRow ="";
 		newRow +="<table id='proveedortabla'> ";
 		newRow +="<tr><th>Fecha</th><th>Numero Factura</th><th>Numero Cuenta</th><th>Proveedor</th><th>Producto</th><th>Precio/u</th><th>Cantidad</th><th>Importe</th></tr>";
@@ -278,7 +293,8 @@ function loadExtracto(){
 						method: 'GET', // or 'POST'
 					})
 					.then(res => res.json()).then(result => {
-											
+
+
 						var proveedor = result.listProveedores;
 
 						var newRow ="";
@@ -376,12 +392,64 @@ function loadExtracto(){
 						})
 						.catch(error => console.error('Error status:', error));	
 
+					});
+
+					document.getElementById("btnPedido").addEventListener("click",function(){
 
 
+						console.log("btnPedido");
+						var añadirfondos=0;
+						var realizarpedido=1;
+	
+						cuenta=document.getElementById("SelectCuentas2").value;
+						proveedor=document.getElementById("SelectProveedor").value;
+						producto=document.getElementById("SelectProducto").value;
+						precio=document.getElementById("Precio").value;
+						cantidad=document.getElementById("Cantidad").value;
+						total=document.getElementById("Total").value;
+						img=document.getElementById("modalImg").src;
+						nombreproducto=document.getElementById("SelectProducto");
+						selected = nombreproducto.options[nombreproducto.selectedIndex].text;
+	
+						//console.log(selected);
+	
+						if (cuenta==-1) {
+							alert("Introduce una cuenta");
+						}
+						else{
+							var url = "controller/controller_insert.php";
+	
+							var data = { 'cuenta':cuenta, 'proveedor':proveedor, 'producto':producto, 'precio':precio, 'cantidad':cantidad, 'total':total, 'img':img, 'selected':selected, 'añadirfondos':añadirfondos, 'realizarpedido':realizarpedido };
+			
+							fetch(url, {
+							method: 'POST', // or 'POST'
+							body: JSON.stringify(data),
+								headers:{'Content-Type': 'application/json'}  //input data
+							})
+							.then(res => res.json()).then(result => {
+	
+								//alert(result.insertFactura);
+								
+
+
+								Swal.fire(
+								'Pedido realizado correctamente',
+								'Gracias por confiar en nosotros',
+								'success'
+								)
+
+								console.log("cuentas");
+								console.log(cuentas);
+								BancaOnlineload(cuentas);
+	
+							})
+							.catch(error => console.error('Error status:', error));	
+						}
+	
 					});
 
 				});
-
+/*
 				document.getElementById("btnPedido").addEventListener("click",function(){
 
 					var añadirfondos=0;
@@ -428,7 +496,7 @@ function loadExtracto(){
 						
 					}
 
-				});
+				});*/
 
 
 	}
@@ -459,6 +527,11 @@ function loadExtracto(){
 
 	function BancaOnlineload(cuentas){
 
+		document.getElementById("btnDefault").style.display="none";
+		document.querySelector(".itfBanca").style.display="block";
+
+		document.getElementById("FlexBancaOnline").style.display="flex";
+
 		console.log(cuentas);
 		document.getElementById("Transferencia").style.display = "block";
 		
@@ -480,16 +553,23 @@ function loadExtracto(){
 		document.getElementById("btnRealizarPedido").style.display="none";
 
 		
+<<<<<<< HEAD
 		document.getElementById("SelectCuentas").addEventListener("change", function(){
 			
 			valor=document.getElementById("SelectCuentas").value;
 			console.log(valor);
 			
+=======
+		document.getElementById("SelectCuentas").addEventListener("change", CargarTabla);
+		
+>>>>>>> prueba
 
-			var url = "controller/controller_ExtractoCuenta.php";
+					
+	}
 
-			var data = { 'numcuenta':valor};
+	function CargarTabla(cuentas){
 
+<<<<<<< HEAD
 			fetch(url, {
 			  method: 'POST', // or 'POST'
 			  body: JSON.stringify(data),
@@ -516,44 +596,87 @@ function loadExtracto(){
 				var newRow ="";
 				newRow +="<table> ";
 				newRow +="<tr><th>Fecha</th><th>Concepto</th><th>Importe</th><th>Saldo</th></tr>";
+=======
 
-				for (let i = 0; i < extracto.length; i++) {
-						
-					newRow += "<tr>" +"<td>"+extracto[i].fecha+"</td>";
-					newRow += "<td>"+extracto[i].concepto+"</td>";
+		console.log("cargar tabla");
+		console.log(cuentas);
+>>>>>>> prueba
 
-					if (extracto[i].importe>0) {
-						newRow += "<td style='color:#15D800;'>+"+extracto[i].importe+"</td>";
-					}else if(extracto[i].importe<0){
-						newRow += "<td style='color:red;'>"+extracto[i].importe+"</td>";
-					}
 
-					if (extracto[i].saldo>0) {
-						newRow += "<td>"+extracto[i].saldo+"</td></tr>";
-					}else if(extracto[i].saldo<0){
-						newRow += "<td style='color:red;'>"+extracto[i].saldo+"</td></tr>";
-					}else{
-						newRow += "<td>"+extracto[i].saldo+"</td></tr>";
-					}
-					
+		valor=document.getElementById("SelectCuentas").value;
+		console.log("numcuenta");
+		console.log(valor);
 	
+
+		var url = "controller/controller_ExtractoCuenta.php";
+
+		var data = { 'numcuenta':valor};
+
+		fetch(url, {
+		  method: 'POST', // or 'POST'
+		  body: JSON.stringify(data),
+			headers:{'Content-Type': 'application/json'}  //input data
+		})
+		.then(res => res.json()).then(result => {
+		
+			//console.log("hola");
+
+			if (valor=-1) {
+				document.getElementById("tabla").style.display="none";
+			}
+		
+			var extracto = result.listExtracto;
+		
+			var newRow ="";
+			newRow +="<table> ";
+			newRow +="<tr><th>Fecha</th><th>Concepto</th><th>Importe</th><th>Saldo</th></tr>";
+
+			for (let i = 0; i < extracto.length; i++) {
+					
+				newRow += "<tr>" +"<td>"+extracto[i].fecha+"</td>";
+				newRow += "<td>"+extracto[i].concepto+"</td>";
+
+				if (extracto[i].importe>0) {
+					newRow += "<td style='color:#15D800;'>+"+extracto[i].importe+"</td>";
+				}else if(extracto[i].importe<0){
+					newRow += "<td style='color:red;'>"+extracto[i].importe+"</td>";
 				}
+
+				if (extracto[i].saldo>0) {
+					newRow += "<td>"+extracto[i].saldo+"</td></tr>";
+				}else if(extracto[i].saldo<0){
+					newRow += "<td style='color:red;'>"+extracto[i].saldo+"</td></tr>";
+				}else{
+					newRow += "<td>"+extracto[i].saldo+"</td></tr>";
+				}
+<<<<<<< HEAD
 				newRow +="</table>";   
 				document.getElementById("tabla").innerHTML = newRow;
 				//document.getElementById("tabla").style.display="block";
 			
+=======
+>>>>>>> prueba
 				
-			})
-			.catch(error => console.error('Error status:', error));	
+
+			}
+			newRow +="</table>";   
+			document.getElementById("tabla").innerHTML = newRow;
+			document.getElementById("tabla").style.display="block";
 		
-			var newRow4 ="";
+			
+		})
+		.catch(error => console.error('Error status:', error));	
+	
+
+		console.log("Aterata");
+		var newRow4 ="";
 		newRow4 += "<option>Selecciona una cuenta</option>";
-		
+	
 		for (let i = 0; i < cuentas.length; i++) {
 				
 			newRow4 += "<option value='"+cuentas[i].numcuenta+"'>"+cuentas[i].numcuenta+", "+cuentas[i].tipo+"</option>";
 		}
-		
+	
 		document.getElementById("Trans1").innerHTML = newRow4;
 
 		var newRow5 ="";
@@ -566,20 +689,18 @@ function loadExtracto(){
 		
 		document.getElementById("Trans2").innerHTML = newRow5;
 
-			document.getElementById("btnCancelar").addEventListener("click",function(){
-				CancelTrans();
-				document.getElementById("Trans1").value="";
-				document.getElementById("Trans2").value="";
-				document.getElementById("importe").value="";
-			  });
-			  document.getElementById("btnPedido").addEventListener("click",function(){
-				  Transferencia();
-				  	document.getElementById("Trans1").value="";
-					document.getElementById("Trans2").value="";
-					document.getElementById("importe").value="";
-			  });
+		document.getElementById("btnCancelar").addEventListener("click",function(){
+			CancelTrans();
+			document.getElementById("Trans1").value="";
+			document.getElementById("Trans2").value="";
+			document.getElementById("importe").value="";
 		});
-					
+		document.getElementById("btnPedido").addEventListener("click",function(){
+			Transferencia();
+			document.getElementById("Trans1").value="";
+			document.getElementById("Trans2").value="";
+			document.getElementById("importe").value="";
+		});
 	}
 
 	function AñadirFondos(){
