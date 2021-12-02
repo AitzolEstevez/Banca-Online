@@ -22,12 +22,7 @@ function loadExtracto(){
 		var stock = result.listStock;
 		var cuentas = result.listCuentas;
 
-<<<<<<< HEAD
-
-		BancaOnlineload(cuentas);
-=======
 		//BancaOnlineload(cuentas);
->>>>>>> prueba
 		
 
 		var newRow3="";
@@ -553,54 +548,17 @@ function loadExtracto(){
 		document.getElementById("btnRealizarPedido").style.display="none";
 
 		
-<<<<<<< HEAD
-		document.getElementById("SelectCuentas").addEventListener("change", function(){
-			
-			valor=document.getElementById("SelectCuentas").value;
-			console.log(valor);
-			
-=======
 		document.getElementById("SelectCuentas").addEventListener("change", CargarTabla);
 		
->>>>>>> prueba
 
 					
 	}
 
 	function CargarTabla(cuentas){
 
-<<<<<<< HEAD
-			fetch(url, {
-			  method: 'POST', // or 'POST'
-			  body: JSON.stringify(data),
-				headers:{'Content-Type': 'application/json'}  //input data
-			})
-			.then(res => res.json()).then(result => {
-				
-
-				//console.log("hola");
-				
-				
-
-				if (valor==-1) {
-					document.getElementById("tabla").style.display="none";
-					document.getElementById("AñadirFondos").disabled = true;
-				}else{
-					document.getElementById("tabla").style.display="block";
-
-					document.getElementById("AñadirFondos").disabled = false;
-				}
-			
-				var extracto = result.listExtracto;
-			
-				var newRow ="";
-				newRow +="<table> ";
-				newRow +="<tr><th>Fecha</th><th>Concepto</th><th>Importe</th><th>Saldo</th></tr>";
-=======
 
 		console.log("cargar tabla");
 		console.log(cuentas);
->>>>>>> prueba
 
 
 		valor=document.getElementById("SelectCuentas").value;
@@ -649,13 +607,6 @@ function loadExtracto(){
 				}else{
 					newRow += "<td>"+extracto[i].saldo+"</td></tr>";
 				}
-<<<<<<< HEAD
-				newRow +="</table>";   
-				document.getElementById("tabla").innerHTML = newRow;
-				//document.getElementById("tabla").style.display="block";
-			
-=======
->>>>>>> prueba
 				
 
 			}
