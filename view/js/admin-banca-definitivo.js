@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 
     loadPagina();
+    document.getElementById("linklogout").addEventListener("click",logout);
+    document.getElementById("btnlogout").addEventListener("click",logout);
     
 });
 
@@ -326,6 +328,7 @@ function loadMovimientos(){
         .then(res => res.json()).then(result => {
 
             var extracto = result.listExtracto;
+            console.log(extracto);
 
             var newRow = "";
             newRow += "<thead>";
@@ -358,13 +361,18 @@ function loadMovimientos(){
                     newRow += "<td>" + extracto[i].saldo + "</td></tr>";
                 }
 
-            }
-
-            document.querySelector(".saldo").innerHTML=extracto[0].saldo;
+            }        
 
             newRow += "</tbody>";
 
             document.querySelector(".table").innerHTML = newRow;
+
+            if (extracto.length==0) {
+                document.querySelector(".table tbody").innerHTML="";
+            }
+            else{
+                document.querySelector(".saldo").innerHTML=extracto[0].saldo;  
+            }
 
         })
         .catch(error => console.error('Error status:', error));
@@ -998,4 +1006,16 @@ function masmoney(){
         'No puedes transferir más dinero de lo que tienes en la cuenta',
         'error'
     )
+}
+function logout(){
+    var url = "controller/cLogout.php";
+
+    fetch(url, {
+    method: 'GET',
+    })
+    .then(res => res.text()).then(result => {
+
+        location.href="index.html";
+    })
+    .catch(error => console.error('Error status:', error));
 }

@@ -157,7 +157,7 @@ class CuentasModel extends CuentasClass
 
         $insert = false;
 
-        $sql = "insert into cuentas (id, numcuenta, tipo, saldo, borrado) VALUES (NULL, '$num', '$tipo', '0', '0');";
+        $sql = "insert into cuentas (id, numcuenta, tipo, saldo, borrado, idusuario) VALUES (NULL, '$num', '$tipo', 0, 0, 24);";
 
         if($this->link->query($sql)){
             $insert = true;
@@ -174,7 +174,7 @@ class CuentasModel extends CuentasClass
 
         $num=$this->numcuenta;
 
-        $exist = false;
+        $exist = -1;
 
         $sql= "select * from cuentas where numcuenta=$num";
 
@@ -182,7 +182,7 @@ class CuentasModel extends CuentasClass
 
 
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $exist = true;
+            $exist = $row['id'];
         }
 
         return $exist;

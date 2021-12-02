@@ -84,4 +84,27 @@ class UsuariosModel extends UsuariosClass
 
 
     }
+
+    public function createAdminUser(){
+
+        $this->OpenConnect();
+
+        $idcuenta=$this->idcuenta;
+
+        $sql="CALL createAdminUserFromCuenta($idcuenta)";
+
+        $result= $this->link->query($sql);
+
+        $userAdmin = false;
+
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){ 
+            $userAdmin = true;
+        }
+
+        return $userAdmin;
+        mysqli_free_result($result);
+        $this->CloseConnect();
+
+
+    }
 }

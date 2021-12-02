@@ -9,6 +9,6 @@ class connect_data
 
     public $passbbdd = '';
 
-    public $ddbbname = 'banco';
+    public $ddbbname = 'banco2';
 }
 

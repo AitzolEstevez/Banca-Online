@@ -8682,6 +8682,10 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     background: none;
 }
 
+.inputFecha input{
+    background: none;
+}
+
 @media screen and (min-width: 1200px) {
     .inputFecha{
         flex-wrap: wrap;

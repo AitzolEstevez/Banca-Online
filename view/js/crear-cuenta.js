@@ -48,6 +48,7 @@ function crear(){
             headers: {'Content-Type': 'application/json' }
         })
         .then(res => res.json()).then(result => {
+            alert(result.id);
 
             if(result.existe == "si"){
                 alert("Ya existe una cuenta con ese numero de cuenta");
