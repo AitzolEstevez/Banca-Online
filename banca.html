@@ -394,7 +394,7 @@
 											<div class='col-4 m-0'>
 												<h6 class='f-w-600'>Ingreso</h6>
 												<div class='d-flex inputCantidad'>
-													€ <input class='w-100' type='text' step="0.01" style='border: none; border-bottom: 1px solid #a2a8af;' placeholder='Cantidad' onkeypress="return onlyNumberKey(event)">
+													€ <input type='text' step="0.01" style='border: none; border-bottom: 1px solid #a2a8af; width: 70%;' placeholder='Cantidad' onkeypress="return onlyNumberKey(event)">
 												</div>
 											</div>
 											<div class='col-4 m-0 p-0' id="Transferencia">
@@ -408,11 +408,11 @@
 										<!--EN CASO DE PROVEEDOR-->
 										<div class='card-block itfFactura'
 											style='display: none; padding: 20px 25px; border-bottom: solid 1px rgba(0, 0, 0, 0.1);'>
-											<div class='row align-items-center justify-content-center card-active'>
-												<div class='col-6'>
+											<div style="justify-content: space-between;" class='d-flex align-items-center  card-active'>
+												<div style="width: 30%;">
 													<h5>Facturas</h5>
 												</div>
-												<div class='col-6 btnPedir'>
+												<div style="width: 30%; text-align: end;" class='btnPedir'>
 													<!--<button type='button' class='btn btn-primary'>
 														<h6 class='m-b-5 text-white'>Realizar Pedido</h6>
 													</button>-->
@@ -848,7 +848,7 @@
 													<option value='anual'>Anual</option>
 												</select>
 												<hr>
-												<button id='boton' class='btn btn-primary w-100 m-0' onclick="calcular();">
+												<button id='calcularPrestamo' class='btn btn-primary w-100 m-0' onclick="calcular();">
 													<h6 class='m-10' style='color: white;'>Calcular</h6>
 												</button>
 											</div>
@@ -919,7 +919,7 @@
 													<option value='anual'>Anual</option>
 												</select>
 												<hr>
-												<button class='btn btn-primary w-100 m-0' onclick="calcularLeasing();">
+												<button id="calcularLeasing" class='btn btn-primary w-100 m-0' onclick="calcularLeasing();">
 													<h6 class='m-10' style='color: white;'>Calcular</h6>
 												</button>
 											</div>
@@ -947,8 +947,9 @@
 	<script src='/view/js/pcoded.min.js'></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script src='/view/js/admin-banca-definitivo.js'></script>
-	<script src="/view/js/prestamo.js"></script>
 	<script src="/view/js/leasing.js"></script>
+	<script src="/view/js/prestamo.js"></script>
+
 
 
 </body>

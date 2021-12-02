@@ -475,8 +475,8 @@ function Proveedorload(proveedores) {
 
     var newRow2 = "";
     newRow2 += "<!-- Button trigger modal -->"
-        + "<button type='button' class='btn btn-primary' id='btnProveedor' data-bs-toggle='modal' data-bs-target='#PedidoModal'>"
-        + "<h6 class='m-b-5 text-white'>Realizar Pedido</h6>"
+        + "<button style='padding:20px 25px; border-radius:0;' type='button' class='btn btn-primary m-0' id='btnProveedor' data-bs-toggle='modal' data-bs-target='#PedidoModal'>"
+        + "<h6 class='m-0 text-white'>Realizar Pedido</h6>"
         + "</button>"
 
         + "<!-- Modal -->"
@@ -668,8 +668,13 @@ function Proveedorload(proveedores) {
                         var valorproducto = document.getElementById("SelectProducto").value;
                         var valorcantidad = document.getElementById("Cantidad");
 
-                        document.getElementById("modalImg").src = productos[index].img;
-                        precio = document.getElementById("Precio").value = productos[index].precio;
+                        var combo = document.getElementById("SelectProducto");
+                        var selected = combo.options.selectedIndex;
+                        selected -= 1;
+                        console.log(selected);
+
+                        document.getElementById("modalImg").src = productos[selected].img;
+                        precio = document.getElementById("Precio").value = productos[selected].precio;
 
                         if (valorproducto == -1) {
                             document.getElementById("Total").value = "";
@@ -894,6 +899,7 @@ function loadPrestamo() {
 
     /*Tabla
     -----------------------------------------------------------------------*/
+    document.querySelector(".table tbody").innerHTML = "";
     document.querySelector(".tabla").className = "col-xl-8 col-md-6 tabla";
     document.querySelector(".tabla").style.transition = "0.3s";
     document.querySelector(".leasing").style.display = "none";
@@ -940,6 +946,7 @@ function loadLeasing() {
 
     /*Tabla
     -----------------------------------------------------------------------*/
+    document.querySelector(".table tbody").innerHTML = "";
     document.querySelector(".tabla").className = "col-xl-8 col-md-6 tabla";
     document.querySelector(".tabla").style.transition = "0.3s";
     document.querySelector(".leasing").style.display = "block";

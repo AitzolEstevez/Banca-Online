@@ -8670,6 +8670,10 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     margin-bottom: 8px;
 }
 
+#contenedorModal{
+    text-align: start;
+}
+
 #transferenciaFlex div .form-control{
     background: none;
 }
