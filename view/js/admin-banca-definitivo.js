@@ -931,13 +931,21 @@ function loadLeasing() {
 
 /*Solo Numeros
 ------------------------------------------------------------------------------------------------*/
-function onlyNumberKey(evt) {
-
-    // Only ASCII character in that range allowed
-    var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-        return false;
-    return true;
+function onlyNumberKey(event){  // code is the decimal ASCII representation of the pressed key.
+  var code = (event.which) ? event.which : event.keyCode;
+	Response = false;
+	
+  if(code=="8") { // backspace.
+    Response = true;
+  } 
+   if(code>="48" && code<="57") { // is a number.
+    Response = true;
+  }
+  if(code=="44" || code=="46"){
+    Response = true;
+  } 
+  return Response;
+  
 }
 function Cancelar() {
     Swal.fire(
