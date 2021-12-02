@@ -1,662 +1,280 @@
-
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <link rel="dns-prefetch" href="//s3.envato.com" />
-
-    
-<script type="text/javascript" nonce="fbW2dWH9fqCfZAhYUV/l0A==">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","errorBeacon":"bam-cell.nr-data.net","licenseKey":"NRBR-281af528f2b1e2422b5","applicationID":"13909","transactionName":"NTU0DRQNDwshOmIZBRM3dR8TDg84Nys/FRQYBSoLAxQKAjM=","queueTime":1,"applicationTime":35,"agent":"","atts":"DXgvW1wZQRQtPChSS1QOMhwLByUINi0+BFNaeCgcEAsQDismb0pTFGpsHFAAUAJmNTA="}</script>
-<script type="text/javascript" nonce="fbW2dWH9fqCfZAhYUV/l0A==">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam-cell.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"NRBR-281af528f2b1e2422b5",applicationID:"13909"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var i=e[n]={exports:{}};t[n][0].call(i.exports,function(e){var i=t[n][1][e];return r(i||e)},i,i.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,n){function r(){}function i(t,e,n,r){return function(){return s.recordSupportability("API/"+e+"/called"),o(t+e,[u.now()].concat(c(arguments)),n?null:this,r),n?void 0:this}}var o=t("handle"),a=t(10),c=t(11),f=t("ee").get("tracer"),u=t("loader"),s=t(4),d=NREUM;"undefined"==typeof window.newrelic&&(newrelic=d);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",v=l+"ixn-";a(p,function(t,e){d[e]=i(l,e,!0,"api")}),d.addPageAction=i(l,"addPageAction",!0),d.setCurrentRouteName=i(l,"routeName",!0),e.exports=newrelic,d.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(t,e){var n={},r=this,i="function"==typeof e;return o(v+"tracer",[u.now(),t,n],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return e.apply(this,arguments)}catch(t){throw f.emit("fn-err",[arguments,this,t],n),t}finally{f.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){m[e]=i(v,e)}),newrelic.noticeError=function(t,e){"string"==typeof t&&(t=new Error(t)),s.recordSupportability("API/noticeError/called"),o("err",[t,u.now(),!1,e])}},{}],2:[function(t,e,n){function r(t){if(NREUM.init){for(var e=NREUM.init,n=t.split("."),r=0;r<n.length-1;r++)if(e=e[n[r]],"object"!=typeof e)return;return e=e[n[n.length-1]]}}e.exports={getConfiguration:r}},{}],3:[function(t,e,n){var r=!1;try{var i=Object.defineProperty({},"passive",{get:function(){r=!0}});window.addEventListener("testPassive",null,i),window.removeEventListener("testPassive",null,i)}catch(o){}e.exports=function(t){return r?{passive:!0,capture:!!t}:!!t}},{}],4:[function(t,e,n){function r(t,e){var n=[a,t,{name:t},e];return o("storeMetric",n,null,"api"),n}function i(t,e){var n=[c,t,{name:t},e];return o("storeEventMetrics",n,null,"api"),n}var o=t("handle"),a="sm",c="cm";e.exports={constants:{SUPPORTABILITY_METRIC:a,CUSTOM_METRIC:c},recordSupportability:r,recordCustom:i}},{}],5:[function(t,e,n){function r(){return c.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,c=t(12);e.exports=r,e.exports.offset=a,e.exports.getLastTimestamp=i},{}],6:[function(t,e,n){function r(t){return!(!t||!t.protocol||"file:"===t.protocol)}e.exports=r},{}],7:[function(t,e,n){function r(t,e){var n=t.getEntries();n.forEach(function(t){"first-paint"===t.name?p("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&p("timing",["fcp",Math.floor(t.startTime)])})}function i(t,e){var n=t.getEntries();if(n.length>0){var r=n[n.length-1];if(f&&f<r.startTime)return;p("lcp",[r])}}function o(t){t.getEntries().forEach(function(t){t.hadRecentInput||p("cls",[t])})}function a(t){if(t instanceof g&&!y){var e=Math.round(t.timeStamp),n={type:t.type};e<=l.now()?n.fid=l.now()-e:e>l.offset&&e<=Date.now()?(e-=l.offset,n.fid=l.now()-e):e=l.now(),y=!0,p("timing",["fi",e,n])}}function c(t){"hidden"===t&&(f=l.now(),p("pageHide",[f]))}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d,p=t("handle"),l=t("loader"),v=t(9),m=t(3),g=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){u=new PerformanceObserver(r);try{u.observe({entryTypes:["paint"]})}catch(h){}s=new PerformanceObserver(i);try{s.observe({entryTypes:["largest-contentful-paint"]})}catch(h){}d=new PerformanceObserver(o);try{d.observe({type:"layout-shift",buffered:!0})}catch(h){}}if("addEventListener"in document){var y=!1,w=["click","keydown","mousedown","pointerdown","touchstart"];w.forEach(function(t){document.addEventListener(t,a,m(!1))})}v(c)}},{}],8:[function(t,e,n){function r(t,e){if(!i)return!1;if(t!==i)return!1;if(!e)return!0;if(!o)return!1;for(var n=o.split("."),r=e.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}e.exports={agent:i,version:o,match:r}},{}],9:[function(t,e,n){function r(t){function e(){t(c&&document[c]?document[c]:document[o]?"hidden":"visible")}"addEventListener"in document&&a&&document.addEventListener(a,e,i(!1))}var i=t(3);e.exports=r;var o,a,c;"undefined"!=typeof document.hidden?(o="hidden",a="visibilitychange",c="visibilityState"):"undefined"!=typeof document.msHidden?(o="msHidden",a="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(o="webkitHidden",a="webkitvisibilitychange",c="webkitVisibilityState")},{}],10:[function(t,e,n){function r(t,e){var n=[],r="",o=0;for(r in t)i.call(t,r)&&(n[o]=e(r,t[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],11:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,i=n-e||0,o=Array(i<0?0:i);++r<i;)o[r]=t[e+r];return o}e.exports=r},{}],12:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,e,n){function r(){}function i(t){function e(t){return t&&t instanceof r?t:t?u(t,f,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!l.aborted||o){t&&a&&t(n,r,i);for(var c=e(i),f=m(n),u=f.length,s=0;s<u;s++)f[s].apply(c,r);var p=d[w[n]];return p&&p.push([b,n,r,c]),c}}function o(t,e){y[t]=m(t).concat(e)}function v(t,e){var n=y[t];if(n)for(var r=0;r<n.length;r++)n[r]===e&&n.splice(r,1)}function m(t){return y[t]||[]}function g(t){return p[t]=p[t]||i(n)}function h(t,e){l.aborted||s(t,function(t,n){e=e||"feature",w[n]=e,e in d||(d[e]=[])})}var y={},w={},b={on:o,addEventListener:o,removeEventListener:v,emit:n,get:g,listeners:m,context:e,buffer:h,abort:c,aborted:!1};return b}function o(t){return u(t,f,a)}function a(){return new r}function c(){(d.api||d.feature)&&(l.aborted=!0,d=l.backlog={})}var f="nr@context",u=t("gos"),s=t(10),d={},p={},l=e.exports=i();e.exports.getOrSetContext=o,l.backlog=d},{}],gos:[function(t,e,n){function r(t,e,n){if(i.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return t[e]=r,r}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){i.buffer([t],r),i.emit(t,e,n)}var i=t("ee").get("handle");e.exports=r,r.ee=i},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,o,function(){return i++})}var i=1,o="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!T++){var t=P.info=NREUM.info,e=g.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return u.abort();f(O,function(e,n){t[e]||(t[e]=n)});var n=a();c("mark",["onload",n+P.offset],null,"api"),c("timing",["load",n]);var r=g.createElement("script");0===t.agent.indexOf("http://")||0===t.agent.indexOf("https://")?r.src=t.agent:r.src=v+"://"+t.agent,e.parentNode.insertBefore(r,e)}}function i(){"complete"===g.readyState&&o()}function o(){c("mark",["domContent",a()+P.offset],null,"api")}var a=t(5),c=t("handle"),f=t(10),u=t("ee"),s=t(8),d=t(6),p=t(2),l=t(3),v=p.getConfiguration("ssl")===!1?"http":"https",m=window,g=m.document,h="addEventListener",y="attachEvent",w=m.XMLHttpRequest,b=w&&w.prototype,E=!d(m.location);NREUM.o={ST:setTimeout,SI:m.setImmediate,CT:clearTimeout,XHR:w,REQ:m.Request,EV:m.Event,PR:m.Promise,MO:m.MutationObserver};var x=""+location,O={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1212.min.js"},M=w&&b&&b[h]&&!/CriOS/.test(navigator.userAgent),P=e.exports={offset:a.getLastTimestamp(),now:a,origin:x,features:{},xhrWrappable:M,userAgent:s,disabled:E};if(!E){t(1),t(7),g[h]?(g[h]("DOMContentLoaded",o,l(!1)),m[h]("load",r,l(!1))):(g[y]("onreadystatechange",i),m[y]("onload",r)),c("mark",["firstbyte",a.getLastTimestamp()],null,"api");var T=0}},{}],"wrap-function":[function(t,e,n){function r(t,e){function n(e,n,r,f,u){function nrWrapper(){var o,a,s,p;try{a=this,o=d(arguments),s="function"==typeof r?r(o,a):r||{}}catch(l){i([l,"",[o,a,f],s],t)}c(n+"start",[o,a,f],s,u);try{return p=e.apply(a,o)}catch(v){throw c(n+"err",[o,a,v],s,u),v}finally{c(n+"end",[o,a,p],s,u)}}return a(e)?e:(n||(n=""),nrWrapper[p]=e,o(e,nrWrapper,t),nrWrapper)}function r(t,e,r,i,o){r||(r="");var c,f,u,s="-"===r.charAt(0);for(u=0;u<e.length;u++)f=e[u],c=t[f],a(c)||(t[f]=n(c,s?f+r:r,i,f,o))}function c(n,r,o,a){if(!v||e){var c=v;v=!0;try{t.emit(n,r,o,e,a)}catch(f){i([f,n,r,o],t)}v=c}}return t||(t=s),n.inPlace=r,n.flag=p,n}function i(t,e){e||(e=s);try{e.emit("internal-error",t)}catch(n){}}function o(t,e,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(t);return r.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(o){i([o],n)}for(var a in t)l.call(t,a)&&(e[a]=t[a]);return e}function a(t){return!(t&&t instanceof Function&&t.apply&&!t[p])}function c(t,e){var n=e(t);return n[p]=t,o(t,n,s),n}function f(t,e,n){var r=t[e];t[e]=c(r,n)}function u(){for(var t=arguments.length,e=new Array(t),n=0;n<t;++n)e[n]=arguments[n];return e}var s=t("ee"),d=t(11),p="nr@original",l=Object.prototype.hasOwnProperty,v=!1;e.exports=r,e.exports.wrapFunction=c,e.exports.wrapInPlace=f,e.exports.argsToArray=u},{}]},{},["loader"]);</script>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>HostSite - Hosting and Technology HTML + WHMCS Template Preview - ThemeForest</title>
-    <meta name="description" content="&amp;lt;a href=&amp;quot;https://themeforest.net/item/topten-digital-seo-agency-html5-template/26148134&amp;q...">
-    <meta name="robots" content="noindex, nofollow" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
-    <meta name="turbo-visit-control" content="reload">
-
-    <link rel="stylesheet" media="all" href="https://public-assets.envato-static.com/assets/market/core/index-28046e78b31562f9bbb501d4ac6d4c3b22ada77badb4837def795d6f0401cd8c.css" />
-    <link rel="stylesheet" media="all" href="https://public-assets.envato-static.com/assets/market/pages/preview/index-004d35cdd5d555cdd3e956d1b916825642de06529f0fe91fd9f390813761d2fc.css" />
-
-      <link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://public-assets.envato-static.com/icons/themeforest.net/apple-touch-icon-72x72-precomposed.png" sizes="72x72" />
-  <link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://public-assets.envato-static.com/icons/themeforest.net/apple-touch-icon-114x114-precomposed.png" sizes="114x114" />
-  <link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://public-assets.envato-static.com/icons/themeforest.net/apple-touch-icon-144x144-precomposed.png" sizes="144x144" />
-<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://public-assets.envato-static.com/icons/themeforest.net/apple-touch-icon-precomposed.png" />
-
-    <!--<script src="https://public-assets.envato-static.com/assets/market/pages/full_screen_preview/index-3434ecc8ee72db55dde518bd4f2a3f85d6c73b0dde839027aaedb790e40a4beb.js" nonce="fbW2dWH9fqCfZAhYUV/l0A=="></script>
-  --><script src="/web2.js" nonce="fbW2dWH9fqCfZAhYUV/l0A=="></script>
-
-
-    <script nonce="fbW2dWH9fqCfZAhYUV/l0A==">
-//<![CDATA[
-      //function to fix height of iframe!
-      var calcHeight = function() {
-        var headerDimensions = $('.preview__header').height();
-        $('.full-screen-preview__frame').height($(window).height() - headerDimensions);
-      }
-
-      $(document).ready(function() {
-        calcHeight();
-      });
-
-      $(window).resize(function() {
-        calcHeight();
-      }).load(function() {
-        calcHeight();
-      });
-
-//]]>
-</script>
-    
-  </head>
-  <body class="full-screen-preview">
-
-<iframe class="full-screen-preview__frame" src="https://html.crumina.net/hostsite/" name="preview-frame" frameborder="0" noresize="noresize" data-view="fullScreenPreview" allow="geolocation 'self'; autoplay 'self'">
-</iframe>
-
-
-    <script nonce="fbW2dWH9fqCfZAhYUV/l0A==">
-//<![CDATA[
-      $(function(){viewloader.execute(Views);});
-
-//]]>
-</script>
-    
-<div id="affiliate-tracker" class="is-hidden" data-view="affiliatesTracker" data-cookiebot-enabled="true"></div>
-
-      <script src="https://consent.cookiebot.com/uc.js" data-cbid="4a6af4ea-f614-41d8-b0a9-8bb6d7fe4799" async="async" id="Cookiebot" nonce="fbW2dWH9fqCfZAhYUV/l0A=="></script>
-
-
-  <script nonce="fbW2dWH9fqCfZAhYUV/l0A==">
-//<![CDATA[
-  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-
-    var consentCookie = getCookie('CookieConsent');
-
-    if (consentCookie) {
-      var hasConsent = Market.Helpers.CookieConsent.given('statistics');
-
-      if (hasConsent) {
-        setupGoogleAnalytics();
-        loadGoogleAnalytics();
-        loadLinkingForAllAccounts();
-      }
-    } else {
-      setupGoogleAnalytics();
-      loadGoogleAnalytics();
-      loadLinkingForAllAccounts();
-    }
-
-    window.addEventListener('CookiebotOnAccept', function (e) {
-      if (Cookiebot.consent.statistics) {
-        if (!(window.ga && ga.create)) {
-          setupGoogleAnalytics();
-          loadGoogleAnalytics();
-          loadLinkingForAllAccounts();
-        }
-      } else {
-        unloadGoogleAnalytics()
-      }
-      if (!consentToExperimentsEnrollmentGiven()) {
-        unenrollFromExperiments();
-      }
-    }, false);
-
-  function getCookie(name) {
-    var name = name + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var cookieContent = decodedCookie.split(';');
-
-    for(var i = 0; i <cookieContent.length; i++) {
-      var c = cookieContent[i];
-
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-
-    return false;
-  }
-
-  function delete_cookie_by_name(name) {
-    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  }
-
-  function unloadGoogleAnalytics() {
-    var payload = {"name":"m","allowLinker":true};
-    var accountId = "UA-11834194-7";
-
-    // Set the GA User Opt-out flag
-    window['ga-disable-'+accountId] = true;
-
-    // Do not explicitly make any further calls to ga()
-    ga(payload.name+".remove");
-
-    // Delete any existing GA cookies (_ga, _gat & _gaid) and GA Client ID from localStorage
-    delete_cookie_by_name('_ga');
-    delete_cookie_by_name('_gat');
-    delete_cookie_by_name('_gid');
-
-    // Delete LocalStorage Entries
-    if (Market.Helpers.GaLsUtils.localStorageAvailable()) {
-      var clientId = Market.Helpers.GaLsUtils.getClientId();
-
-      if (!clientId) {
-        return;
-      }
-
-      Market.Helpers.GaLsUtils.removeClientId();
-    }
-
-    // Do not transmit the Client ID to other sites upon navigation (i.e. autoLink)
-  }
-
-  function domLoaded() {
-    return new Promise(resolve => {
-      if (
-        document.readyState === 'interactive' ||
-        document.readyState === 'complete'
-      ) {
-        resolve()
-      } else {
-        document.addEventListener(
-          'DOMContentLoaded',
-          () => {
-            resolve()
-          },
-          {
-            capture: true,
-            once: true,
-            passive: true
-          }
-        )
-      }
-    })
-  }
-
-  function consentToExperimentsEnrollmentGiven () {
-    return Market.Helpers.CookieConsent.given('preferences') && Market.Helpers.CookieConsent.given('statistics');
-  }
-
-  function unenrollFromExperiments() {
-    var experimentEnrolmentsDataString = "_e1qQ7pGSx2YKGPOKsbnsg.1!dJ7HaGyISHOUSsMHRRj1Zg.3!woHsQGnZTViIWNi9XIE5Kg.1"
-    var experimentEnrolments = experimentEnrolmentsDataString.split('!')
-    var experimentEnrolmentsNames = _.map(experimentEnrolments, function(enrolment) {
-      return "market_experiment_" + enrolment.split('.')[0]
-    })
-    experimentCookieNames.push('market_experiments')
-    experimentCookieNames.push('mk_ex')
-
-    var deletedCookies = [];
-
-    _.each(experimentEnrolmentsNames, function(cookieName) {
-      if ($.cookie(cookieName) != null && $.cookie(cookieName) != '' && typeof($.cookie(cookieName)) != 'undefined') {
-        $.removeCookie(cookieName, { path: '/', domain: '.' + window.location.host });
-        deletedCookies.push(cookieName);
-      }
-    });
-
-    if(deletedCookies.length > 0 && typeof(t) != 'undefined') {
-      ga(t+'.set', "exp", null);
-      ga(t+'.set', "dimension21", null);
-      ga(t+'.set', "dimension22", null);
-    }
-  }
-
-  function setExperimentEnrollments(experimentEnrolmentsDataString) {
-    var cookieValue = $.cookie('mk_ex');
-    if (cookieValue && cookieValue.replaceAll('*', '!') === experimentEnrolmentsDataString) {
-      ga(t+'.set', "exp", experimentEnrolmentsDataString);
-      ga(t+'.set', "dimension21", experimentEnrolmentsDataString);
-      ga(t+'.set', "dimension22", experimentEnrolmentsDataString);
-    } else {
-      ga(t+'.set', "exp", null);
-      ga(t+'.set', "dimension21", null);
-      ga(t+'.set', "dimension22", null);
-    }
-  }
-
-  function loadLinkingForAllAccounts() {
-    domLoaded().then(() => {
-      var ACCOUNTS = ["m"];
-      window._envGaTrackerNames = ACCOUNTS;
-
-      for (var i = 0; i < ACCOUNTS.length; i++) {
-        t = ACCOUNTS[i];
-
-        ga(t+'.require', 'linker');
-
-        ga(t+'.require', 'linkid', 'linkid.js');
-      };
-
-      document.body.addEventListener('click', function(event) {
-        decorateLink(event);
-      });
-      document.body.addEventListener('contextmenu', function(event) {
-        // Aside from a normal click, we need to handle the variety of ways users
-        // can open a link in a new tab
-        // Right click to open context menu
-        decorateLink(event);
-      });
-      document.body.addEventListener('mousedown', function(event) {
-        // Aside from a normal click, we need to handle the variety of ways users
-        // can open a link in a new tab
-        // Middle mouse button click
-        if (event.button === 1) {
-          decorateLink(event);
-        }
-      });
-    });
-  }
-
-  function decorateLink(event) {
-
-    var ACCOUNTS = ["m"];
-    window._envGaTrackerNames = ACCOUNTS;
-
-    var currentTarget = jQuery(event.target);
-    var link = currentTarget.closest('a')[0];
-    var ourDomains = ["activeden.net","audiojungle.net","themeforest.net","videohive.net","graphicriver.net","3docean.net","codecanyon.net","photodune.net","market.styleguide.envato.com","elements.envato.com","build.envatohostedservices.com","author.envato.com","tutsplus.com","sites.envato.com","account.envato.com"];
-    var filteredDomains = ourDomains.filter(function(domain) {
-      return domain !== document.location.hostname;
-    });
-
-    for (var i = 0; i < ACCOUNTS.length; i++) {
-      t = ACCOUNTS[i];
-
-      if (link && link.href) {
-        if (filteredDomains.includes(link.hostname) || currentSiteLinkOpensInNewWindow(link)) {
-          ga(t+'.linker:decorate', link)
-        }
-      }
-    }
-  }
-
-  function currentSiteLinkOpensInNewWindow(link) {
-    return document.location.hostname === link.hostname && link.target === '_blank';
-  }
-
-  function setupGoogleAnalytics() {
-    (function () {
-      var accountId = "UA-11834194-7";
-      window['ga-disable-'+accountId] = false;
-
-      var options = {"name":"m","allowLinker":true};
-
-      if (Market.Helpers.GaLsUtils.localStorageAvailable()) {
-        if (Market.Helpers.GaLsUtils.clientIdNotPresent()) {
-          options.clientId = Market.Helpers.GaLsUtils.retrieveClientId();
-        }
-
-        ga("create", accountId, options);
-        ga(function() {
-          var tracker = ga.getByName(options.name);
-          Market.Helpers.GaLsUtils.storeClientId(tracker.get('clientId'));
-        })
-      } else {
-        ga("create", accountId, options);
-      }
-
-      var ACCOUNTS = ["m"];
-      window._envGaTrackerNames = ACCOUNTS;
-
-      for (var i = 0; i < ACCOUNTS.length; i++) {
-        t = ACCOUNTS[i];
-
-        ga(t+'.require', "GTM-5VPWWP");
-
-        ga(t+'.require', 'ec');
-
-        ga(t+'.require', 'displayfeatures');
-
-        ga(t+'.set', 'dimension20', 'other')
-
-        var itemPageIdMatch = window.location.pathname.match(/^\/item\/[a-z-]+\/(?:reviews\/)?(\d+)(?:\/comments|\/support)?$/);
-        if (itemPageIdMatch) {
-          // Fetch item ID from path
-          var itemId = itemPageIdMatch[1];
-          ga(t+'.set', 'dimension23', itemId);
-        }
-
-
-
-
-        if (!getCookie('CookieConsent') || consentToExperimentsEnrollmentGiven()) {
-          var experimentEnrolmentsDataString = "_e1qQ7pGSx2YKGPOKsbnsg.1!dJ7HaGyISHOUSsMHRRj1Zg.3!woHsQGnZTViIWNi9XIE5Kg.1"
-          setExperimentEnrollments(experimentEnrolmentsDataString);
-        }
-
-          if ('') {
-            ga(t+'.send', {
-              hitType: 'pageview',
-              page: ''
-            });
-          } else if ('') {
-            // append the analytics_suffix to the page path so the flash alert/error type can be tracked
-            var analyticsSuffix = $.trim('').replace(/([A-Z])/g, '$1').replace(/[-_\s]+/g, '-').toLowerCase();
-            var uri = URI(window.location.pathname + window.location.search);
-            uri.path(uri.path() + '/' + analyticsSuffix);
-            var tracking_path = uri.path() + uri.search();
-            ga(t+'.send', {
-              hitType: 'pageview',
-              page: tracking_path,
-            });
-          } else {
-            ga(t+'.send', 'pageview');
-          }
-      }
-
-      loadLinkingForAllAccounts()
-    }());
-  }
-
-  function loadGoogleAnalytics() {
-    (function () {
-
-      var s=document.createElement('script');
-      s.type='text/javascript';
-      s.async=true;
-        s.src='https://www.google-analytics.com/analytics.js';
-      var x=document.getElementsByTagName('script')[0];
-      x.parentNode.insertBefore(s,x);
-    }());
-  }
-
-  
-    var accountId = "UA-2995188-5";
-
-    var options = {
-      name: "author_analytics",
-      allowLinker: true,
-      alwaysSendReferrer: true,
-      cookieDomain: "auto",
-    };
-
-    if (Market.Helpers.GaLsUtils.localStorageAvailable()) {
-      if (Market.Helpers.GaLsUtils.clientIdNotPresent()) {
-        options.clientId = Market.Helpers.GaLsUtils.retrieveClientId();
-      }
-
-      ga("create", accountId, options);
-    } else {
-      ga("create", accountId, options);
-    }
-
-
-      ga("author_analytics.send", "pageview");
-
-
-
-
-//]]>
-</script>
-
-  
-<script nonce="fbW2dWH9fqCfZAhYUV/l0A==">
-//<![CDATA[
-
-    if (typeof Cookiebot !== 'undefined' && Cookiebot.consent && Cookiebot.consent.statistics ) {
-      enableGoogleAnalyticsLinkWrapper();
-    } else {
-      window.addEventListener('CookiebotOnAccept', function (e) {
-        if (Cookiebot.consent.statistics) {
-          enableGoogleAnalyticsLinkWrapper();
-        }
-      }, false);
-    }
-
-  function enableGoogleAnalyticsLinkWrapper() {
-    // GA: universal analytics link wrapper
-    (function(){
-        window._envTrkrs = [["m", "UA-11834194-7"]];
-
-        var debug = false;
-        var MAX_RETRIES = 10;
-
-        /*
-           The script needs to wait until the Analytics script
-           has been downloaded from Google before initializing
-        */
-        var waitForAnalytics = function(){
-            this.count = this.count || 0;
-
-            if (window.ga && ga.getByName) {
-                e.init();
-            } else {
-                if (count < MAX_RETRIES) { setTimeout(waitForAnalytics, 250); }
-                count++;
-            }
-        };
-
-        var e = {
-            _envArray: [],
-            _envTrkrs: (window._envTrkrsCust && window._envTrkrsCust.length) ? window._envTrkrs.concat(window._envTrkrsCust) : window._envTrkrs,
-            init: function() {
-                for (var i=0; i < _envTrkrs.length; i++) {
-                    var name = _envTrkrs[i][0];
-
-                    if (!ga.getByName(name)) {
-                        var accountId = _envTrkrs[i][1];
-
-                        var options = {
-                            name: name,
-                            allowLinker: true,
-                            cookieDomain: "auto",
-                        };
-
-                        if (Market.Helpers.GaLsUtils.localStorageAvailable()) {
-                            if (Market.Helpers.GaLsUtils.clientIdNotPresent()) {
-                                options.clientId = Market.Helpers.GaLsUtils.retrieveClientId();
-                            }
-
-                            ga("create", accountId, options);
-                        } else {
-                            ga("create", accountId, options);
-                        }
-                    }
-                }
-
-                document.addEventListener('DOMContentLoaded', function(){
-                    e.wrapperInit();
-                });
-
-                if (debug) {console.log('Initiated');}
-            },
-            wrapperInit: function() {
-                if (typeof window._envIsRunning != 'undefined' || window._envIsRunning == true) {
-                    return
-                }
-                window._envIsRunning = true;
-
-                if (document.addEventListener) {
-                    document.addEventListener('click', function(event){
-                        var target = event.target;
-                        if (target && target.tagName === 'A') {
-                            e._envLinksTracker(event);
-                        }
-                    });
-                }
-            },
-            isInArray: function(e, t) {
-                for (var n = 0; n < t.length; n++) {
-                    var r = new RegExp(t[n], 'i');
-                    if (r.test(e)) {
-                        return n
-                    }
-                }
-                return -1
-            },
-            _envTrackevent: function(e, t, n, r) {
-                for (var i = 0; i < this._envTrkrs.length; i++) {
-                    var s = this._envTrkrs[i][0].length == 0 ? '' : this._envTrkrs[i][0] + '.';
-                    r.length == 0 ? ga(s + 'send', 'event', e, t, n) : ga(s + 'send', 'event', e, t, n, r)
-                }
-            },
-            _envTrackpageview: function(e, t) {
-                t = t.charAt(0) == '/' ? t : '/' + t;
-                for (var n = 0; n < this._envTrkrs.length; n++) {
-                    var r = this._envTrkrs[n][0].length == 0 ? '' : this._envTrkrs[n][0] + '.';
-                    ga(r + 'send', 'pageview', e + t);
-                }
-            },
-            _envLinksTracker: function(t) {
-                var r = false;
-                var i = {
-                    outbound: {
-                        run: true,
-                        useEvent: true
-                    },
-                    download: {
-                        run: true,
-                        useEvent: true,
-                        reg: ''
-                    },
-                    self: {
-                        run: false,
-                        useEvent: true
-                    },
-                    mail: {
-                        run: true,
-                        useEvent: true
-                    },
-                    ext: /\.(doc.?|xls.?|ppt.?|exe|zip|rar|gz|tar|tgz|dmg|csv|pdf|xpi|txt|mp3)$/i
-                };
-                var s = t.srcElement ? t.srcElement : this;
-                if (t.srcElement) {
-                    r = true
-                }
-                while (s.tagName != 'A') {
-                    s = s.parentNode
-                }
-                if (s.href == undefined || s.href == null) {
-                    return true
-                }
-                var o = s.href;
-                if (o.length == 0) return;
-                var u = s.hostname.toLowerCase();
-                var a = s.pathname;
-                if (a.length == 0) {
-                    a = '/'
-                } else if (a.substr(0, 1) != '/') {
-                    a = '/' + a
-                }
-                var f = s.protocol;
-                var l = s.search;
-                var c = location.hostname;
-                c = c.replace(/^www\./i, '').toLowerCase();
-                u = u.replace(/^www\./i, '').toLowerCase();
-                if (o.match(/^#/)) {
-                    if (i.self.run) {
-                        i.self.useEvent ? e._envTrackevent('self', 'click - ' + c, o, '') : e._envTrackpageview('/virtual/self', '/' + o);
-                        return true
-                    }
-                } else if (f.match(/^mailto:/i)) {
-                    if (i.mail.run) {
-                        o = o.replace(/^mailto:/i, '');
-                        i.mail.useEvent ? e._envTrackevent('mailto', 'click - ' + c, o, '') : e._envTrackpageview('/virtual/mailto', o);
-                        return true
-                    }
-                } else if ((new RegExp(i.ext)).test(a)) {
-                    if (i.download.run) {
-                        o = o.replace(/^https?:\/\//i, '');
-                        i.download.useEvent ? e._envTrackevent('download', 'click - ' + c, o, '') : e._envTrackpageview('/virtual/download', o);
-                        return true
-                    }
-                } else if (u == undefined || u.length == 0 || f.match(/^javascript:/i)) {
-                    return
-                } else if ((new RegExp(c + '$', 'i')).test(u) || (new RegExp(u + '$', 'i')).test(c)) {
-                    if (i.download.run && i.download.reg.length != 0) {
-                        if ((new RegExp(i.download.reg, 'i')).test(a + l)) {
-                            o = o.replace(/^https?:\/\//i, '');
-                            i.download.useEvent ? e._envTrackevent('download', 'click - ' + c, o, '') : e._envTrackpageview('/virtual/download', o);
-                            return true
-                        }
-                    }
-                } else if (u != c) {
-                    if (e.isInArray(u, e._envArray) == -1) {
-                        if (i.outbound.run) {
-                            i.outbound.useEvent ? e._envTrackevent('outbound', 'click - ' + c, u + a + l, '') : e._envTrackpageview('/virtual/outbound', u + a);
-                            return true
-                        }
-                    } else if (e.isInArray(u, e._envArray) != -1) {
-                        var h = s.target;
-                        if (h != null && h == '_blank') {
-                            if ((new RegExp(/_utma=/)).test(l)) {
-                                return true
-                            }
-                            var p = e._envTrkrs[0][0].length == 0 ? '' : _envTrkrs[0][0] + '.';
-                            return true
-                        } else {
-                            return false
-                        }
-                    }
-                }
-            }
-        };
-
-        waitForAnalytics();
-    })()
-  }
-
-//]]>
-</script>
-
-
-
-<script nonce="fbW2dWH9fqCfZAhYUV/l0A==">
-//<![CDATA[
-  // Set New Relic custom attributes
-  (function () {
-    if (typeof newrelic !== 'undefined') {
-      newrelic.setCustomAttribute('pageType', 'other')
-
-      // Log experiment enrolment
-      var experiment_data_string = "_e1qQ7pGSx2YKGPOKsbnsg.1!dJ7HaGyISHOUSsMHRRj1Zg.3!woHsQGnZTViIWNi9XIE5Kg.1" + "!"
-      newrelic.setCustomAttribute('experiments', experiment_data_string)
-    }
-  })()
-
-//]]>
-</script>
-
-  <script nonce="fbW2dWH9fqCfZAhYUV/l0A==">
-//<![CDATA[
-    if (typeof Cookiebot !== 'undefined' && Cookiebot.consent && Cookiebot.consent.marketing) {
-      enableGoogleTagManager();
-    } else {
-      window.addEventListener('CookiebotOnAccept', function (e) {
-        if (Cookiebot.consent.marketing) {
-          enableGoogleTagManager();
-        }
-      }, false);
-    }
-
-  function enableGoogleTagManager() {
-    var gtmId = 'GTM-585RXMV';
-    // Google Tag Manager Tracking Code
-    (function(w,d,s,l,i) {
-      w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});
-      var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer',gtmId);
-
-
-    window.addEventListener('load', function() {
-      window.dataLayer.push({
-        event: 'pinterestReady'
-      });
-    });
-  }
-
-//]]>
-</script>
-
-
-</body></html>
+<!DOCTYPE html><!-- This site was created in Webflow. http://www.webflow.com -->
+<!-- Last Published: Tue Oct 16 2018 11:58:06 GMT+0000 (UTC) -->
+<html data-wf-domain="momentum-template.webflow.io" data-wf-page="5af49de0dbb1e358142d8887"
+    data-wf-site="5af49de0dbb1e3637f2d8886" data-wf-status="1">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Landing page template - Webflow HTML website template</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Webflow" name="generator" />
+    <link href="/view/css/web.css"
+        rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js" type="text/javascript"></script>
+    <script
+        type="text/javascript">WebFont.load({ google: { families: ["Gothic A1:300,regular,500,600,700,800"] } });</script>
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif]-->
+    <script
+        type="text/javascript">!function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);</script>
+    <link href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon" />
+</head>
+
+<body class="body">
+    <div class="hero">
+        <div data-collapse="medium" data-animation="default" data-duration="400" data-doc-height="1" class="nav w-nav">
+            <div class="nav-inner">
+                <div class="nav-logo-wrap"><a href="#" class="brand w-nav-brand"></a></div>
+                <div class="nav-menu-wrap">
+                    <nav role="navigation" class="nav-menu-2 w-nav-menu"><a href="#about"
+                            class="nav-link w-nav-link">About</a><a href="#features"
+                            class="nav-link w-nav-link">Features</a><a href="#how-to-use"
+                            class="nav-link w-nav-link">How to Use</a><a href="#download"
+                            class="nav-link w-nav-link">Download</a></nav>
+                    <div class="menu-button w-nav-button">
+                        <div class="menu-icon w-icon-nav-menu"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section center">
+        <div data-w-id="6b220cb1-4b9c-7fb0-75b9-53ff4a6c35a2"
+            style="-webkit-transform:translate3d(0, 30PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+            class="hero-content">
+            
+            <h1 class="heading-3">Drones</h1>
+            <h3 class="hero-subhead">Los drones más avanzados se encuentran aquí. </h3>
+        </div><img src="https://www.seilergeodrones.com/wp-content/uploads/sites/10/2019/12/Mavic-2-Ent-Dual-Webpage-1.png"
+            srcset="https://www.seilergeodrones.com/wp-content/uploads/sites/10/2019/12/Mavic-2-Ent-Dual-Webpage-1.png 500w, https://www.seilergeodrones.com/wp-content/uploads/sites/10/2019/12/Mavic-2-Ent-Dual-Webpage-1.png 731w"
+            sizes="(max-width: 479px) 80vw, (max-width: 991px) 70vw, 100vw"
+            data-w-id="77e69727-c455-8e07-0990-833a661c94ea"
+            style="-webkit-transform:translate3d(0, 60PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 60PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 60PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 60PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+            alt="" class="hero-image" />
+
+    </div>
+
+    <div class="section">
+        <div id="features" class="feature-wrap">
+            <div data-w-id="4593c4b7-56e8-060a-be57-648b0e08fc65"
+                style="-webkit-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+                class="feature-content">
+                <div class="title">Aenean Consectetur</div>
+                <h2 class="black">Cay sociis nato que penatibus et</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
+                    tristique. </p>
+            </div>
+            <div class="feature-image"><img
+                    src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11c6a9804c1fef0bd52833_app-06.png"
+                    width="341" alt="" class="image-2" /></div>
+        </div>
+        <div class="feature-wrap reverse">
+            <div data-w-id="cafe0045-d304-79d9-8f68-af3adaed06e9"
+                style="-webkit-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+                class="feature-content">
+                <div class="title">ConsectUltricies </div>
+                <h2 class="black-text">Amet Ipsum </h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
+                    tristique. </p>
+            </div>
+            <div class="feature-image"><img
+                    src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11bd467f519f18c7efccba_app-05.png"
+                    width="386"
+                    srcset="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11bd467f519f18c7efccba_app-05-p-500.png 500w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11bd467f519f18c7efccba_app-05.png 540w"
+                    sizes="(max-width: 479px) 90vw, (max-width: 991px) 40vw, 25vw" alt="" class="image-2" /></div>
+        </div>
+        <div class="feature-wrap">
+            <div data-w-id="88086931-0bbf-a2f5-1fc3-58d79ba19b7e"
+                style="-webkit-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+                class="feature-content">
+                <div class="title">Aenean Consectetur Porta</div>
+                <h2 class="black-text">Magna Porta Sit Bibendum</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
+                    tristique. </p>
+            </div>
+            <div class="feature-image"><img
+                    src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b10d56ff2733b40d5e55e64_app-04.png"
+                    width="341" alt="" class="image-2" /></div>
+        </div>
+        <div class="feature-wrap icons">
+            <div class="feature-content icons"><img
+                    src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11be7f11a9de6a863497c0_icon-burger-magenta.svg"
+                    width="80" alt="" class="feature-icon" />
+                <h4 class="black-text">Activity Notifications</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
+                    tristique. </p>
+            </div>
+            <div class="feature-content icons"><img
+                    src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11be87d0d5fe5d7ff154af_icon-silverware-magenta.svg"
+                    width="74" alt="" class="feature-icon" />
+                <h4 class="black-text">Custom Timing</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
+                    tristique. </p>
+            </div>
+            <div class="feature-content icons"><img
+                    src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11be8e11a9dee3ed3497c6_icon-data-magenta.svg"
+                    alt="" class="feature-icon" />
+                <h4 class="black-text">Mobile Optimized</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
+                    tristique. </p>
+            </div>
+        </div>
+        <div class="feature-wrap icons numbers">
+            <div class="feature-content icons numbers">
+                <div class="number">+12k</div>
+                <h4 class="black-text">Nibh Elit Tristique</h4>
+            </div>
+            <div class="feature-content icons numbers">
+                <div class="number">84</div>
+                <h4 class="black-text">Aenean Condimentum </h4>
+            </div>
+            <div class="feature-content icons numbers">
+                <div class="number">3,07</div>
+                <h4 class="black-text">Quam Inceptos</h4>
+            </div>
+            <div class="feature-content icons numbers">
+                <div class="number">24h</div>
+                <h4 class="black-text">Ullamcorper </h4>
+            </div>
+        </div>
+        <div id="about" class="section wide img">
+            <div data-w-id="b126983d-9126-fc06-c81d-1318685e2add"
+                style="-webkit-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+                class="wrap">
+                <div class="title">Aenean Consectetur Porta</div>
+                <h2>Nullam quis risus eget urna mollis ornare vel eu leo.</h2>
+            </div>
+            <div class="wrapper"><img
+                    src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa1b861bc189407c1a9b2c_dash-device.png"
+                    srcset="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa1b861bc189407c1a9b2c_dash-device-p-500.png 500w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa1b861bc189407c1a9b2c_dash-device-p-800.png 800w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa1b861bc189407c1a9b2c_dash-device-p-1080.png 1080w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa1b861bc189407c1a9b2c_dash-device-p-1600.png 1600w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa1b861bc189407c1a9b2c_dash-device.png 1903w"
+                    sizes="90vw" alt="" /></div>
+        </div>
+        <div id="how-to-use" class="feature-wrap">
+            <div data-w-id="0585a81c-ee42-8b56-bc8e-bd582946320a"
+                style="-webkit-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+                class="feature-content">
+                <div class="title">Aenean Consectetur Porta</div>
+                <h2 class="black-text">Sem Risus Elit Vestibulum</h2>
+                <p>Nulla vitae elit libero, a pharetra augue. Duis mollis, est non commodo luctus, nisi erat porttitor
+                    ligula, eget lacinia odio sem nec elit. <a href="#">Cras mattis consectetur</a> purus sit amet
+                    fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis
+                    euismod.</p>
+            </div>
+            <div class="feature-image"><img
+                    src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa50601bc189f92b1ad1f1_img-003.jpg"
+                    width="519"
+                    srcset="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa50601bc189f92b1ad1f1_img-003-p-500.jpeg 500w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa50601bc189f92b1ad1f1_img-003-p-1080.jpeg 1080w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa50601bc189f92b1ad1f1_img-003-p-1600.jpeg 1600w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa50601bc189f92b1ad1f1_img-003.jpg 1982w"
+                    sizes="(max-width: 479px) 90vw, (max-width: 767px) 40vw, (max-width: 991px) 45vw, 27vw" alt=""
+                    class="image-2" /></div>
+        </div>
+        <div class="feature-wrap reverse">
+            <div data-w-id="d79d0682-95d0-be91-6539-b82f492963f4"
+                style="-webkit-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+                class="feature-content">
+                <div class="title">Aenean Consectetur Porta</div>
+                <h2 class="black-text">Parturient Tortor</h2>
+                <p>Nulla vitae elit libero, a pharetra augue. Duis mollis, est non commodo luctus, nisi erat porttitor
+                    ligula, eget lacinia odio sem nec elit. <a href="#">Cras mattis consectetur</a> purus sit amet
+                    fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis
+                    euismod.</p>
+            </div>
+            <div class="feature-image"><img
+                    src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa506095815377cd097a34_img-002.jpg"
+                    width="519"
+                    srcset="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa506095815377cd097a34_img-002-p-500.jpeg 500w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa506095815377cd097a34_img-002-p-1080.jpeg 1080w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa506095815377cd097a34_img-002-p-1600.jpeg 1600w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5afa506095815377cd097a34_img-002.jpg 1982w"
+                    sizes="(max-width: 479px) 90vw, (max-width: 767px) 40vw, (max-width: 991px) 45vw, 27vw" alt=""
+                    class="image-2" /></div>
+        </div>
+        <div data-animation="slide" data-nav-spacing="8" data-duration="500" data-infinite="1"
+            data-w-id="321c18fb-db93-7e62-3afc-4dab2862f5d4"
+            style="-webkit-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+            class="quote-slider w-slider">
+            <div class="w-slider-mask">
+                <div class="w-slide">
+                    <div class="quote-wrap"><img
+                            src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b14481dda3c5c4b9bfe5147_quotation.svg"
+                            width="58" alt="" class="quote-icon" />
+                        <h3>HeadNulla vitae elit libero, a pharetra augue. Duis mollis, est non commodo luctus, nisi
+                            erat porttitor ligula, eget lacinia odio sem nec elit. Pus sit amet fermentum. Donec id elit
+                            non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.ing</h3>
+                        <div class="quote-attribution">
+                            <p>Joshua Home</p>
+                            <div class="quote-dash"></div>
+                            <p><strong>New York Times</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-slide">
+                    <div class="quote-wrap"><img
+                            src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b14481dda3c5c4b9bfe5147_quotation.svg"
+                            width="58" alt="" class="quote-icon" />
+                        <h3>HeadNulla vitae elit libero, a pharetra augue. Duis mollis, est non commodo luctus, nisi
+                            erat porttitor ligula, eget lacinia odio sem nec elit. Pus sit amet fermentum. Donec id elit
+                            non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.ing</h3>
+                        <div class="quote-attribution">
+                            <div class="quote-dash"></div>
+                            <p>Nulla vitae elit libero, a pharetra augue.</p>
+                            <p><strong>New York Times</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="left-arrow w-slider-arrow-left">
+                <div class="slider-arrow w-icon-slider-left"></div>
+            </div>
+            <div class="right-arrow w-slider-arrow-right">
+                <div class="slider-arrow w-icon-slider-right"></div>
+            </div>
+            <div class="slide-nav w-slider-nav w-slider-nav-invert w-round"></div>
+        </div>
+        <div data-w-id="23f92271-dba9-fb12-00d3-758ef4d10fb2"
+            style="-webkit-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+            class="feature-wrap logos"><img
+                src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11c4dc541a84578a131910_logos.png"
+                srcset="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11c4dc541a84578a131910_logos-p-500.png 500w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11c4dc541a84578a131910_logos-p-800.png 800w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11c4dc541a84578a131910_logos-p-1080.png 1080w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11c4dc541a84578a131910_logos-p-1600.png 1600w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b11c4dc541a84578a131910_logos.png 2720w"
+                sizes="(max-width: 991px) 90vw, (max-width: 3885px) 70vw, 2720px" alt="" /></div>
+    </div>
+    <div class="bottom-image-wrap"><img
+            src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b10cd0c3a8396da6772516b_bg-apps.jpg"
+            srcset="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b10cd0c3a8396da6772516b_bg-apps-p-500.jpeg 500w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b10cd0c3a8396da6772516b_bg-apps-p-1080.jpeg 1080w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b10cd0c3a8396da6772516b_bg-apps-p-2000.jpeg 2000w, https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b10cd0c3a8396da6772516b_bg-apps.jpg 2500w"
+            sizes="(max-width: 2500px) 100vw, 2500px" alt="" /></div>
+
+    <div class="section wide">
+        <div data-w-id="8cf47482-19f1-1f52-25ba-910a60bc91de"
+            style="-webkit-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+            class="wrap">
+            <h2>Get updates from Richard</h2>
+            <p>New course alerts, discounts and free lessons</p>
+            <div class="form-block w-form">
+                <form id="email-form" name="email-form" data-name="Email Form" class="form-2"><input type="text"
+                        class="input w-input" maxlength="256" name="email-2" data-name="Email 2"
+                        placeholder="Enter your email" id="email-2" required="" /><input type="submit" value="Subscribe"
+                        data-wait="Please wait..." class="button form-button w-button" /></form>
+                <div class="w-form-done">
+                    <div>Thank you! Your submission has been received!</div>
+                </div>
+                <div class="w-form-fail">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper"></div>
+    </div>
+    <div class="footer">
+        <div class="wrap"><img
+                src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/5b149b03d0d5fe3279f270f1_icon-footer.png"
+                width="136" alt="" />
+            <div class="footer-list"><a href="" class="footer-link">Email</a><a href=""
+                    class="footer-link">Instagram</a><a href="" class="footer-link">Facebook</a><a href=""
+                    class="footer-link">Twitter</a><a href="/image-license-info" class="footer-link">Image License
+                    Info</a><a href="http://webflow.com" class="footer-link">Powered by Webflow</a></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://uploads-ssl.webflow.com/5af49de0dbb1e3637f2d8886/js/webflow.85c1db4b0.js"
+        type="text/javascript"></script>
+    <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+
+</html>
