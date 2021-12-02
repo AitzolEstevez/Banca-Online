@@ -94,6 +94,7 @@ function BancaOnlineload(cuentas) {
     document.querySelector(".itfFactura").style.display = "none";
     document.querySelector(".itfStock").style.display = "none";
     document.querySelector(".itfPrestamo").style.display = "none";
+    document.querySelector(".itfLeasing").style.display = "none";
     document.querySelector(".itfBanca").style.display = "block";
 
 
@@ -427,6 +428,7 @@ function Proveedorload(proveedores) {
     document.querySelector(".itfBanca").style.display = "none";
     document.querySelector(".itfBanca2").style.display = "none";
     document.querySelector(".itfPrestamo").style.display = "none";
+    document.querySelector(".itfLeasing").style.display = "none";
     document.querySelector(".itfFactura").style.display = "block";
 
     /*Tabla
@@ -838,6 +840,7 @@ function MiStockload(stock) {
     document.querySelector(".itfBanca2").style.display = "none";
     document.querySelector(".itfFactura").style.display = "none";
     document.querySelector(".itfPrestamo").style.display = "none";
+    document.querySelector(".itfLeasing").style.display = "none";
     document.querySelector(".itfStock").style.display = "block";
 
     /*Tabla
@@ -886,6 +889,7 @@ function loadPrestamo() {
     document.querySelector(".itfStock").style.display = "none";
     document.querySelector(".itfBanca").style.display = "none";
     document.querySelector(".itfBanca2").style.display = "none";
+    document.querySelector(".itfLeasing").style.display = "none";
     document.querySelector(".itfPrestamo").style.display = "block";
 
     /*Tabla
@@ -918,22 +922,53 @@ function loadPrestamo() {
 
     document.querySelector(".table").innerHTML = newRow;
 
-
-
-
 }
 
 /*loadLeasing
 ------------------------------------------------------------------------------------------------*/
 function loadLeasing() {
 
+    /*Interfaz
+    -----------------------------------------------------------------------*/
+    document.querySelector(".itfDefault").style.display = "none";
+    document.querySelector(".itfFactura").style.display = "none";
+    document.querySelector(".itfStock").style.display = "none";
+    document.querySelector(".itfBanca").style.display = "none";
+    document.querySelector(".itfBanca2").style.display = "none";
+    document.querySelector(".itfPrestamo").style.display = "none";
+    document.querySelector(".itfLeasing").style.display = "block";
+
     /*Tabla
     -----------------------------------------------------------------------*/
     document.querySelector(".tabla").className = "col-xl-8 col-md-6 tabla";
     document.querySelector(".tabla").style.transition = "0.3s";
-    document.querySelector(".prestamo").style.display = "none";
     document.querySelector(".leasing").style.display = "block";
+    document.querySelector(".prestamo").style.display = "none";
+    document.getElementById("div-valor-cuota").innerHTML="";
+    document.getElementById("div-comentario").innerHTML="";
 
+    document.getElementById("input_monto1").value="";
+    document.getElementById("input_cuotas1").value="";
+    document.getElementById("input_tasa1").value="";
+    document.getElementById("select_tasa_tipo2").value=-1;
+    document.getElementById("select_periodo2").value=-1;
+
+    var newRow = "";
+    newRow += "<thead>";
+    newRow += "<tr>";
+    newRow += "<th><span>NÚMERO</span></th>";
+    newRow += "<th><span>VALOR DE LA CUOTA</span></th>";
+    newRow += "<th><span>IVA</span></th>";
+    newRow += "<th><span>CUOTA</span></th>";
+    newRow += "<th><span>INTERÉS</span></th>";
+    newRow += "<th><span>ABONO AL CAPITAL</span></th>";
+    newRow += "<th><span>DEUDA</span></th>";
+    newRow += "</tr>";
+    newRow += "</thead>";
+    newRow += "<tbody id='tbody_2'>";
+    newRow += "</tbody>";
+
+    document.querySelector(".table").innerHTML = newRow;
 
 }
 
