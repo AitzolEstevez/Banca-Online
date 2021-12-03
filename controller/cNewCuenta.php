@@ -16,24 +16,19 @@ $response = array();
 
 $cuenta->numcuenta=$num;
 $cuenta->tipo=$tipo;
-$respuesta=$cuenta->ifExistCuenta();
-$response['id']=$respuesta;
 
-if($respuesta != -1){
-    $response['existe'] = "si";
-}else{
+if($cuenta->ifExistCuenta() == -1){
     $response['existe'] = "no";
+}else{
+    $response['existe'] = "si";
 }
 
 if($response['existe'] == "no"){
     if($cuenta->createCuenta()){
-        $idcuenta = $cuenta->ifExistCuenta();
-        $usuario->idcuenta=$idcuenta;
-        $usuario->createAdminUser();
-        $response['creado'] = "Cuenta creada correctamente";
+        $response['creado'] = "si";
+    }else{
+        $response['creado'] = "no";
     }
-}else{
-    $response['creado'] = "No se ha creado la cuenta";
 }
 
 
