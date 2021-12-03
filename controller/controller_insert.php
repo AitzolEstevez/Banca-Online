@@ -50,7 +50,7 @@ if($realizarpedido==1){
 
 
     ////////////STOCK//////////////
-    $stock->idproducto=$proveedor;
+    $stock->idproducto=$producto;
     $stock->stock=$cantidad;
     $stock->precio=$precio;
     $stock->img=$img;

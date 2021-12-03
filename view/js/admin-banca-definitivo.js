@@ -76,6 +76,9 @@ function loadPagina() {
 ------------------------------------------------------------------------------------------------*/
 function BancaOnlineload(cuentas) {
 
+    document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>-";
+    document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>-";
+
     document.querySelector(".table").innerHTML = "";
 
     var newRow = "";
@@ -261,11 +264,23 @@ function BancaOnlineload(cuentas) {
                 newRow += "<tbody>";
     
                 for (let i = 0; i < extractofecha.length; i++) {
-    
+
                     newRow += "<tr>" + "<td>" + extractofecha[i].fecha + "</td>";
                     newRow += "<td>" + extractofecha[i].concepto + "</td>";
-                    newRow += "<td>" + extractofecha[i].importe + "</td>";
-                    newRow += "<td>" + extractofecha[i].saldo + "</td></tr>";
+
+                    if (extractofecha[i].importe > 0) {
+                        newRow += "<td style='color:#15D800;'>+" + extractofecha[i].importe + "</td>";
+                    } else if (extractofecha[i].importe < 0) {
+                        newRow += "<td style='color:red;'>" + extractofecha[i].importe + "</td>";
+                    }
+    
+                    if (extractofecha[i].saldo > 0) {
+                        newRow += "<td>" + extractofecha[i].saldo + "</td></tr>";
+                    } else if (extractofecha[i].saldo < 0) {
+                        newRow += "<td style='color:red;'>" + extractofecha[i].saldo + "</td></tr>";
+                    } else {
+                        newRow += "<td>" + extractofecha[i].saldo + "</td></tr>";
+                    }
                 
                 }
     
