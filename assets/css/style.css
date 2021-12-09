@@ -659,24 +659,9 @@ p.arrival-review span {margin-right: 15px;}
     background-position: center;
     background-size: cover;
 }
-.sofa-collection.collectionbg1{background: url(https://www.wallpapertip.com/wmimgs/30-301307_drone-mavic-pro-2.jpg)no-repeat; background-size: cover; background-position-y: -100px;}
-.sofa-collection.collectionbg2{background: url(https://www.10wallpaper.com/wallpaper/2560x1600/1710/DJI_Spark_Drones_2017_Tech_Wallpaper_2560x1600.jpg)no-repeat; background-size: cover; background-position-y: -350px;}
+.sofa-collection.collectionbg1{background: url(https://pixabay.com/get/g826fae6903852e1cb6a078e1eb6a4035038a4342d7d3e88b715a624f876947af2f8fd8be423a407eeff9be81f638ba11226fce39402f28a65c3d6ae3b20d21924c022a7db215ace35f2f68e14316e231_1920.jpg)no-repeat; background-size: cover; background-position-y: center;}
+.sofa-collection.collectionbg2{background: url(https://pixabay.com/get/gef38782c790ce6291fa6bc52729afb2ba96fb11cb712e1c0cfea09744f8ac7af203b14325c5b78e6a53e7f4166e2d3b34d844ea711b2817570a0246f7ee40c8ae666a423497ca808032aa95bf13ca0ca_1920.jpg)no-repeat ; background-size: cover; background-position-y: center;}
 
-.sofa-collection:before,.sofa-collection:after {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 33.4%;
-    background: rgba(51,59,62,.95);
-}
-.sofa-collection:after {
-    background: rgba(106,119,129,.3);
-    left: auto;
-    right: 0;
-    width: 66.6%;
-}
 .sofa-collection-txt {
     position: relative;
     max-width: 596px;

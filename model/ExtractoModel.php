@@ -104,6 +104,25 @@ class ExtractoModel extends ExtractoClass
         $this->CloseConnect();
     }
 
+    public function retirarFondos()
+    {
+        $this->OpenConnect(); // konexio zabaldu - abrir conexiÃ³n
+
+        $fecha = $this->fecha;
+        $concepto = $this->concepto;
+        $importe = $this->importe;
+        $idcuenta = $this->idcuenta;
+
+        $sql = "CALL updateCuentas($importe,$idcuenta)";
+        $this->link->query($sql);
+
+
+        $sql = "CALL insertExtracto('$fecha','$concepto',$importe,$idcuenta)";
+        $this->link->query($sql);
+
+        $this->CloseConnect();
+    }
+
     public function insertExtractoTrans($fechaActual, $conceptogasto, $importe, $origen){
         $this->OpenConnect();
         

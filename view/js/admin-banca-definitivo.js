@@ -308,6 +308,7 @@ function loadMovimientos(){
 
 
     document.querySelector(".inputCantidad input").value="";
+    document.querySelector(".inputRetiro input").value="";
 
     var combo = document.getElementById("SelectCuentas");
     var selected = combo.options.selectedIndex;
@@ -414,6 +415,44 @@ document.querySelector(".inputCantidad input").addEventListener("keyup", functio
         var url = "controller/controller_insert.php";
 
         var data = { 'total': fondos, 'cuenta': cuenta, 'selected': 'Ingreso', 'añadirfondos': añadirfondos, 'realizarpedido': realizarpedido };
+
+        fetch(url, {
+            method: 'POST', // or 'POST'
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }  //input data
+        }).then(res => res.json()).then(result => {
+
+            Swal.fire(
+                'Fondos añadidos correctamente',
+                '',
+                'success'
+            )
+            
+            loadMovimientos();
+            loadPagina();
+
+
+        }).catch(error => console.error('Error status:', error));
+    }
+});
+
+/*Retirar Fondos
+-----------------------------------------------------------------------*/
+document.querySelector(".inputRetiro input").addEventListener("keyup", function () {
+
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        var añadirfondos = 1;
+        var realizarpedido = 0;
+
+        suma=0;
+
+        var fondos = document.querySelector(".inputRetiro input").value;
+        var cuenta = document.getElementById("SelectCuentas").value;
+
+        var url = "controller/controller_insert.php";
+
+        var data = { 'total': fondos, 'cuenta': cuenta, 'selected': 'Retirada', 'añadirfondos': añadirfondos, 'realizarpedido': realizarpedido };
 
         fetch(url, {
             method: 'POST', // or 'POST'
@@ -680,6 +719,7 @@ function Proveedorload(proveedores) {
                     });
 
                     document.getElementById("SelectProducto").addEventListener("change", function () {
+
                         var valorproducto = document.getElementById("SelectProducto").value;
                         var valorcantidad = document.getElementById("Cantidad");
 
@@ -732,6 +772,7 @@ function Proveedorload(proveedores) {
         cantidad = document.getElementById("Cantidad").value;
         total = document.getElementById("Total").value;
         img = document.getElementById("modalImg").src;
+        console.log(img);
         nombreproducto = document.getElementById("SelectProducto");
         selected = nombreproducto.options[nombreproducto.selectedIndex].text;
 
@@ -912,8 +953,10 @@ function loadPrestamo() {
     document.querySelector(".itfLeasing").style.display = "none";
     document.querySelector(".itfPrestamo").style.display = "block";
 
+
     /*Tabla
     -----------------------------------------------------------------------*/
+    document.querySelector(".table").innerHTML="<tbody>";
     document.querySelector(".table tbody").innerHTML = "";
     document.querySelector(".tabla").className = "col-xl-8 col-md-6 tabla";
     document.querySelector(".tabla").style.transition = "0.3s";
@@ -961,6 +1004,7 @@ function loadLeasing() {
 
     /*Tabla
     -----------------------------------------------------------------------*/
+    document.querySelector(".table").innerHTML="<tbody>";
     document.querySelector(".table tbody").innerHTML = "";
     document.querySelector(".tabla").className = "col-xl-8 col-md-6 tabla";
     document.querySelector(".tabla").style.transition = "0.3s";
