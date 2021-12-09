@@ -1,12 +1,20 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 
     loadPagina();
-    document.getElementById("logout").addEventListener("click", logout);
+    document.getElementById("linklogout").addEventListener("click",logout);
+    document.getElementById("btnlogout").addEventListener("click",logout);
+    
 });
 
 /*Variable Global
 -------------*/
-cuenta = "";
+cuentas = "";
+stock="";
+selectedValue1=0;
+stockcant=0;
+patrimonio=0;
+cont=0;
+proveedores="";
 
 /*LoadPagina
 ------------------------------------------------------------------------------------------------*/
@@ -19,15 +27,14 @@ function loadPagina() {
     })
         .then(res => res.json()).then(result => {
 
-            var stockcant=0;
-            var patrimonio=0;
-            var cont=0;
+            cont=0;
+            stockcant=0;
+            patrimonio=0;
 
             var clientes = result.listClientes;
-            var proveedores = result.listProveedores;
-            var stock = result.listStock;
-            var cuentas = result.listCuentas;
-            cuenta = cuentas;
+            proveedores = result.listProveedores;
+            stock = result.listStock;
+            cuentas = result.listCuentas;
 
             for (let i = 0; i < proveedores.length; i++) {
                 cont += 1;
@@ -60,7 +67,6 @@ function loadPagina() {
             document.querySelector(".btnPrestamo").addEventListener("click", loadPrestamo);
             document.querySelector(".btnLeasing").addEventListener("click", loadLeasing);
 
-
         })
         .catch(error => console.error('Error status:', error));
 
@@ -69,6 +75,9 @@ function loadPagina() {
 /*BancaOnlineload
 ------------------------------------------------------------------------------------------------*/
 function BancaOnlineload(cuentas) {
+
+    document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>-";
+    document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>-";
 
     document.querySelector(".table").innerHTML = "";
 
@@ -88,6 +97,7 @@ function BancaOnlineload(cuentas) {
     document.querySelector(".itfFactura").style.display = "none";
     document.querySelector(".itfStock").style.display = "none";
     document.querySelector(".itfPrestamo").style.display = "none";
+    document.querySelector(".itfLeasing").style.display = "none";
     document.querySelector(".itfBanca").style.display = "block";
 
 
@@ -122,59 +132,193 @@ function BancaOnlineload(cuentas) {
         + "<div class='modal-content'>"
         + "<div class='modal-header'>"
         + "<h1 class='modal-title' id='exampleModalLabel'>Transferencia</h1>"
-        + "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>"
+        + "<button type='button' id='btn-close' data-bs-dismiss='modal' aria-label='Close'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-x-lg' viewBox='0 0 16 16'>"
+        + "<path fill-rule='evenodd' d='M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z'/>"
+        + "<path fill-rule='evenodd' d='M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z'/>"
+        + "</svg></button>"
         + "</div>"
-        + "<div class='modal-body'>"
-        + "<div id='modalCuentas'>"
-        + "<div id='transferenciaFlex'>"
-        + "<div id='cuenta1'>"
+        + "<div style='padding-bottom:0;' class='modal-body'>"
+        + "<div style='padding:10px;' id='modalCuentas'>"
+        + "<div style='display:flex; justify-content:space-between; margin-bottom:10px;' id='transferenciaFlex'>"
+        + "<div style='flex-direction:column; width:45%;' id='cuenta1'>"
         + "<h3>Cuenta1</h3>"
-        + "<select disabled id='Trans1'></select>"
+        + "<select class='form-control' disabled id='Trans1'></select>"
         + "</div>"
-        + "<svg xmlns='http://www.w3.org/2000/svg' id='flechita' width='50' height='50' fill='currentColor' class='bi bi-arrow-right' viewBox='0 0 16 16'>"
+        + "<svg style='margin-top:35px;' xmlns='http://www.w3.org/2000/svg' id='flechita' width='35' height='35' fill='black' class='bi bi-arrow-right' viewBox='0 0 16 16'>"
         + "<path fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z'/>"
         + "</svg>"
-        + "<div>"
+        + "<div  style='flex-direction:column; width:45%;'>"
         + "<h3>Cuenta2</h3>"
-        + "<select id='Trans2'></select>"
+        + "<select class='form-control' id='Trans2'></select>"
         + "</div>"
         + "</div>"
-        + "<div>"
+        + "<div id='importeinput'>"
         + "<h3>Importe</h3>"
-        + "<input type='text' id='importe' onkeypress='return onlyNumberKey(event)'></input>"
+        + "<input style='margin-bottom:10px;' class='form-control' type='text' id='importe' onkeypress='return onlyNumberKey(event)'>"
         + "</div>"
         + "</div>"
-        + "<div class='modal-footer'>"
-        + "<button type='button' id='btnCancelar' class='btn btn-danger' data-bs-dismiss='modal'>Cancelar</button>"
-        + "<button type='button' id='btnrealizartrans' class='btn btn-primary' data-bs-dismiss='modal'>Realizar transferencia</button>"
+        + "</div>"
+        + "<div style='padding:1 rem;' class='modal-footer'>"
+        + "<div class='d-flex m-0' style='padding:10px; padding-top:0;'>"
+        + "<button style='margin-left:10px; margin-top:0; margin-right:0;' type='button' id='btnCancelar' class='btn btn-primary' data-bs-dismiss='modal'>Cancelar</button>"
+        + "<button style='margin-left:10px; margin-top:0; margin-right:0;' type='button' id='btnrealizartrans' class='btn btn-primary' data-bs-dismiss='modal'>Realizar transferencia</button>"
         + "</div>"
         + "</div>"
         + "</div>"
         + "</div>"
 
     document.getElementById("Transferencia").innerHTML=newRow3;
+
     document.getElementById("SelectCuentas").addEventListener("change", loadMovimientos); 
+
+    textoorigen="";
+    document.getElementById("btnTransferencia").addEventListener("click", function(){
+
+        document.getElementById("importe").value="";
+        /*Activar Transferencia
+        -----------------------------------------------------------------------*/
+        var combo1 = document.getElementById("SelectCuentas");
+        var selectedText1 = combo1.options[combo1.selectedIndex].text;
+        var selectedValue1 = combo1.options[combo1.selectedIndex].value;
+        console.log(selectedValue1);
+
+        var newRow4="";
+        newRow4 += "<option value=-1>Selecciona una cuenta</option>";
+        for (let i = 0; i < cuentas.length; i++) {
+            newRow4 += "<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+"</option>";
+        }
+        document.getElementById("Trans1").innerHTML="<option value='"+selectedValue1+"'>"+selectedText1+"</option>";
+        document.getElementById("Trans2").innerHTML=newRow4;
+
+        textoorigen=selectedText1;
+    });
+
+    document.getElementById("btnrealizartrans").addEventListener("click",function(){
+
+        var combo2 = document.getElementById("Trans2");
+        var selectedText2 = combo2.options[combo2.selectedIndex].text;
+        
+        var importe = document.getElementById("importe").value;
+        var origen = document.getElementById("Trans1").value;
+        var destino = document.getElementById("Trans2").value;
+        /*var conceptogasto = "Transferencia a " + selectedText2;
+        var conceptoingreso = "Transferencia de " + selectedText1;*/
+        var conceptogasto = "Transferencia a "+selectedText2;
+        var conceptoingreso = "Transferencia de "+textoorigen;
+        
+        console.log(importe);
+
+        var url = "controller/cTransferencia.php";
+
+        var data = {'importe':importe,'origen':origen,'destino':destino,'conceptogasto':conceptogasto,'conceptoingreso':conceptoingreso};
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{'Content-Type': 'application/json'}
+        })
+        .then(res => res.json()).then(result => {
+            if (result.error=='Transferencia realizada' && result.insertado=='insertado') {
+                Transferencia();
+                document.getElementById("Trans2").value="";
+
+            }else if (result.error=='No puedes transferir más de lo que tienes') {
+                masmoney();
+            }else if (result.error=='No puede ser la misma cuenta') {
+                mismacuenta();
+            }else if (result.cero=='No puede ser 0') {
+                cero();
+            }
+            loadMovimientos();
+        })    
+        .catch(error => console.error('Error status:', error));    
+    });
+
+    document.getElementById("fecha1").addEventListener("change",function(){
+        document.getElementById("fecha2").addEventListener("change",function(){
+            fecha1=document.getElementById("fecha1").value;
+            fecha2=document.getElementById("fecha2").value;
+
+            var url = "controller/cFecha.php";
     
+            var data = { 'fecha1': fecha1,'fecha2':fecha2 };
+        
+            fetch(url, {
+                method: 'POST', // or 'POST'
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }  //input data
+            })
+            .then(res => res.json()).then(result => {
+
+                var extractofecha = result.extractofecha;
+
+                var newRow = "";
+                newRow += "<thead>";
+                newRow += "<tr>";
+                newRow += "<th><span>FECHA</span></th>";
+                newRow += "<th><span>CONCEPTO</span></th>";
+                newRow += "<th><span>IMPORTE</span></th>";
+                newRow += "<th><span>SALDO</span></th>";
+                newRow += "</tr>";
+                newRow += "</thead>";
+                newRow += "<tbody>";
+    
+                for (let i = 0; i < extractofecha.length; i++) {
+
+                    newRow += "<tr>" + "<td>" + extractofecha[i].fecha + "</td>";
+                    newRow += "<td>" + extractofecha[i].concepto + "</td>";
+
+                    if (extractofecha[i].importe > 0) {
+                        newRow += "<td style='color:#15D800;'>+" + extractofecha[i].importe + "</td>";
+                    } else if (extractofecha[i].importe < 0) {
+                        newRow += "<td style='color:red;'>" + extractofecha[i].importe + "</td>";
+                    }
+    
+                    if (extractofecha[i].saldo > 0) {
+                        newRow += "<td>" + extractofecha[i].saldo + "</td></tr>";
+                    } else if (extractofecha[i].saldo < 0) {
+                        newRow += "<td style='color:red;'>" + extractofecha[i].saldo + "</td></tr>";
+                    } else {
+                        newRow += "<td>" + extractofecha[i].saldo + "</td></tr>";
+                    }
+                
+                }
+    
+                newRow += "</tbody>";
+    
+                document.querySelector(".table").innerHTML = newRow;
+
+            })
+            .catch(error => console.error('Error status:', error));
+        });
+    });
 
 }
 
 /*ExtractoCuentasById
 -----------------------------------------------------------------------*/
 function loadMovimientos(){
+    document.getElementById("fecha1").value="";
+    document.getElementById("fecha2").value="";
+
+    // var combo1 = document.getElementById("SelectCuentas");
+    // selectedValue1=combo1.options[combo1.selectedIndex].text;
+    // console.log(selectedValue1);
+
+
 
     document.querySelector(".inputCantidad input").value="";
+    document.querySelector(".inputRetiro input").value="";
 
     var combo = document.getElementById("SelectCuentas");
-    var selected = combo.options[combo.selectedIndex].value;
+    var selected = combo.options.selectedIndex;
     selected = selected - 1;
 
-    console.log(cuenta);
-
     valor = document.getElementById("SelectCuentas").value;
-    //alert(selected);
+
     /*Datos
     ----------------------------------------------------------------------------------------------------------------*/
-    if (selected == -2) {
+    if (selected == -1) {
         document.querySelector(".itfBanca2").style.display = "none";
         document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>-";
         document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>-";
@@ -184,10 +328,10 @@ function loadMovimientos(){
 
     } else {
         document.querySelector(".itfBanca2").style.display = "flex";
-        document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>" + cuenta[selected].numcuenta;
-        document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>" + cuenta[selected].tipo;
-        document.querySelector(".numeroCuenta").innerHTML = cuenta[selected].numcuenta;
-        document.querySelector(".saldo").innerHTML =  cuenta[selected].saldo;
+        document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>" + cuentas[selected].numcuenta;
+        document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>" + cuentas[selected].tipo;
+        document.querySelector(".numeroCuenta").innerHTML = cuentas[selected].numcuenta;
+        document.querySelector(".saldo").innerHTML =  cuentas[selected].saldo;
 
         var url = "controller/controller_ExtractoCuenta.php";
     
@@ -201,6 +345,7 @@ function loadMovimientos(){
         .then(res => res.json()).then(result => {
 
             var extracto = result.listExtracto;
+            console.log(extracto);
 
             var newRow = "";
             newRow += "<thead>";
@@ -233,69 +378,24 @@ function loadMovimientos(){
                     newRow += "<td>" + extracto[i].saldo + "</td></tr>";
                 }
 
-            }
-
-            document.querySelector(".saldo").innerHTML=extracto[0].saldo;
+            }        
 
             newRow += "</tbody>";
 
             document.querySelector(".table").innerHTML = newRow;
 
+            if (extracto.length==0) {
+                document.querySelector(".table tbody").innerHTML="";
+            }
+            else{
+                document.querySelector(".saldo").innerHTML=extracto[0].saldo;  
+            }
+
         })
         .catch(error => console.error('Error status:', error));
     
-    
-        /*Activar Transferencia
-        -----------------------------------------------------------------------*/
-        var combo1 = document.getElementById("SelectCuentas");
-        var selectedText1 = combo1.options[combo1.selectedIndex].text;
-        var selectedValue1 = combo1.options[combo1.selectedIndex].value;
-        
-        var newRow4="";
-        newRow4 += "<option value=-1>Selecciona una cuenta</option>";
-        for (let i = 0; i < cuenta.length; i++) {
-            newRow4 += "<option value='"+cuenta[i].idCuentas+"'>Cuenta "+cuenta[i].tipo+" "+cuenta[i].numcuenta+"</option>";
-        }
-        document.getElementById("Trans1").innerHTML="<option value='"+selectedValue1+"'>"+selectedText1+"</option>";
-        document.getElementById("Trans2").innerHTML=newRow4;
-    
-        var combo2 = document.getElementById("Trans2");
-        var selectedText2 = combo2.options[combo2.selectedIndex].text;
-    
-        document.getElementById("btnrealizartrans").addEventListener("click",function (){
-    
-            var importe = document.getElementById("importe").value;
-            var origen = document.getElementById("Trans1").value;
-            var destino = document.getElementById("Trans2").value;
-            var conceptogasto = "Transferencia a " + selectedText2;
-            var conceptoingreso = "Transferencia de " + selectedText1;
-    
-            var url = "controller/cTransferencia.php";
-
-            var data = {'importe':importe,'origen':origen,'destino':destino,'conceptogasto':conceptogasto,'conceptoingreso':conceptoingreso};
-
-            fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers:{'Content-Type': 'application/json'}
-            })
-            .then(res => res.json()).then(result => {
-                if (result.error=='Transferencia realizada' && result.insertado=='insertado') {
-                    Transferencia();
-                    document.getElementById("Trans2").value="";
-
-                }else if (result.error=='No puedes transferir más de lo que tienes') {
-                    masmoney();
-                }else if (result.error=='No puede ser la misma cuenta') {
-                    mismacuenta();
-                }else if (result.cero=='No puede ser 0') {
-                    cero();
-                }
-            })
-    
-        });
     }
-    
+
 }
 
 /*Añadir Fondos
@@ -336,6 +436,44 @@ document.querySelector(".inputCantidad input").addEventListener("keyup", functio
     }
 });
 
+/*Retirar Fondos
+-----------------------------------------------------------------------*/
+document.querySelector(".inputRetiro input").addEventListener("keyup", function () {
+
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        var añadirfondos = 1;
+        var realizarpedido = 0;
+
+        suma=0;
+
+        var fondos = document.querySelector(".inputRetiro input").value;
+        var cuenta = document.getElementById("SelectCuentas").value;
+
+        var url = "controller/controller_insert.php";
+
+        var data = { 'total': fondos, 'cuenta': cuenta, 'selected': 'Retirada', 'añadirfondos': añadirfondos, 'realizarpedido': realizarpedido };
+
+        fetch(url, {
+            method: 'POST', // or 'POST'
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }  //input data
+        }).then(res => res.json()).then(result => {
+
+            Swal.fire(
+                'Fondos añadidos correctamente',
+                '',
+                'success'
+            )
+            
+            loadMovimientos();
+            loadPagina();
+
+
+        }).catch(error => console.error('Error status:', error));
+    }
+});
+
 /*Proveedorload
 ------------------------------------------------------------------------------------------------*/
 function Proveedorload(proveedores) {
@@ -344,6 +482,7 @@ function Proveedorload(proveedores) {
     document.querySelector(".itfBanca").style.display = "none";
     document.querySelector(".itfBanca2").style.display = "none";
     document.querySelector(".itfPrestamo").style.display = "none";
+    document.querySelector(".itfLeasing").style.display = "none";
     document.querySelector(".itfFactura").style.display = "block";
 
     /*Tabla
@@ -390,8 +529,8 @@ function Proveedorload(proveedores) {
 
     var newRow2 = "";
     newRow2 += "<!-- Button trigger modal -->"
-        + "<button type='button' class='btn btn-primary' id='btnProveedor' data-bs-toggle='modal' data-bs-target='#PedidoModal'>"
-        + "<h6 class='m-b-5 text-white'>Realizar Pedido</h6>"
+        + "<button style='padding:20px 25px; border-radius:0;' type='button' class='btn btn-primary m-0' id='btnProveedor' data-bs-toggle='modal' data-bs-target='#PedidoModal'>"
+        + "<h6 class='m-0 text-white'>Realizar Pedido</h6>"
         + "</button>"
 
         + "<!-- Modal -->"
@@ -462,9 +601,9 @@ function Proveedorload(proveedores) {
         newRow += "<select class='modalCombo form-control' id='SelectCuentas2' style='width:100%;' class='form-select' aria-label='Default select example'>";
         newRow += "<option selected value=-1>Selecciona una cuenta</option>";
 
-        for (let i = 0; i < cuenta.length; i++) {
+        for (let i = 0; i < cuentas.length; i++) {
 
-            newRow += "<option value='" + cuenta[i].idCuentas + "'>" + cuenta[i].numcuenta + "</option>";
+            newRow += "<option value='" + cuentas[i].idCuentas + "'>" + cuentas[i].numcuenta + "</option>";
         }
 
         newRow += "</select>";
@@ -580,11 +719,17 @@ function Proveedorload(proveedores) {
                     });
 
                     document.getElementById("SelectProducto").addEventListener("change", function () {
+
                         var valorproducto = document.getElementById("SelectProducto").value;
                         var valorcantidad = document.getElementById("Cantidad");
 
-                        document.getElementById("modalImg").src = productos[index].img;
-                        precio = document.getElementById("Precio").value = productos[index].precio;
+                        var combo = document.getElementById("SelectProducto");
+                        var selected = combo.options.selectedIndex;
+                        selected -= 1;
+                        console.log(selected);
+
+                        document.getElementById("modalImg").src = productos[selected].img;
+                        precio = document.getElementById("Precio").value = productos[selected].precio;
 
                         if (valorproducto == -1) {
                             document.getElementById("Total").value = "";
@@ -627,20 +772,21 @@ function Proveedorload(proveedores) {
         cantidad = document.getElementById("Cantidad").value;
         total = document.getElementById("Total").value;
         img = document.getElementById("modalImg").src;
+        console.log(img);
         nombreproducto = document.getElementById("SelectProducto");
         selected = nombreproducto.options[nombreproducto.selectedIndex].text;
 
         if (cuenta == -1) {
             alert("introduce una cuenta");
-            location.reload();
+            Proveedorload();
         } else {
             if (producto == -1) {
                 alert("Introduce un producto");
-                location.reload();
+                Proveedorload();
             } else {
                 if (cantidad == "") {
                     alert("Cantidad no válida");
-                    location.reload();
+                    Proveedorload();
                 } else {
 
                     var url = "controller/controller_insert.php";
@@ -657,7 +803,7 @@ function Proveedorload(proveedores) {
                         //alert(result.insertFactura);
 
                         Pedido();
-                        loadPagina();
+                        ActualizarFacturas();
 
                     })
                     .catch(error => console.error('Error status:', error));
@@ -666,6 +812,82 @@ function Proveedorload(proveedores) {
         }
 
     });
+
+}
+
+/*ActualizarFacturas
+---------------------------------------------------------------------------------*/
+function ActualizarFacturas(){
+    
+    var url = "controller/controller_Extractos.php";
+
+    fetch(url, {
+        method: 'GET', // or 'POST'
+    })
+        .then(res => res.json()).then(result => {
+
+            cont=0;
+            stockcant=0;
+            patrimonio=0;
+
+            proveedores = result.listProveedores;
+            stock = result.listStock;
+
+            for (let i = 0; i < proveedores.length; i++) {
+                cont += 1;
+            }
+
+            for (let i = 0; i < stock.length; i++) {
+                stockcant += parseInt(stock[i].stock);
+                patrimonio += parseInt(stock[i].precio*stock[i].stock);
+            }
+
+            cont=Intl.NumberFormat("ja-JP").format(cont);
+            stockcant=Intl.NumberFormat("ja-JP").format(stockcant);
+            patrimonio=Intl.NumberFormat("ja-JP").format(patrimonio);
+
+            document.querySelector(".facturascant").innerHTML=cont;
+            document.querySelector(".stockcant").innerHTML=stockcant;
+            document.querySelector(".patrimonio").innerHTML=patrimonio;
+
+            /*ExtractoFacturas
+            -----------------------------------------------------------------------*/
+            var newRow = "";
+            newRow += "<thead>";
+            newRow += "<tr>";
+            newRow += "<th><span>FECHA</span></th>";
+            newRow += "<th><span>NUMERO FACTURA</span></th>";
+            newRow += "<th><span>NUMERO CUENTA</span></th>";
+            newRow += "<th><span>PROVEEDOR</span></th>";
+            newRow += "<th><span>PRODUCTO</span></th>";
+            newRow += "<th><span>PRECIO/UD</span></th>";
+            newRow += "<th><span>CANTIDAD</span></th>";
+            newRow += "<th><span>IMPORTE</span></th>";
+            newRow += "</tr>";
+            newRow += "</thead>";
+            newRow += "<tbody>";
+
+            for (let i = 0; i < proveedores.length; i++) {
+
+                newRow += "<tr>";
+                newRow += "<td>" + proveedores[i].fecha + "</td>";
+                newRow += "<td>" + proveedores[i].numerofactura + "</td>";
+                newRow += "<td>" + proveedores[i].idcuenta + "</td>";
+                newRow += "<td>" + proveedores[i].nombre + "</td>";
+                newRow += "<td>" + proveedores[i].idproducto + "</td>";
+                newRow += "<td>" + proveedores[i].precio + "</td>";
+                newRow += "<td>" + proveedores[i].cantidad + "</td>";
+                newRow += "<td>" + proveedores[i].importe + "</td>";
+                newRow += "</tr>";
+            }
+
+            newRow += "</tbody>";
+
+            document.querySelector(".table").innerHTML = newRow;
+            
+
+        })
+        .catch(error => console.error('Error status:', error));
 
 }
 
@@ -679,6 +901,7 @@ function MiStockload(stock) {
     document.querySelector(".itfBanca2").style.display = "none";
     document.querySelector(".itfFactura").style.display = "none";
     document.querySelector(".itfPrestamo").style.display = "none";
+    document.querySelector(".itfLeasing").style.display = "none";
     document.querySelector(".itfStock").style.display = "block";
 
     /*Tabla
@@ -727,10 +950,14 @@ function loadPrestamo() {
     document.querySelector(".itfStock").style.display = "none";
     document.querySelector(".itfBanca").style.display = "none";
     document.querySelector(".itfBanca2").style.display = "none";
+    document.querySelector(".itfLeasing").style.display = "none";
     document.querySelector(".itfPrestamo").style.display = "block";
+
 
     /*Tabla
     -----------------------------------------------------------------------*/
+    document.querySelector(".table").innerHTML="<tbody>";
+    document.querySelector(".table tbody").innerHTML = "";
     document.querySelector(".tabla").className = "col-xl-8 col-md-6 tabla";
     document.querySelector(".tabla").style.transition = "0.3s";
     document.querySelector(".leasing").style.display = "none";
@@ -759,22 +986,55 @@ function loadPrestamo() {
 
     document.querySelector(".table").innerHTML = newRow;
 
-
-
-
 }
 
 /*loadLeasing
 ------------------------------------------------------------------------------------------------*/
 function loadLeasing() {
 
+    /*Interfaz
+    -----------------------------------------------------------------------*/
+    document.querySelector(".itfDefault").style.display = "none";
+    document.querySelector(".itfFactura").style.display = "none";
+    document.querySelector(".itfStock").style.display = "none";
+    document.querySelector(".itfBanca").style.display = "none";
+    document.querySelector(".itfBanca2").style.display = "none";
+    document.querySelector(".itfPrestamo").style.display = "none";
+    document.querySelector(".itfLeasing").style.display = "block";
+
     /*Tabla
     -----------------------------------------------------------------------*/
+    document.querySelector(".table").innerHTML="<tbody>";
+    document.querySelector(".table tbody").innerHTML = "";
     document.querySelector(".tabla").className = "col-xl-8 col-md-6 tabla";
     document.querySelector(".tabla").style.transition = "0.3s";
-    document.querySelector(".prestamo").style.display = "none";
     document.querySelector(".leasing").style.display = "block";
+    document.querySelector(".prestamo").style.display = "none";
+    document.getElementById("div-valor-cuota").innerHTML="";
+    document.getElementById("div-comentario").innerHTML="";
 
+    document.getElementById("input_monto1").value="";
+    document.getElementById("input_cuotas1").value="";
+    document.getElementById("input_tasa1").value="";
+    document.getElementById("select_tasa_tipo2").value=-1;
+    document.getElementById("select_periodo2").value=-1;
+
+    var newRow = "";
+    newRow += "<thead>";
+    newRow += "<tr>";
+    newRow += "<th><span>NÚMERO</span></th>";
+    newRow += "<th><span>VALOR DE LA CUOTA</span></th>";
+    newRow += "<th><span>IVA</span></th>";
+    newRow += "<th><span>CUOTA</span></th>";
+    newRow += "<th><span>INTERÉS</span></th>";
+    newRow += "<th><span>ABONO AL CAPITAL</span></th>";
+    newRow += "<th><span>DEUDA</span></th>";
+    newRow += "</tr>";
+    newRow += "</thead>";
+    newRow += "<tbody id='tbody_2'>";
+    newRow += "</tbody>";
+
+    document.querySelector(".table").innerHTML = newRow;
 
 }
 
@@ -848,17 +1108,15 @@ function masmoney(){
         'error'
     )
 }
-
-
 function logout(){
     var url = "controller/cLogout.php";
 
     fetch(url, {
-    method: 'GET',  
+    method: 'GET',
     })
     .then(res => res.text()).then(result => {
-    
+
         location.href="index.html";
     })
-    .catch(error => console.error('Error status:', error));	
+    .catch(error => console.error('Error status:', error));
 }

@@ -48,9 +48,8 @@ if($realizarpedido==1){
     $extracto->importe=$total;
     $extracto->idcuenta=$cuenta;
 
-
     ////////////STOCK//////////////
-    $stock->idproducto=$proveedor;
+    $stock->idproducto=$producto;
     $stock->stock=$cantidad;
     $stock->precio=$precio;
     $stock->img=$img;
@@ -71,7 +70,13 @@ if($realizarpedido==1){
     $extracto->importe=$total;
     $extracto->idcuenta=$cuenta;
 
-    $response['insertFondos'] = $extracto->insertFondos();
+    if($selected=="Ingreso"){
+        $response['insertFondos'] = $extracto->insertFondos();
+    }else{
+        $response['retirarFondos'] = $extracto->retirarFondos();
+    }
+
+    
 
 }else{
     $response['error'] = "no error";  

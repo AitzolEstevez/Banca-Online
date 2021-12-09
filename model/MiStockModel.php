@@ -86,7 +86,7 @@ class MiStockModel extends MiStockClass
 
         }else{
 
-            $sql = "CALL insertStock($idproducto,$precio,$stock,$img)";
+            $sql = "CALL insertStock($idproducto,$precio,$stock,'$img')";
             $this->link->query($sql);
             return "Nuevo producto insertado al inventario";
         }

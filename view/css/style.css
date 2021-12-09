@@ -7028,12 +7028,6 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     z-index: 5;
 }
 
-@media only screen and (max-width: 767px) {
-    .auth-wrapper .card .card-body {
-        padding: 30px 15px;
-    }
-}
-
 .auth-wrapper.offline {
     background-image: none;
 }
@@ -8670,9 +8664,33 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     margin-bottom: 8px;
 }
 
+#contenedorModal{
+    text-align: start;
+}
+
+#transferenciaFlex div .form-control{
+    background: none;
+}
+
+#transferenciaFlex div .form-control:disabled{
+    background: #e9ecef;
+}
+
+#importeinput .form-control{
+    background: none;
+}
+
+.inputFecha input{
+    background: none;
+}
+
 @media screen and (min-width: 1200px) {
     .inputFecha{
-        flex-wrap: wrap;
+        display: flex;
+    }
+    .inputFecha svg{
+        margin-left: 5px;
+        margin-right: 5px;
     }
     .inputFecha input{
         width: 46%;
@@ -8684,11 +8702,18 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     #flechadown{
         display: none;
     }
+    #ingresoretirada div{
+        width: 50%;
+    }
 }
 
 @media screen and (max-width: 1199px) {
     .inputFecha{
         flex-direction: column;
+    }
+    .inputFecha svg{
+        margin-left: 0;
+        margin-right: 0;
     }
     .inputFecha input{
         width: 100%;
@@ -8700,4 +8725,17 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     #flecharight{
         display: none;
     }
+    #ingresoretirada{
+        flex-direction: column;
+    }
+    #ingresoretirada div{
+        width: 100%;
+    }
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+input[type=number] { -moz-appearance:textfield; }

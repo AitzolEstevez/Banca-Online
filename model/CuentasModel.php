@@ -138,11 +138,56 @@ class CuentasModel extends CuentasClass
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $cuenta = new CuentasModel();
             $cuenta->saldo=$row['saldo'];
+
         
         }
 
         $this->CloseConnect();
         return $cuenta;
+
+    }
+
+    public function createCuenta(){
+
+        $this->OpenConnect();
+
+
+        $num=$this->numcuenta;
+        $tipo=$this->tipo;
+
+        $insert = false;
+
+        $sql = "insert into cuentas (id, numcuenta, tipo, saldo, borrado, idusuario) VALUES (NULL, '$num', '$tipo', 0, 0, 24);";
+
+        if($this->link->query($sql)){
+            $insert = true;
+        }
+
+        return $insert;
+        $this->CloseConnect();
+
+    }
+
+    public function ifExistCuenta(){
+
+        $this->OpenConnect();
+
+        $num=$this->numcuenta;
+
+        $exist = -1;
+
+        $sql= "select * from cuentas where numcuenta=$num";
+
+        $result = $this->link->query($sql);
+
+
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $exist = $row['id'];
+        }
+
+        return $exist;
+        $this->CloseConnect();
+
 
     }
 

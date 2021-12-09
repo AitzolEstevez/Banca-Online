@@ -21,21 +21,28 @@
 	<meta name='author' content='Codedthemes' />
 
 	<!-- Favicon icon -->
-	<link rel='icon' href='/view/img/logoadmin.png' type='image/x-icon'>
+	<link rel='icon' href='/view/img/logo2.png' type='image/x-icon'>
+
 	<!-- fontawesome icon -->
 	<link rel='stylesheet' href='/view/fonts/fontawesome/css/fontawesome-all.min.css'>
+
 	<!-- animation css -->
 	<link rel='stylesheet' href='/view/plugins/animation/css/animate.min.css'>
+
 	<!-- forms -->
 	<link rel='stylesheet' href='/view/css/form-select.css'>
 	<link rel='stylesheet' href='/view/css/form-control2.css'>
+
 	<!-- modal -->
 	<link rel="stylesheet" href="/view/css/modal.css">
+
 	<!-- script sweetmodal 
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
 	<script src="/view/plugins/bootstrap/js/sweetalert.js"></script>
+
 	<!-- vendor css -->
 	<link rel='stylesheet' href='/view/css/style.css'> 
+
 </head>
 
 <body class=''>
@@ -52,25 +59,30 @@
 		<div class='navbar-wrapper '>
 			<div class='navbar-brand header-logo'>
 				<a href='index.html' class='b-brand'>
-					<!--<img src='../assets/images/logo.svg' alt='' class='logo images'>-->
-					<h4 class="text-white mt-2">Administración</h4>
-					<img src='/view/img/logo-icon.svg' alt='' class='logo-thumb images'>
+					<!--<img src='../assets/images/logo.svg' alt='' class='logo images'>
+					<img src='../assets/images/logo.svg' alt='' class='logo-thumb images'>
+					<img src='../assets/images/logo-icon.svg' alt='' class='logo-thumb images'>-->
+					<i class="fas fa-tools" style="color: white;"></i>
 				</a>
 				<a class='mobile-menu' id='mobile-collapse' href='#!'><span></span></a>
 			</div>
 			<div class='navbar-content scroll-div'>
 				<ul class='nav pcoded-inner-navbar'>
 					<li class='nav-item pcoded-menu-caption'>
-						<label>Navegación</label>
+						<label>Administración</label>
 					</li>
 					<li class='nav-item'>
-						<a href='index.html' class='nav-link'><span class='pcoded-micon'><i
-									class='feather icon-home'></i></span><span class='pcoded-mtext'>Banca</span></a>
+                        <a href='banca.html' class='nav-link'><span class='pcoded-micon'><i
+                                    class='feather icon-home'></i></span><span class='pcoded-mtext'>Banca</span></a>
+                    </li>
+					<li class='nav-item pcoded-menu-caption'>
+						<label>Página</label>
 					</li>
 					<li class='nav-item'>
-						<a href='index.html' class='nav-link'><span class='pcoded-micon'><i
-								class='feather icon-home'></i></span><span class='pcoded-mtext'>Tienda</span></a>
-					</li>
+                        <a href='index.html' id="linklogout" class='nav-link'><span class='pcoded-micon'><i
+                                class='feather icon-layout'></i></span><span class='pcoded-mtext'>Web</span></a>
+                    </li>
+
 				</ul>
 
 			</div>
@@ -83,8 +95,9 @@
 		<div class='m-header'>
 			<a class='mobile-menu' id='mobile-collapse1' href='#!'><span></span></a>
 			<a href='index.html' class='b-brand'>
-				<img src='/view/img/logo.svg' alt='' class='logo images'>
-				<img src='/view/img/logo-icon.svg' alt='' class='logo-thumb images'>
+				<!--<img src='../assets/images/logo.svg' alt='' class='logo images'>
+				<img src='../assets/images/logo-icon.svg' alt='' class='logo-thumb images'>-->
+				<i class="fas fa-tools" style="color: white;"></i>
 			</a>
 		</div>
 		<a class='mobile-menu' id='mobile-header' href='#!'>
@@ -94,8 +107,8 @@
 			<a href='#!' class='mob-toggler'></a>
 			<ul class='navbar-nav mr-auto'>
 				<li class='nav-item'>
-					<div class='main-search open d-none'>
-						<div class='input-group'>
+					<div class='main-search open'>
+						<div class='input-group d-none'>
 							<input type='text' id='m-search' class='form-control' placeholder='Search . . .'>
 							<a href='#!' class='input-group-append search-close'>
 								<i style='margin-right: 8px;' class='feather icon-x input-group-text'></i>
@@ -109,100 +122,6 @@
 			</ul>
 			<ul class='navbar-nav ml-auto'>
 				<li>
-					<div class='dropdown'>
-						<a class='dropdown-toggle' href='#' data-toggle='dropdown'><i
-								class='icon feather icon-bell'></i></a>
-						<div class='dropdown-menu dropdown-menu-right notification'>
-							<div class='noti-head'>
-								<h6 class='d-inline-block m-b-0'>Notifications</h6>
-								<div class='float-right'>
-									<a href='#!' class='m-r-10'>mark as read</a>
-									<a href='#!'>clear all</a>
-								</div>
-							</div>
-							<ul class='noti-body'>
-								<li class='n-title'>
-									<p class='m-b-0'>NEW</p>
-								</li>
-								<li class='notification'>
-									<div class='media'>
-										<img class='img-radius' src='/view/img/user/avatar-1.jpg'
-											alt='Generic placeholder image'>
-										<div class='media-body'>
-											<p><strong>Admin</strong><span class='n-time text-muted'><i
-														class='icon feather icon-clock m-r-10'></i>5 min</span></p>
-											<p>New ticket Added</p>
-										</div>
-									</div>
-								</li>
-								<li class='n-title'>
-									<p class='m-b-0'>EARLIER</p>
-								</li>
-								<li class='notification'>
-									<div class='media'>
-										<img class='img-radius' src='/view/img/user/avatar-2.jpg'
-
-											alt='Generic placeholder image'>
-										<div class='media-body'>
-											<p><strong>Joseph William</strong><span class='n-time text-muted'><i
-														class='icon feather icon-clock m-r-10'></i>10 min</span></p>
-											<p>Prchace New Theme and make payment</p>
-										</div>
-									</div>
-								</li>
-								<li class='notification'>
-									<div class='media'>
-										<img class='img-radius' src='/view/img/user/avatar-3.jpg'
-											alt='Generic placeholder image'>
-										<div class='media-body'>
-											<p><strong>Sara Soudein</strong><span class='n-time text-muted'><i
-														class='icon feather icon-clock m-r-10'></i>12 min</span></p>
-											<p>currently login</p>
-										</div>
-									</div>
-								</li>
-								<li class='notification'>
-									<div class='media'>
-										<img class='img-radius' src='/view/img/user/avatar-1.jpg'
-
-											alt='Generic placeholder image'>
-										<div class='media-body'>
-											<p><strong>Joseph William</strong><span class='n-time text-muted'><i
-														class='icon feather icon-clock m-r-10'></i>30 min</span></p>
-											<p>Prchace New Theme and make payment</p>
-										</div>
-									</div>
-								</li>
-								<li class='notification'>
-									<div class='media'>
-										<img class='img-radius' src='/view/img/user/avatar-3.jpg'
-											alt='Generic placeholder image'>
-										<div class='media-body'>
-											<p><strong>Sara Soudein</strong><span class='n-time text-muted'><i
-														class='icon feather icon-clock m-r-10'></i>1 hour</span></p>
-											<p>currently login</p>
-										</div>
-									</div>
-								</li>
-								<li class='notification'>
-									<div class='media'>
-										<img class='img-radius' src='/view/img/user/avatar-1.jpg'
-											alt='Generic placeholder image'>
-										<div class='media-body'>
-											<p><strong>Joseph William</strong><span class='n-time text-muted'><i
-														class='icon feather icon-clock m-r-10'></i>2 hour</span></p>
-											<p>Prchace New Theme and make payment</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<div class='noti-footer'>
-								<a href='#!'>show all</a>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
 					<div class='dropdown drp-user'>
 						<a href='#' class='dropdown-toggle' data-toggle='dropdown'>
 							<i class='icon feather icon-settings'></i>
@@ -213,22 +132,24 @@
 
 									alt='User-Profile-Image'>
 								<span>Admin</span>
-								<a class='dud-logout' id="logout">
-									<i class='feather icon-log-out'></i>
-								</a>
 							</div>
 							<ul class='pro-body'>
-								<li><a href='crear-cuenta.html' class='dropdown-item'><svg style="margin-right: 10px; margin-bottom: 5px" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
-									<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-									<path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-								  </svg>Crear Cuenta</a></li>
-										
-								<li><a href='#!' class='dropdown-item'><i class='feather icon-user'></i> Profile</a>
+								<li><a href='crear-cuenta.html' class='dropdown-item'>
+										<svg style="margin-right: 8px; margin-bottom: 2px; margin-left:0; margin-top:0;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+										<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+										<path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+										</svg>
+										Crear cuenta
+									</a>
 								</li>
-								<li><a href='message.html' class='dropdown-item'><i class='feather icon-mail'></i> My
-										Messages</a></li>
-								<li><a href='auth-signin.html' class='dropdown-item'><i class='feather icon-lock'></i>
-										Lock Screen</a></li>
+								<li><a id="btnlogout" class='dropdown-item'>
+									<svg style="margin-right: 8px; margin-bottom: 2px; margin-left:0; margin-top:0;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+										<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+										<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+									  </svg>
+									Cerrar sesión
+								</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -307,7 +228,7 @@
 											<div class='row align-items-center m-b-25'>
 												<div class='col'>
 													<h6 class='m-b-5 text-white'>Patrimonio</h6>
-													<h3 class='m-b-0 text-white patrimonio'></h3>
+													<div class="d-flex"><h3 class='m-b-0 text-white'>€</h3><h3 class='m-b-0 text-white patrimonio'></h3></div>
 												</div>
 												<div class='col-auto'>
 													<i class='fas fa-dollar-sign text-c-green f-18'></i>
@@ -457,22 +378,30 @@
 											<div class='col-4 m-0 p-0'>
 												<h6 class='f-w-600'>Fecha</h6>
 												<div class='inputFecha'>
-													<input class='p-0' type='date'
+													<input id="fecha1" class='p-0' type='date'
 														style='border: none; color: #6c757d;'>
-													<svg class="m-0" id="flecharight" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+													<svg style="margin-top: 8px; margin-bottom: 8px;" id="flecharight" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
 														<path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
 													</svg>
-													<svg class="m-0" id="flechadown" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+													<svg style="margin-top: 8px; margin-bottom: 8px;" id="flechadown" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
 														<path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
 													</svg>
-													<input class='p-0' type='date'
+													<input id="fecha2" class='p-0' type='date'
 														style='border: none; color: #6c757d;'>
 												</div>
 											</div>
-											<div class='col-4 m-0'>
-												<h6 class='f-w-600'>Ingreso</h6>
-												<div class='d-flex inputCantidad'>
-													€ <input class='w-100' type='number' step="0.01" style='border: none; border-bottom: 1px solid #a2a8af;' placeholder='Cantidad'>
+											<div id="ingresoretirada" class='col-4 m-0 d-flex'>
+												<div style="margin-bottom: 5px;">
+													<h6 class='f-w-600'>Ingreso</h6>
+													<div class='d-flex inputCantidad w-100'>
+														€ <input type='number' step="0.01" style='border: none; border-bottom: 1px solid #a2a8af; width: 70%;' placeholder='Cantidad'>
+													</div>													
+												</div>
+												<div>
+													<h6 class='f-w-600'>Retirada</h6>
+													<div class='d-flex inputRetiro w-100'>
+														€ <input type='number' step="0.01" style='border: none; border-bottom: 1px solid #a2a8af; width: 70%;' placeholder='Cantidad'>
+													</div>													
 												</div>
 											</div>
 											<div class='col-4 m-0 p-0' id="Transferencia">
@@ -486,11 +415,11 @@
 										<!--EN CASO DE PROVEEDOR-->
 										<div class='card-block itfFactura'
 											style='display: none; padding: 20px 25px; border-bottom: solid 1px rgba(0, 0, 0, 0.1);'>
-											<div class='row align-items-center justify-content-center card-active'>
-												<div class='col-6'>
+											<div style="justify-content: space-between;" class='d-flex align-items-center  card-active'>
+												<div style="width: 30%;">
 													<h5>Facturas</h5>
 												</div>
-												<div class='col-6 btnPedir'>
+												<div style="width: 30%; text-align: end;" class='btnPedir'>
 													<!--<button type='button' class='btn btn-primary'>
 														<h6 class='m-b-5 text-white'>Realizar Pedido</h6>
 													</button>-->
@@ -506,6 +435,11 @@
 										<!--EN CASO DE PRÉSTAMO-->
 										<div class='card-header itfPrestamo' style='display: none;'>
 											<h5>Préstamo</h5>
+										</div>
+
+										<!--EN CASO DE LEASING-->
+										<div class='card-header itfLeasing' style='display: none;'>
+											<h5>Leasing</h5>
 										</div>
 
 
@@ -882,18 +816,18 @@
 												<div class='row w-100 m-0'>
 													<div class='col-6' style='padding-right:5px; padding-left: 0px;'>
 														<input id='input_monto' type='text' class='form-control' placeholder='Monto'
-															aria-label='Monto' aria-describedby='basic-addon1'>
+															aria-label='Monto' aria-describedby='basic-addon1' onkeypress="return onlyNumberKey(event)">
 													</div>
 													<div class='col-6 p-0'>
 														<input id='input_cuotas' type='text' class='form-control'
 															placeholder='Numero de Cuotas' aria-label='Numero de Cuotas'
-															aria-describedby='basic-addon1'>
+															aria-describedby='basic-addon1' onkeypress="return onlyNumberKey(event)">
 													</div>
 												</div>
 												<div class='m-t-5'></div>
 												<div class='row w-100 m-0'>
 													<div class='col-6' style='padding-right:5px; padding-left: 0px;'>
-														<input id='input_tasa' type='text' class='form-control'
+														<input id='input_tasa' type='number' class='form-control'
 															placeholder='Tasa de Interés' aria-label='Tasa de Interés'
 															aria-describedby='basic-addon1'>
 													</div>
@@ -921,7 +855,7 @@
 													<option value='anual'>Anual</option>
 												</select>
 												<hr>
-												<button id='boton' class='btn btn-primary w-100 m-0' onclick="calcular();">
+												<button id='calcularPrestamo' class='btn btn-primary w-100 m-0'>
 													<h6 class='m-10' style='color: white;'>Calcular</h6>
 												</button>
 											</div>
@@ -940,56 +874,59 @@
 											</div>
 											<h6 class='f-w-600 m-t-25 m-b-10'>Leasing</h6>
 											<hr>
-											<p>Valor de la Cuota</p>
-											<p>
-											<h6 class='m-0'>€22,151.70</h6>
-											</p>
-											<p>Usted pagará $22,151.70, anualmente por un periodo de 6 años</p>
+
+											<div id='resultado1'>
+												<div>Valor de la cuota</div>
+												<div id="div-valor-cuota1" style="font-weight: bold"></div>
+												<br>
+												<div id="div-comentario1"></div>											
+											</div>
 											<hr>
+
 											<div>
 												<div class='row w-100 m-0'>
 													<div class='col-6' style='padding-right:5px; padding-left: 0px;'>
-														<input type='text' class='form-control' placeholder='Monto'
-															aria-label='Monto' aria-describedby='basic-addon1'>
+														<input id="input_monto1" type='text' class='form-control' placeholder='Monto'
+															aria-label='Monto' aria-describedby='basic-addon1' onkeypress="return onlyNumberKey(event)">
 													</div>
 													<div class='col-6 p-0'>
-														<input type='text' class='form-control'
+														<input id="input_cuotas1" type='text' class='form-control'
 															placeholder='Numero de Cuotas' aria-label='Numero de Cuotas'
-															aria-describedby='basic-addon1'>
+															aria-describedby='basic-addon1' onkeypress="return onlyNumberKey(event)">
 													</div>
 												</div>
 												<div class='m-t-5'></div>
 												<div class='row w-100 m-0'>
 													<div class='col-6' style='padding-right:5px; padding-left: 0px;'>
-														<input type='text' class='form-control'
+														<input id="input_tasa1" type='number' class='form-control'
 															placeholder='Tasa de Interés' aria-label='Tasa de Interés'
 															aria-describedby='basic-addon1'>
 													</div>
 													<div class='col-6 p-0'>
-														<select class='form-control' aria-label='Default select example'
+														<select id="select_tasa_tipo2" class='form-control' aria-label='Default select example'
 															aria-describedby='basic-addon1'>
-															<option selected>Tipo de Tasa</option>
+															<option value="-1" selected>Tipo de Tasa</option>
 															<option value='1'>Mensual</option>
 															<option value='2'>Anual</option>
 														</select>
 													</div>
 												</div>
 												<div class='m-t-5'></div>
-												<select class='form-control' aria-label='Default select example'
+												<select id='select_periodo2' class='form-control' aria-label='Default select example'
 													aria-describedby='basic-addon1'>
-													<option selected>Periodo de Pago</option>
-													<option value='1'>Diario</option>
-													<option value='2'>Semanal</option>
-													<option value='1'>Quincenal</option>
-													<option value='2'>Mensual</option>
-													<option value='1'>Bimestral</option>
-													<option value='2'>Trimestral</option>
-													<option value='2'>Cuatrimestral</option>
-													<option value='2'>Semestral</option>
-													<option value='2'>Anual</option>
+													<option value="-1" selected>Periodo de Pago</option>
+													<option value='diario'>Diario</option>
+													<option value='semanal'>Semanal</option>
+													<option value='quincenal'>Quincenal</option>
+													<option value='mensual'>Mensual</option>
+													<option value='bimestral'>Bimestral</option>
+													<option value='trimestral'>Trimestral</option>
+													<option value='cuatrimestral'>Cuatrimestral</option>
+													<option value='semestral'>Semestral</option>
+													<option value='anual'>Anual</option>
 												</select>
 												<hr>
-												<button class='btn btn-primary w-100 m-0'>
+												<button id="calcularLeasing" class='btn btn-primary w-100 m-0'>
 													<h6 class='m-10' style='color: white;'>Calcular</h6>
 												</button>
 											</div>
@@ -1015,8 +952,13 @@
 	<script src='/view/plugins/bootstrap/js/bootstrap.min.js'></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src='/view/js/pcoded.min.js'></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script src='/view/js/admin-banca-definitivo.js'></script>
+	<script src="/view/js/leasing.js"></script>
 	<script src="/view/js/prestamo.js"></script>
+
+
+
 </body>
 
 </html>

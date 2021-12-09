@@ -11,6 +11,8 @@ class ExtractoClass
 
     public $importe;
 
+    public $saldo;
+
     public $idcuenta;
 
     /**
