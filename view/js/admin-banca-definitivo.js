@@ -1,8 +1,28 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 
-    loadPagina();
-    document.getElementById("linklogout").addEventListener("click",logout);
-    document.getElementById("btnlogout").addEventListener("click",logout);
+    var url = "controller/cLoggedVerify.php";
+
+    fetch(url, {
+      method: 'GET',
+    })
+    .then(res => res.json()).then(result => {
+
+        console.log(result);
+
+        if (result.error !== "Sesión iniciada")
+        {
+            window.location.href="index.html";
+
+        } else {
+
+            loadPagina();
+
+        }
+    })
+    .catch(error => console.error('Error status:', error));
+
+
+
     
 });
 
@@ -19,6 +39,9 @@ proveedores="";
 /*LoadPagina
 ------------------------------------------------------------------------------------------------*/
 function loadPagina() {
+
+    document.getElementById("linklogout").addEventListener("click",logout);
+    document.getElementById("btnlogout").addEventListener("click",logout);
 
     var url = "controller/controller_Extractos.php";
 
