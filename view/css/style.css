@@ -8668,12 +8668,24 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     text-align: start;
 }
 
+#transferenciaFlex div{
+    background-image: url(/view/img/tarjetacredito2.png);
+    background-size: cover;
+    background-position-y: bottom;
+}
+
+#transferenciaFlex div select{
+    font-family: 'Credit Card', sans-serif;
+}
+
 #transferenciaFlex div .form-control{
-    background: none;
+    background: none;         
+    color: white;                                 
 }
 
 #transferenciaFlex div .form-control:disabled{
-    background: #e9ecef;
+    background: none;
+    border: none;
 }
 
 #importeinput .form-control{

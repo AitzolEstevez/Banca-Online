@@ -99,8 +99,11 @@ function loadPagina() {
 ------------------------------------------------------------------------------------------------*/
 function BancaOnlineload(cuentas) {
 
+    document.getElementById("SelectCuentas").style.display="block";
     document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>-";
+    document.querySelector(".numCuenta2").innerHTML = "";
     document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>-";
+    document.querySelector(".tipoCuenta2").innerHTML = "";
 
     document.querySelector(".table").innerHTML = "";
 
@@ -206,7 +209,7 @@ function BancaOnlineload(cuentas) {
         console.log(selectedValue1);
 
         var newRow4="";
-        newRow4 += "<option value=-1>Selecciona una cuenta</option>";
+        newRow4 += "<option value=-1>SELECCIONA UNA CUENTA</option>";
         for (let i = 0; i < cuentas.length; i++) {
             newRow4 += "<option value='"+cuentas[i].idCuentas+"'>"+cuentas[i].numcuenta+"</option>";
         }
@@ -344,7 +347,9 @@ function loadMovimientos(){
     if (selected == -1) {
         document.querySelector(".itfBanca2").style.display = "none";
         document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>-";
+        document.querySelector(".numCuenta2").innerHTML = "";
         document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>-";
+        document.querySelector(".tipoCuenta2").innerHTML = "";
         document.querySelector(".numeroCuenta").innerHTML = "<br>";
         document.querySelector(".saldo").innerHTML = "-";
         document.querySelector(".table tbody").innerHTML="";
@@ -352,7 +357,9 @@ function loadMovimientos(){
     } else {
         document.querySelector(".itfBanca2").style.display = "flex";
         document.querySelector(".numCuenta").innerHTML = "<span class='text-muted m-r-5'>Número Cuenta:</span><br>" + cuentas[selected].numcuenta;
+        document.querySelector(".numCuenta2").innerHTML = cuentas[selected].numcuenta;
         document.querySelector(".tipoCuenta").innerHTML = "<span class='text-muted m-r-5'>Cuenta:</span>" + cuentas[selected].tipo;
+        document.querySelector(".tipoCuenta2").innerHTML = cuentas[selected].tipo;
         document.querySelector(".numeroCuenta").innerHTML = cuentas[selected].numcuenta;
         document.querySelector(".saldo").innerHTML =  cuentas[selected].saldo;
 
