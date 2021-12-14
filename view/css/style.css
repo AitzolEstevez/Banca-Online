@@ -8692,6 +8692,10 @@ table.dataTable tbody > tr.selected td.select-checkbox:after, table.dataTable tb
     background: none;
 }
 
+#transferenciaFlex div .form-control option{
+    background: lightskyblue;
+}
+
 .inputFecha input{
     background: none;
 }
